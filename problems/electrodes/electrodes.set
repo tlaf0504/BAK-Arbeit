@@ -1,0 +1,8 @@
+% dimension 2
+% name dimension epsilon rho
+air 2 8.854e-12 0
+source1 2 8.854e-12 10e-10
+source2 2 8.854e-12 20e-10
+% dimension 1 
+% name dimension DRB/NRB/SRC value
+dirichlet_0 1 DRB 0

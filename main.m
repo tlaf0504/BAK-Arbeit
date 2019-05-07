@@ -77,4 +77,12 @@ disp(A)
 
 fprintf('Right-side vector r is :\n')
 disp(r)
+
+
+
+% Equation system assembling
+
+
+
+
         

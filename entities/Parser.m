@@ -12,10 +12,12 @@ classdef Parser
             
             %fprintf('Parsing mesh file ...\n')
             Misc.print_message('Parsing mesh file ...')
-            keyboard
             
-            
+            tmp = pwd;
+            cd(location);
+            problem_setup = Setup.new_problem_setup(location, geometry_filename);
             Parser.parse_mesh_file(problem_setup);
+            cd(tmp);
             
             
             

@@ -3,7 +3,7 @@ classdef Misc
     methods(Static)
         function print_error_message(message)
             message = ['Error:\n\t', message, '\n\r'];
-            fprintf([message, '\n\r'])
+            fprintf([message, '\n\r']);
             
             global ui;
             if ui
@@ -26,7 +26,7 @@ classdef Misc
         
         function print_warning_message(message)
             message = ['Warning:\n\t', message, '\n\r'];
-            fprintf([message, '\n\r'])
+            fprintf([message, '\n\r']);
             global ui;
             if ui
                 tmp = replace(message, '\r', '');
@@ -42,7 +42,7 @@ classdef Misc
         
         function print_message(message)
             message = [message, '\n\r'];
-            fprintf([message, '\n\r'])
+            fprintf([message, '\n\r']);
             global ui;
             if ui
                 tmp = replace(message, '\r', '');

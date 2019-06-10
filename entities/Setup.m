@@ -133,7 +133,7 @@ classdef Setup
             problem_setup = Setup.create_problem_setup_structure();
             
             [~, name, ~] = fileparts(geometry_filename);
-            file_info = dir(geometry_filename);
+            file_info = dir(fullfile(location, geometry_filename));
             
             problem_setup.problem_name = name;
             problem_setup.problem_path = location;

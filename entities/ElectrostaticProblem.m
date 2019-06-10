@@ -13,13 +13,6 @@ classdef ElectrostaticProblem
                 ye = ye';
             end
             
-%             assert(all(zeta >= 0 & zeta <= 1))
-%             
-%             assert(all(eta >= 0 & eta <= 1))
-%             
-%             assert(all(k <= finite_element_class.number_of_nodes &  k >= 1 &...
-%                 l <= finite_element_class.number_of_nodes & l >= 1))
-            
             
             % Get vairables needed for calculation
             jacobi_determinant = finite_element_class.jacobi_determinant( ...
@@ -67,12 +60,6 @@ classdef ElectrostaticProblem
                 ye = ye';
             end
             
-%             assert(all(zeta >= 0 & zeta <= 1))
-%             assert(all(eta >= 0 & eta <= 1))
-%             assert(k <= finite_element_class.number_of_nodes && k >= 1, ...
-%                 ['Assertion failed.\nYou requested node shape function ',...
-%                 'number %d but only node shape functions 1 to &d are ', ...
-%                 'available.'], k, finite_element_class.number_of_nodes)
             
             shape_function = finite_element_class.get_shape_function(k, zeta, ...
                 eta);
@@ -92,18 +79,6 @@ classdef ElectrostaticProblem
             if ~iscolumn(ye)
                 ye = ye';
             end
-            
-%             assert(all(t >= 0 & t <= 1))
-% 
-%             assert(k <= finite_element_class.number_of_nodes && k >= 1, ...
-%                 ['Assertion failed.\nYou requested node shape function ',...
-%                 'number %d but only node shape functions 1 to &d are ', ...
-%                 'available.'], k, finite_element_class.number_of_nodes)
-%             
-%             assert(side <= 3 && side >= 1, ...
-%                 ['You requested the neumann integrant for side %d of ', ...
-%                 'a triangle finite elementt but a triangle has only ', ...
-%                 'three sides ;)'], side)
 
             zero_vec = zeros(1,length(t));
             

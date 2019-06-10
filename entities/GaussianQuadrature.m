@@ -82,8 +82,8 @@ classdef GaussianQuadrature
         % 
         
         % One-point integration
-        r_line_1_point = [0];
-        w_line_1_point = [2];
+        r_line_1_point = 0;
+        w_line_1_point = 2;
         
         % Two-point integration
         r_line_2_point = [0.577350269189626; -0.577350269189626];
@@ -121,16 +121,6 @@ classdef GaussianQuadrature
         
         function val = integrate_2D_normalized_triangle_region(...
                 integrant, number_of_integration_points)
-            
-            N_allowed = ...
-                GaussianQuadrature. ...
-                possible_numbers_of_triangle_integration_points;
-            
-%             assert(ismember(number_of_integration_points, N_allowed), ...
-%                 ['Assertion failed.\nNumber of integration points must ' ...
-%                 'be one of the following values: %s\n', ...
-%                 'You entered %d.'], ...
-%                 sprintf('%d ', N_allowed), number_of_integration_points);
             
             N = number_of_integration_points;
             if N == 7

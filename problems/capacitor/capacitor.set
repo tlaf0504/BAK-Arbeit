@@ -1,9 +1,12 @@
-% dimension 2
-% name dimension epsilon rho
-air 2 8.854e-12 0
-material 2 4.4270e-11 0
-% dimension 1 
-% name dimension DRB/NRB/source value
+
+$Edges
+3
+dirichlet100 1 DRB 100
+dirichlet0 1 DRB 0
 farbound 1 DRB 0
-dirichlet0 1 DRB -50
-dirichlet100 1 DRB 50
+$EndEdges
+$Faces
+2
+air 2 1 0
+material 2 21 0
+$EndFaces

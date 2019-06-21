@@ -2,8 +2,10 @@ classdef FirstOrderTriangleElement
     %FIRSTORDERTRIANGLEELEMENT Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        Property1
+    properties(Constant)
+        nodes_of_triangle_edges = [1,1,0;
+                                   1,0,1;
+                                   0,1,1];
     end
     
     methods

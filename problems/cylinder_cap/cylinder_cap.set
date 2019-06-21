@@ -1,0 +1,12 @@
+$Edges
+3
+dir100 1 DRB 100
+dir0 1 DRB 0
+neumann_1 1 NRB 1
+$EndEdges
+
+$Faces
+2
+material_1 2 1.5 0
+material_2 2 2 0
+$EndFaces

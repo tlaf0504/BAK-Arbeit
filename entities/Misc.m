@@ -1,5 +1,9 @@
 classdef Misc
     
+    properties(Constant)
+        possible_mesh_orders = [1,2,3];
+    end
+    
     methods(Static)
         function print_error_message(message)
             message = ['Error:\n\t', message, '\n\r'];

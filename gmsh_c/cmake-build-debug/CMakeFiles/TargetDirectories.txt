@@ -1,0 +1,3 @@
+/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/gmsh_c/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/gmsh_c/cmake-build-debug/CMakeFiles/gmsh_c.dir
+/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/gmsh_c/cmake-build-debug/CMakeFiles/edit_cache.dir

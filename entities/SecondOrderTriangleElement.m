@@ -9,6 +9,24 @@ classdef SecondOrderTriangleElement
         v23 = [-3; 0; 0; 0; -1; 4];
         
         number_of_nodes = 6;
+        
+        % Assignment of element nodes to the corresponding triangle edges.
+        % According to http://gmsh.info/doc/texinfo/gmsh.html#Node-ordering
+        % (21.06.2019) the nodes 0, 3 and 1 belong to the bottom triangle edge.
+        %
+        % This assignment is needed for correct
+        % calculation of the right side coefficients when the current triangle is
+        % located on the neumann boundary, as the line integral is depended of the
+        % triangles edge on the boundary.
+        %
+        % Triangle edge '1' is defined as the edge on the zeta-axis
+        % Triangle edge '2' is defined as the edge on the eta-axis
+        % Triangle edge '3' is defined as the edge between the points (1,0) and (0,1)
+        %
+        % Each row of the matrix below corresponds to one triangle edge.
+        nodes_of_triangle_edges = [1,1,0,1,0,0;
+                                   1,0,1,0,0,1;
+                                   0,1,1,0,1,0];
     end
  
     methods(Static)

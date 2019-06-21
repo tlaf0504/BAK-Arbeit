@@ -33,6 +33,10 @@ Point(11) = {0.7, 0.47, 0, .2};
 //+
 Point(12) = {0.3, 0.47, 0, .2};
 //+
+Point(13) = {0.6, 0.8, 0, 1.0};
+//+
+Point(14) = {0.4, 0.8, 0, 1.0};
+//+
 Line(5) = {8, 7};
 //+
 Line(6) = {7, 6};
@@ -55,6 +59,8 @@ Line(14) = {5, 6};
 //+
 Line(15) = {6, 10};
 //+
+Line(16) = {14, 13};
+
 
 //+
 Curve Loop(1) = {5, 6, 7, 8};
@@ -84,3 +90,8 @@ Physical Curve("dirichlet100") = {5, 8, 7, 6};
 Physical Curve("dirichlet0") = {12, 9, 10, 11};
 //+
 Physical Curve("farbound") = {4, 3, 2, 1};
+
+
+
+//+
+Physical Curve("neumann_1") = {16};

@@ -5,7 +5,7 @@ classdef GmshAPI
         supported_mesh_file_versions = [1,2,4];
         
         % Exporting a specific mesh file format is depended of the extension while
-        % exporting a file. 
+        % exporting a file.
         % See http://gmsh.info/doc/texinfo/gmsh.html#Command_002dline-options,
         % command line option "-format"
         %
@@ -14,7 +14,7 @@ classdef GmshAPI
         %
         % For mesh file verion 1, the extension '.msh1' is used.
         % For mesh file version 2(.2), the extension '.msh22' is used
-        % For mesh file version 4, the estension '.msh41' is used. 
+        % For mesh file version 4, the estension '.msh41' is used.
         %
         mesh_file_extension_map = containers.Map( ...
             GmshAPI.supported_mesh_file_versions, ... % keys
@@ -33,7 +33,7 @@ classdef GmshAPI
                 msg = sprintf(['Error. Problem initilization were not ', ...
                     'finished. Maybe the setup procedure was interrupted.', ...
                     'Please rerun the complete setup procedure.']);
-                Misc.print_error_message(msg) 
+                Misc.print_error_message(msg)
             end
             
             % Check if mesh order is valid
@@ -52,14 +52,14 @@ classdef GmshAPI
                     'Check Gmsh installaiton.'])
                 return
             end
-
+            
             GmshAPI.load_geometry(problem_setup);
             GmshAPI.generate_2D_mesh(problem_setup.mesh_order);
             problem_setup = GmshAPI.export_mesh_file(problem_setup, 2);
             GmshAPI.finalize();
             
             problem_setup.state = Setup.setup_state_meshing_finished;
-            Setup.update_problem_setup_file(problem_setup);     
+            Setup.update_problem_setup_file(problem_setup);
             cd(tmp)
             
             
@@ -86,14 +86,24 @@ classdef GmshAPI
                 Misc.print_error_message(msg);
                 success = 0;
             end
-            
-            gmsh_library_location = fullfile(gmsh_location, 'lib');
-            if ~Misc.check_file_existence(gmsh_library_location, 'libgmsh.so')
-                msg = sprintf(['Error. Expected Gmsh library file ', ...
-                    '"libgmsh.so" in directory "%s" not found. Check path ', ...
-                    'and installation of gmsh.'], gmsh_library_location);
-                Misc.print_error_message(msg);
-                success = 0;
+            if isunix % linux
+                gmsh_library_location = fullfile(gmsh_location, 'lib');
+                if ~Misc.check_file_existence(gmsh_library_location, 'libgmsh.so')
+                    msg = sprintf(['Error. Expected Gmsh library file ', ...
+                        '"libgmsh.so" in directory "%s" not found. Check path ', ...
+                        'and installation of gmsh.'], gmsh_library_location);
+                    Misc.print_error_message(msg);
+                    success = 0;
+                end
+            elseif ispc % windows
+                gmsh_library_location = fullfile(gmsh_location, 'lib');
+                if ~Misc.check_file_existence(gmsh_library_location, 'gmsh-4.4.dll')
+                    msg = sprintf(['Error. Expected Gmsh library file ', ...
+                        '"gmsh-4.4.dll" in directory "%s" not found. Check path ', ...
+                        'and installation of gmsh.'], gmsh_library_location);
+                    Misc.print_error_message(msg);
+                    success = 0;
+                end
             end
         end
         
@@ -128,7 +138,7 @@ classdef GmshAPI
         
         function generate_2D_mesh(order)
             GmshAPI.set_mesh_order(order);
-            GmshAPI.generate_mesh(2); 
+            GmshAPI.generate_mesh(2);
         end
         
         function refine_mesh()

@@ -24,7 +24,7 @@ classdef Misc
                 
                 msgbox(tmp,'Error', 'error', 'modal')
                 uiwait()
-            end       
+            end
         end
         
         
@@ -41,7 +41,7 @@ classdef Misc
                 
                 msgbox(tmp,'Warning','warn', 'modal')
                 uiwait()
-            end  
+            end
         end
         
         function print_message(message)
@@ -54,18 +54,26 @@ classdef Misc
                 tmp = split(tmp, '\n');
                 global msg_dest;
                 msg_dest.Value = [msg_dest.Value; tmp];
-            end  
+            end
         end
         
         
         function file_exists = check_file_existence(location, filename)
-           
+            
             file_exists = 1;
             path = fullfile(location, filename);
             
-            if ~isfile(path)
-                file_exists = 0;
+            releasedate=datevec(version('-date'),'');
+            if releasedate(1)>=2018
+                if ~isfile(path)
+                    file_exists = 0;
+                end
+            else
+                if ~exist(path,'file')
+                    file_exists = 0;
+                end
             end
+            
         end
     end
     

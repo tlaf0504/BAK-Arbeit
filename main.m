@@ -20,7 +20,11 @@ global ui;
 %
 % Please ensure you download the SDK, as this software uses the powerful Gmsh 
 % built-in API, which is only delivered with the SDK version.
-gmsh_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64';
+if strcmp(getenv('username'),'baumgartner') % workaround that both can execute the code properly
+    gmsh_location = 'C:\Users\baumgartner\Downloads\gmsh-git-Windows64-sdk\gmsh-git-Windows64-sdk\';
+else
+    gmsh_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64';
+end
 
 % Starts user interface.
 % When the UI is used, the parameters below have no effect.
@@ -28,7 +32,12 @@ ui = 0;
 
 
 % Problem location
-problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
+if strcmp(getenv('username'),'baumgartner') % workaround that both can execute the code properly
+    problem_location = 'D:\LV\Studienarbeiten\Lafer\problems\cylinder_cap';
+else
+    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
+end
+
 
 % Set this flag to 1 if you want to load a existing setup. If this flag is set,
 % the parameters below have no effect.
@@ -51,8 +60,15 @@ end
 
 addpath(fullfile(gmsh_location, 'include'))
 addpath(fullfile(gmsh_location, 'lib'))
+
 if not(libisloaded('libgmsh'))
-    loadlibrary('libgmsh.so', 'gmshc.h')
+    if isunix % linux
+        loadlibrary('libgmsh.so', 'gmshc.h')
+    elseif ispc % windows
+        loadlibrary('gmsh-4.4.dll', 'gmshc.h','alias','libgmsh')
+    else
+        disp('Platform not supported')
+    end
 end
 
 if ui

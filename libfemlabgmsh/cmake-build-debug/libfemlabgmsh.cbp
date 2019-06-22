@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="libfemlabgmsh"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libfemlabgmsh">
+				<Option output="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/libfemlabgmsh" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 libfemlabgmsh"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libfemlabgmsh/fast">
+				<Option output="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/libfemlabgmsh" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 libfemlabgmsh/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/libfemlab.c">
+			<Option target="libfemlabgmsh"/>
+		</Unit>
+		<Unit filename="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/libfemlab.h">
+			<Option target="libfemlabgmsh"/>
+		</Unit>
+		<Unit filename="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/main.c">
+			<Option target="libfemlabgmsh"/>
+		</Unit>
+		<Unit filename="/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

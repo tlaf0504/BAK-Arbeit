@@ -1,3 +1,0 @@
-/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/CMakeFiles/libfemlabgmsh.dir
-/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/libfemlabgmsh/cmake-build-debug/CMakeFiles/edit_cache.dir

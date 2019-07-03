@@ -2,6 +2,17 @@ classdef Misc
     
     properties(Constant)
         possible_mesh_orders = [1,2,3];
+        console_section_separator = repmat('=', 1, 80); 
+        console_subsection_separator = repmat('-', 1, 80);
+        
+        % Supported problem types.
+        %     -) 'Electrostatic': Electrostatic problem. ID = 1
+        %     -) 'Static Current': Static currentflow problem. ID = 2
+        supported_problem_types = containers.Map(...
+            {'Electrostatic', 'Static Current'}, ...        
+            [1, 2] ...
+            );
+        
     end
     
     methods(Static)
@@ -45,8 +56,8 @@ classdef Misc
         end
         
         function print_message(message)
-            message = [message, '\n\r'];
-            fprintf([message, '\n\r']);
+            message = [message, '\n'];
+            fprintf(message);
             global ui;
             if ui
                 tmp = replace(message, '\r', '');

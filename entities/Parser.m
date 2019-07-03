@@ -9,9 +9,14 @@ classdef Parser
         function success = parse(problem_location)
             
             success = 1;
-            
             tmp = pwd;
             cd(problem_location);
+            
+            % Plot section separator to console
+            Misc.print_message(sprintf('%s\n%s\n%s', ...
+                Misc.console_section_separator, ...
+                'Parser', Misc.console_section_separator));
+            
             
             if ~Misc.check_file_existence(problem_location, 'problem_setup.mat')
                 msg = sprinft(['Error. Setup-file "problem setup.mat" in folder ', ...
@@ -24,40 +29,78 @@ classdef Parser
             % problem_setup.state must be higher than
             % Setup.setup_state_meshing_finished
             if problem_setup.state < Setup.setup_state_meshing_finished
-                msg = sprintf(['Error. Meshiong procedure were not ', ...
+                msg = sprintf(['Error. Meshing procedure was not ', ...
                     'finished. Maybe the setup procedure was interrupted.', ...
-                    'Please rerun the complete setup procedure.']);
+                    'Please rerun the complete meshing procedure.']);
                 Misc.print_error_message(msg);
                 success = 0;
                 return
-            end 
+            end
+            
+            % ===== Parse mesh file
+            tic
             
             Misc.print_message('Parsing mesh file ...')
             [node_data, group_data, triangle_data, curve_data] = Parser. ...
                 parse_mesh_file(problem_setup);
             
+            time = toc;
+            Misc.print_message(sprintf('Done\nElapsed time is %d seconds.\n', time));
             
+            
+            % ===== Parse settings file
             Misc.print_message('Parsing settings file ...')
             [dirichlet_boundary_conditions, neumann_boundary_conditions, ...
                 region_data] = Parser.parse_settings_file(problem_setup);
+
+            Misc.print_message('Done.');
             
             
+            % ===== Data prostprocessing
+            Misc.print_message('Postprocessing of parsed data....')
             
-            direchlet_boundary_data = ...
+            dirichlet_boundary_data = ...
                 Parser.get_nodes_on_boundary(...
                 dirichlet_boundary_conditions, group_data, curve_data, node_data);
             
             neumann_boundary_data = Parser.get_triangle_edges_on_neumann_boundary(...
                 neumann_boundary_conditions, ...
-                group_data, curve_data, node_data, triangle_data);    
+                group_data, curve_data, node_data, triangle_data);
             
             material_and_source_properties = ...
                 Parser.get_material_and_source_properties_of_elements(region_data, ...
                 triangle_data, group_data);
             
-            cd(tmp);
+            Misc.print_message('Done.');
             
+            % ===== Save data to file
+            
+            data_file = fullfile('internal', 'mesh_data.mat');
+            Misc.print_message(sprintf('Writing data to "%s"...', ...
+                fullfile(problem_setup.problem_location, data_file)));
+            
+            
+            mesh_data = struct();
+            mesh_data.node_data = node_data;
+            mesh_data.triangle_data = triangle_data;
+            mesh_data.dirichlet_boundary_data = dirichlet_boundary_data;
+            mesh_data.neumann_boundary_data = neumann_boundary_data;
+            mesh_data.material_and_source_properties = material_and_source_properties;
+            
+            save(data_file, 'mesh_data');
+            Misc.print_message('Done.')
+            
+            Parser.print_statistics(node_data, triangle_data);
+ 
+            Misc.print_message(Misc.console_section_separator);
+            Misc.print_message('\n');
+            
+            problem_setup.state = Setup.setup_state_parsing_finished;
+            Setup.update_problem_setup_file(problem_setup);
+            
+            cd(tmp);
         end
+        
         
         
         
@@ -390,13 +433,13 @@ classdef Parser
             section = file_content(start_idx : end_idx);
         end
         
-        function nodes_on_boundary = get_nodes_on_boundary(...
+        function node_values_on_boundary = get_nodes_on_boundary(...
                 boundary_conditions, group_data, curve_data, node_data)
             
             number_of_nodes = length(node_data{1});
             number_of_boundary_conditions = length(boundary_conditions{1});
             
-            nodes_on_boundary = -ones(number_of_nodes, 1);
+            node_values_on_boundary = -ones(number_of_nodes, 1);
             
             for k = 1 : number_of_boundary_conditions
                 name_of_current_boundary_condition = ...
@@ -425,7 +468,7 @@ classdef Parser
                 
                 nodes_of_boundary_curves = unique(nodes_of_boundary_curves(:));
                 
-                nodes_on_boundary(nodes_of_boundary_curves) = ...
+                node_values_on_boundary(nodes_of_boundary_curves) = ...
                     value_of_current_boundary_condition;
                 
                 msg = sprintf('Nodes on boundary "%s": \n\t%s', ...
@@ -434,9 +477,9 @@ classdef Parser
                 Misc.print_message(msg);
             end
             
-            ids_of_nodes_on_boundary = find(nodes_on_boundary ~= -1);
-            nodes_on_boundary = [ids_of_nodes_on_boundary, ...
-                nodes_on_boundary(ids_of_nodes_on_boundary)];
+            ids_of_nodes_on_boundary = int32(find(node_values_on_boundary ~= -1));
+            node_values_on_boundary = {ids_of_nodes_on_boundary, ...
+                node_values_on_boundary(ids_of_nodes_on_boundary)};
             
         end
         
@@ -444,7 +487,8 @@ classdef Parser
                 neumann_boundary_conditions, ...
                 group_data, curve_data, node_data, triangle_data)
             
-            neumann_boundary_data = [];
+            
+            neumann_boundary_data = cell(1,3);
             
             number_of_boundary_conditions = length(neumann_boundary_conditions{1});
             for k = 1 : number_of_boundary_conditions
@@ -455,9 +499,9 @@ classdef Parser
                 
                 tmp = Parser.get_nodes_on_boundary( ...
                     current_boundary_condition, group_data, curve_data, node_data);
-                nodes_of_boundary = tmp(:, 1);
+                nodes_of_boundary = tmp{1};
                 
-                values = tmp(:, 2);
+                values = tmp{2};
                 clear tmp;
                 
                 % Get matrix of element nodes
@@ -495,8 +539,17 @@ classdef Parser
                 
                 [N, ~] = size(edges_on_boundary);
                 
-                neumann_boundary_data = [ neumann_boundary_data;
-                    [edges_on_boundary, values(1) * ones(N, 1)]];
+                % Append ids of elements
+                neumann_boundary_data{1} = [neumann_boundary_data{1}; ...
+                    edges_on_boundary(:, 1)];
+                
+                % Append element sides
+                neumann_boundary_data{2} = [neumann_boundary_data{2}; ...
+                    edges_on_boundary(:, 2)];
+                
+                % Append boundary condition values
+                neumann_boundary_data{3} = [neumann_boundary_data{3}; ...
+                    values(1) * ones(N, 1)];
             end
         end
         
@@ -538,7 +591,7 @@ classdef Parser
         function material_and_source_properties = ...
                 get_material_and_source_properties_of_elements(region_data, ...
                 triangle_data, group_data)
-
+            
             [number_of_elements, ~] = size(triangle_data);
             
             % First column: material properties, second column: source value
@@ -566,10 +619,25 @@ classdef Parser
                 N = sum(ids_of_elements);
                 
                 
-                 material_and_source_properties(ids_of_elements, :) = ...
+                material_and_source_properties(ids_of_elements, :) = ...
                     repmat([current_material_property, current_source_value], ...
                     N, 1);
-            end           
+            end
+        end
+        
+        function print_statistics(node_data, triangle_data)
+            
+            [number_of_nodes, ~] = size(node_data{2});
+            [number_of_elements, ~] = size(triangle_data);
+            
+            msg = sprintf(...
+            ['\nStatistics:\n', ...
+                Misc.console_subsection_separator, '\n', ...
+                'Number of elements: %d\n', ...
+                'Number of nodes: %d\n', ...
+                Misc.console_subsection_separator, '\n'], ...
+                number_of_elements, number_of_nodes);
+            Misc.print_message(msg);
         end
         
     end

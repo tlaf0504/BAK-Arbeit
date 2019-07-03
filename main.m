@@ -9,22 +9,7 @@ global ui;
 
 % ============================= User area ===========================================
 % Gmsh location
-% Please enter the path to the MAIN FOLDER of the Gmsh SDK package. You can download 
-% it from http://gmsh.info/#Download.
-%
-% Extract the archive to a folder of your choice and enter the path of the main
-% folder in the parameter below.
-%
-% e.g. gmsh_location = '/home/<user>/gmsh/gmsh-4.3.0-Linux64'
-%
-%
-% Please ensure you download the SDK, as this software uses the powerful Gmsh 
-% built-in API, which is only delivered with the SDK version.
-if strcmp(getenv('username'),'baumgartner') % workaround that both can execute the code properly
-    gmsh_location = 'C:\Users\baumgartner\Downloads\gmsh-git-Windows64-sdk\gmsh-git-Windows64-sdk\';
-else
-    gmsh_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64';
-end
+gmsh_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3.0-Linux64/bin';
 
 % Starts user interface.
 % When the UI is used, the parameters below have no effect.
@@ -35,8 +20,14 @@ ui = 0;
 if strcmp(getenv('username'),'baumgartner') % workaround that both can execute the code properly
     problem_location = 'D:\LV\Studienarbeiten\Lafer\problems\cylinder_cap';
 else
+    
     problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
 end
+
+% Integer number representing the type of the problem.
+% See Misc.supported_problem_types for supported problem types.
+problem_type = 'Electrostatic';
 
 
 % Set this flag to 1 if you want to load a existing setup. If this flag is set,
@@ -45,49 +36,55 @@ load_existing_setup = 1;
 
 % Name of the geometry file
 geometry_file = 'cylinder_cap.geo';
+%geometry_file = 'cap.geo';
 
 % Name of the settings file
 settings_file = 'cylinder_cap.set';
+%settings_file = 'cap.set';
 
-% Element order. 
-% 1: Linear, 2: Quadratic, 3: cubic
-mesh_order = 1;
+% Element order.
+% 1: Linear, 2: Quadratic, 3: Cubic
+mesh_order = 2;
 
 % ========================= Do not mofidy code blow here ============================
-if ~GmshAPI.check_installation(gmsh_location)
-    return
+global gmsh_exec;
+
+if isunix
+    gmsh_exec = fullfile(gmsh_location, 'gmsh');
+elseif ispc
+    gmsh_exec = fullfile(gmsh_location, 'gmsh.exe');
+elseif ismac
+    error("I don't like apples.")
 end
 
-addpath(fullfile(gmsh_location, 'include'))
-addpath(fullfile(gmsh_location, 'lib'))
-
-if not(libisloaded('libgmsh'))
-    if isunix % linux
-        loadlibrary('libgmsh.so', 'gmshc.h')
-    elseif ispc % windows
-        loadlibrary('gmsh-4.4.dll', 'gmshc.h','alias','libgmsh')
-    else
-        disp('Platform not supported')
-    end
-end
 
 if ui
     main_window()
 else
-    success = Setup.new_setup(problem_location, geometry_file, settings_file, mesh_order);
+    success = Setup.new_setup(problem_location, geometry_file, settings_file, ...
+        mesh_order, problem_type);
     if ~success
         return
     end
     
-    GmshAPI.mesh(problem_location);
-    Parser.parse(problem_location);
+    success = GmshIF.mesh(problem_location);
+    if ~success
+        return
+    end
+    
+    success = Parser.parse(problem_location);
+    if ~success
+        return
+    end
+    
+    success = Solver.solve(problem_location);
+    if ~success
+        return
+    end
+    
+    Postprocessor.plot_electrostatic_potential(problem_location);
     
     
+  
 end
 
-% tic
-% Parser.parse('/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap', 'cylinder_cap.geo', 'cylinder_cap.set')
-% toc
-
-
-        

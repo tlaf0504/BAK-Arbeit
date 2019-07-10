@@ -9,13 +9,13 @@ classdef Postprocessor
             load(fullfile(problem_location, 'results', 'results.mat'), 'unknowns', ...
                 'result_to_global_node_mapping');
             
-            N_nodes = length(mesh_data.node_data{1});
+            N_nodes = mesh_data.node_data.number_of_nodes;
             
-            %                         x                         y                       value
-            node_plot_data = [mesh_data.node_data{2}(:, 1), mesh_data.node_data{2}(:, 2), zeros(N_nodes, 1)];
+            node_plot_data = [mesh_data.node_data.coordinates(:, 1), ...
+                mesh_data.node_data.coordinates(:, 2), zeros(N_nodes, 1)];
             
-            node_plot_data(mesh_data.dirichlet_boundary_data{1}, 3) = ...
-                mesh_data.dirichlet_boundary_data{2};
+            node_plot_data(mesh_data.dirichlet_boundary_data.IDs, 3) = ...
+                mesh_data.dirichlet_boundary_data.values;
             
             node_plot_data(result_to_global_node_mapping, 3) = unknowns;
             

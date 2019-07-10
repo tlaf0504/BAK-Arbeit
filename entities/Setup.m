@@ -74,10 +74,12 @@ classdef Setup
         
         
         function success = new_setup(problem_location, ...
-                geometry_filename, settings_filename, mesh_order, problem_type)
+                geometry_filename, settings_filename, mesh_order, problem_type, ...
+                mesh_file_version)
             
         % function success = new_setup(problem_location, ...
-        %         geometry_filename, settings_filename, mesh_order)
+        %         geometry_filename, settings_filename, mesh_order, problem_type, ...
+        %         mesh_file_version)
         %
         % DESCRIPTION: Function applying setup procedure for a new problem.
         % 
@@ -104,6 +106,8 @@ classdef Setup
         %     problem_type.....String representing the type of the problem to be
         %         solved. See Misc.supported_problem_types for further information
         %         about the supported problem types.
+        %     mesh_file_version.....Format of the generate mesh file. See 
+        %         GmshIF.supported_mesh_file_versions for further information.
         %
         %
         % OUTPUT:
@@ -147,7 +151,8 @@ classdef Setup
             
             % Create new structure for storing problem information
             problem_setup = Setup.new_problem_setup(problem_location, ...
-                geometry_filename, settings_filename, mesh_order, problem_type);
+                geometry_filename, settings_filename, mesh_order, problem_type, ...
+                mesh_file_version);
             
             
             problem_setup.state = Setup.setup_state_initializing_finished;
@@ -225,6 +230,7 @@ classdef Setup
         
         
         function create_or_cleanup_folder(folder)
+            
         % function create_or_cleanup_folder(folder)
         %
         % DESCRIPTION: Function for either creating or cleaning up (deleting all
@@ -249,10 +255,12 @@ classdef Setup
         
         
         function problem_setup = new_problem_setup(location, ...
-                geometry_filename, settings_filename, mesh_order, problem_type)
+                geometry_filename, settings_filename, mesh_order, problem_type, ...
+                mesh_file_version)
             
         % function problem_setup = new_problem_setup(location, ...
-        %        geometry_filename, settings_filename, mesh_order)
+        %        geometry_filename, settings_filename, mesh_order, problem_type, ...
+        %         mesh_file_version)
         %
         % DESCRIPTION: Function for creating a new strucutre containing all
         %     information about the problem.
@@ -285,6 +293,8 @@ classdef Setup
         %            dependent decisions. (e.g. how to calculate the element
         %            matrices)
         %            See Misc.supported_problem_types for supported problem types.
+        %        mesh_file_version.....Format of the generate mesh file. See 
+        %            GmshIF.supported_mesh_file_versions for further information.
         %
         % OUTPUT:
         %     problem_setup.....Structuce containing all necessary information about
@@ -318,6 +328,8 @@ classdef Setup
         %        -) result_data_file.....Name of the .mat file containing the results
         %            for the problem. This file is stored in the 'results' subfolder
         %            of the problem directory.
+        %        -) mesh_file_version.....Format of the generate mesh file. See 
+        %            GmshIF.supported_mesh_file_versions for further information.
         %
         %
         % Author: Tobias Lafer
@@ -340,6 +352,7 @@ classdef Setup
             problem_setup.settings_file_hash = DataHash(settings_filename);
             problem_setup.mesh_order = mesh_order;
             problem_setup.state = Setup.setup_state_initializing;
+            problem_setup.mesh_file_version = mesh_file_version;
             
             % Placeholders
             problem_setup.mesh_file = '';
@@ -348,18 +361,63 @@ classdef Setup
             
         end
         
+        
         function update_problem_setup_file(problem_setup)
+            
+        % function update_problem_setup_file(problem_setup)
+        %
+        % DESCRIPTION: Function for updating the problem_setup.mat file.
+        %
+        %
+        % INPUT:
+        %     problem_setup.....Structuce containing all necessary information about
+        %     the problem.
+        %
+        %
+        % Author: Tobias Lafer
+        % e-mail: lafer@student.tugraz.at
+        %
+        % Created on: 26.06.2019
+        % Last modified 05.07.2019 by Tobias Lafer
+        %
             save(fullfile(problem_setup.problem_location, 'problem_setup.mat'), ...
                 'problem_setup');
         end
         
         function success = evaluate_problem_type(problem_type)
+            
+        % function success = evaluate_problem_type(problem_type)
+        %
+        % DESCRIPTION: Function evaluating the problem_type string specified by the
+        %     user.
+        %
+        %     Misc.supported_problem_types defines the problem types supported and
+        %     their corresponding ID. This function checks if the parameter
+        %     problem_type in the main script war correctly set with one of the
+        %     suppported problems.
+        %
+        %
+        % INPUT:
+        %     problem_type.....String specifying the type of the problem. See 
+        %         Misc.supported_problem_types for all supported problem.
+        % OUTPUT:
+        %     success.....If function returns 1, the content of problem_type is
+        %     valid. If 0 is returned, it is invalid.
+        %
+        %
+        % Author: Tobias Lafer
+        % e-mail: lafer@student.tugraz.at
+        %
+        % Created on: 26.06.2019
+        % Last modified 05.07.2019 by Tobias Lafer
+        %
             success = 1;
             
             supported_problems_strings = keys(Misc.supported_problem_types);
             tmp = '';
             
             if ~ismember(problem_type, supported_problems_strings)
+                
                 for k = 1 : length(supported_problems_strings)
                     tmp = [tmp, '"', supported_problems_strings{k}, '" '];
                 end

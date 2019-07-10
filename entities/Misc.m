@@ -1,7 +1,7 @@
 classdef Misc
     
     properties(Constant)
-        possible_mesh_orders = [1,2,3];
+        supported_mesh_orders = [1,2,3];
         console_section_separator = repmat('=', 1, 80); 
         console_subsection_separator = repmat('-', 1, 80);
         

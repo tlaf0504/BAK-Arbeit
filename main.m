@@ -35,18 +35,27 @@ problem_type = 'Electrostatic';
 load_existing_setup = 1;
 
 % Name of the geometry file
-geometry_file = 'cylinder_cap.geo';
+geometry_file = 'cap.geo';
 %geometry_file = 'cap.geo';
 
 % Name of the settings file
-settings_file = 'cylinder_cap.set';
+settings_file = 'cap.set';
 %settings_file = 'cap.set';
 
 % Element order.
 % 1: Linear, 2: Quadratic, 3: Cubic
 mesh_order = 2;
 
+% Mesh file version
+% See GmshIF.supported_mesh_file_versions for further information
+mesh_file_version = 2;
+
 % ========================= Do not mofidy code blow here ============================
+
+% Matlab uses double by default.
+mesh_order = int32(mesh_order);
+mesh_file_verion = int32(mesh_file_version);
+
 global gmsh_exec;
 
 if isunix
@@ -62,7 +71,7 @@ if ui
     main_window()
 else
     success = Setup.new_setup(problem_location, geometry_file, settings_file, ...
-        mesh_order, problem_type);
+        mesh_order, problem_type, mesh_file_version);
     if ~success
         return
     end

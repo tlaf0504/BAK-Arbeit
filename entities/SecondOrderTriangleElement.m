@@ -24,9 +24,28 @@ classdef SecondOrderTriangleElement
         % Triangle edge '3' is defined as the edge between the points (1,0) and (0,1)
         %
         % Each row of the matrix below corresponds to one triangle edge.
-        nodes_of_triangle_edges = [1,1,0,1,0,0;
-                                   1,0,1,0,0,1;
-                                   0,1,1,0,1,0];
+        nodes_of_triangle_edges = [1,1,1,0,0,0;
+                                   0,0,1,1,1,0;
+                                   0,0,0,1,1,1];
+                               
+       % Correction of node ordering of triangles and curves.
+       % Gmsh has a different node ordering than used in this program. See 
+       % http://gmsh.info/doc/texinfo/gmsh.html#Node-ordering (15.07.2019) for
+       % further information.
+       % Attention: Gmsh starts node numbering with 0. As matlab starts indexing with
+       % 1, the gmsh node numbers also start with 1.
+       
+                               % Gmsh  Program
+       triangle_node_ordering = [ 1,      1;
+                                  2,      3;
+                                  3,      5;
+                                  4,      2;
+                                  5,      4;
+                                  6,      6];
+                         % Gmsh  Program 
+      curve_node_ordering = [1,    1;
+                             2,    3;
+                             3,    2];
     end
  
     methods(Static)
@@ -155,7 +174,7 @@ classdef SecondOrderTriangleElement
             
         end
         
-        function det_J = jacobi_determinant(eta, zeta, xe, ye)
+        function det_J = jacobi_determinant(zeta, eta, xe, ye)
             if ~iscolumn(xe)
                 xe = xe';
             end

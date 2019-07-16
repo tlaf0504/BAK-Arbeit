@@ -2,7 +2,7 @@ classdef Parser
     
     properties(Constant)
         number_of_triangle_nodes = containers.Map(int32([1,2,3]), ...
-            int32([3,6,9]));
+            int32([3,6,10]));
         number_of_curve_nodes = containers.Map(int32([1,2,3]), ...
             int32([2,3,4]));
     end
@@ -660,10 +660,13 @@ classdef Parser
             switch number_of_element_nodes
                 case 3
                     element_type_ID = 2;
+                    finite_element = FirstOrderTriangleElement;
                 case 6
                     element_type_ID = 9;
-                case 9
-                    element_type_ID = 20;
+                    finite_element = SecondOrderTriangleElement;
+                case 10
+                    element_type_ID = 21;
+                    finite_element = ThirdOrderTriangleElement;
             end
             
             % Second column of element_data contains element-type IDs.
@@ -773,6 +776,21 @@ classdef Parser
             triangle_data_tmp = reshape(triangle_data_tmp, ...
                 number_of_columns_per_element, [])';
             
+            % For second and third order elements, the node ordering must be
+            % corrected as Gmsh uses a different ordering than this program.
+            % See http://gmsh.info/doc/texinfo/gmsh.html#Node-ordering for further
+            % information
+            %
+            % The node orderings used in this program are defined in the
+            % corresponding classes as comment headers.
+            %
+            if number_of_element_nodes > 3
+                node_ordering = finite_element.triangle_node_ordering;
+                triangle_data_tmp(:, 2 + node_ordering(:, 2)) = ...
+                    triangle_data_tmp(:, 2 + node_ordering(:, 1));
+            end
+            
+            
             % Store data to output structure
             triangle_data = struct( ...
                 'number_of_triangles', number_of_triangles, ...
@@ -828,10 +846,13 @@ classdef Parser
             switch number_of_element_nodes
                 case 2
                     element_type_ID = 1;
+                    finite_element = FirstOrderTriangleElement;
                 case 3
                     element_type_ID = 8;
+                    finite_element = SecondOrderTriangleElement;
                 case 4
                     element_type_ID = 26;
+                    finite_element = ThirdOrderTriangleElement;
             end
             
             curves = element_data(element_data(:, 2) == element_type_ID, :);
@@ -857,6 +878,21 @@ classdef Parser
             curve_data_tmp = curves(curve_data_idx);
             curve_data_tmp = reshape(curve_data_tmp, ...
                 number_of_columns_per_element, [])';
+            
+            
+            % For second and third order elements, the node ordering must be
+            % corrected as Gmsh uses a different ordering than this program.
+            % See http://gmsh.info/doc/texinfo/gmsh.html#Node-ordering for further
+            % information
+            %
+            % The node orderings used in this program are defined in the
+            % corresponding classes as comment headers.
+            %
+            if number_of_element_nodes > 2
+                node_ordering = finite_element.curve_node_ordering;
+                curve_data_tmp(:, 2 + node_ordering(:, 2)) = ...
+                    curve_data_tmp(:, 2 + node_ordering(:, 1));
+            end
             
             curve_data = struct( ...
                 'number_of_curves', number_of_curves, ...
@@ -1145,9 +1181,9 @@ classdef Parser
             elseif number_of_element_nodes == 6
                 nodes_of_triangle_edges = ...
                     SecondOrderTriangleElement.nodes_of_triangle_edges;
-            elseif number_of_element_nodes == 9
+            elseif number_of_element_nodes == 10
                 nodes_of_triangle_edges = ...
-                    ThirdOrderTriangleElemement.nodes_of_triangle_edges;
+                    ThirdOrderTriangleElement.nodes_of_triangle_edges;
             end
             
             

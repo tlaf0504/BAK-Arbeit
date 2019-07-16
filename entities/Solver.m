@@ -79,18 +79,24 @@ classdef Solver
                     order_string = 'Third order';
             end
             
-            [A, r, result_to_global_node_mapping] = Solver.assemble(...
+            
+            
+            [A, r, result_to_global_node_mapping, success] = Solver.assemble(...
                 mesh_data.node_data, ...
                 mesh_data.triangle_data, ...
                 mesh_data.material_and_source_properties, ...
                 mesh_data.dirichlet_boundary_data, ...
                 mesh_data.neumann_boundary_data, ...
-                'E-Static', ...
+                problem_setup.problem_type, ...
                 7,... % Plane integration order
                 3, ...% Curve integration order
                 order_string);
             time = toc;
             Misc.print_message(sprintf('Done\nElapsed time is %d seconds.\n', time));
+            
+            if ~success
+                return
+            end
             
             
             Misc.print_message('Solving equation system...')
@@ -106,10 +112,10 @@ classdef Solver
         end
         
         
-        function [A, r, result_to_global_node_mapping] = assemble(...
+        function [A, r, result_to_global_node_mapping, success] = assemble(...
                 node_data, triangle_data, ...
                 material_and_source_properties, dirichlet_boundary_data, ...
-                neumann_boundary_data, problem_type, ...
+                neumann_boundary_data, problem_type_number, ...
                 plane_integration_order, curve_integration_order, ...
                 finite_element_type)
             
@@ -124,19 +130,41 @@ classdef Solver
             %
             % Will be added later
             
+            
+            success = 1;
+            
+            % Assignment of finite element class
             if strcmpi(finite_element_type, 'First order')
-                error('First order triangles are not implemented yet.')
+                finite_element_type = FirstOrderTriangleElement;
                 
             elseif strcmpi(finite_element_type, 'Second order')
                 finite_element_type = SecondOrderTriangleElement;
                 
             elseif strcmpi(finite_element_type, 'Third order')
-                error('Third order triangles are not implemented yet.')
+                finite_element_type = ThirdOrderTriangleElement;
                 
             else
                 error(['Invalid finite element type specified. Please use ', ...
                     'either "First order", "Second order" or "Third order"'])
             end
+            
+            % Assignment of problem type
+            switch problem_type_number
+                case 1
+                    problem_type = ElectrostaticProblem;
+                case 2
+                    problem_type = StaticCurrentProblem;
+                otherwise
+                    msg = sprintf(['Wrong problem type input. Following problem ', ...
+                        'types are supported: "Electrostatic", "StaticCurrent".']);
+                Misc.print_error_message(msg);
+                
+                success = 0;
+                return
+            end
+            
+            
+            
             
             % Column 1 contains id of element and column 2 the id of the
             % corresponding physical group. This information can be ignored.
@@ -162,12 +190,13 @@ classdef Solver
             r = zeros(N_unknown, 1);
             
             % Material constants
-            if strcmpi(problem_type, 'E-Static')
+            if problem_type_number == 1 % Electrostatic problem
                 % Vacuum permittivity
                 vacuum_material = 8.854187812813e-12;
-            elseif strcmpi(problem_type, 'Static current')
-                % Magnetic vacuum permeability
-                vacuum_material = 4*pie-7;
+            elseif problem_type_number == 2 % Static current problem
+                % Contuctivity is given as an absolute value for static current
+                % problems. So 'vacuum_material' is simply set to 1.
+                vacuum_material = 1;
             end
             
             % Extract material and source properties
@@ -307,7 +336,7 @@ classdef Solver
                     % Integration also not needed if no free charges occurr in the
                     % current element
                     if  ismember(element_id, triangles_with_sources)
-                        fun = @(zeta, eta) ElectrostaticProblem. ...
+                        fun = @(zeta, eta) problem_type. ...
                             right_side_plane_integrant(finite_element_type, xe, ...
                             ye, row, zeta, eta, ...
                             source_values(triangles_with_sources == element_id));
@@ -325,7 +354,7 @@ classdef Solver
                         value = neumann_boundary_values_for_current_element(b);
                         
                         % Integrant for curve integration over triangle edge
-                        fun = @(t) ElectrostaticProblem. ...
+                        fun = @(t) problem_type. ...
                             right_side_neumann_integrant(finite_element_type, ...
                             xe, ye, row, t, edge, value);
                         
@@ -342,7 +371,7 @@ classdef Solver
                         col = col_idx(m);
                         
 
-                        fun = @(zeta, eta) ElectrostaticProblem. ...
+                        fun = @(zeta, eta) problem_type. ...
                             element_matrix_integrant(...
                             finite_element_type, xe, ye, row , col, zeta, ...
                             eta, material_x, material_y);

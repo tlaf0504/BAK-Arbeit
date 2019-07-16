@@ -1,0 +1,2 @@
+classdef StaticCurrentProblem < ElectrostaticProblem
+end

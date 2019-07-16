@@ -4,8 +4,10 @@ classdef FirstOrderTriangleElement
     
     properties(Constant)
         nodes_of_triangle_edges = [1,1,0;
-                                   1,0,1;
-                                   0,1,1];
+                                   0,1,1;
+                                   1,0,1];
+                               
+        number_of_nodes = 3;
     end
     
     methods(Static)
@@ -87,19 +89,17 @@ classdef FirstOrderTriangleElement
         end
         
         function det_J = jacobi_determinant(eta, zeta, xe, ye)
-            if ~iscolumn(xe)
-                xe = xe';
-            end
+            xe = xe(:);
+            ye = ye(:);
             
-            if ~iscolumn(ye)
-                ye = ye';
-            end
+            number_of_required_output_values = length(eta);
             
-            
-            
-            det_J = 0;
-            
-            
+            % For linear elements, the jacobi determinant is independent from zeta
+            % and eta.
+            % Output is row-vector
+            det_J = ((-xe(1) + xe(2)) * (-ye(1) + ye(3)) - ...
+                (-ye(1) + ye(2)) * (-xe(1) + xe(3))) + ...
+                ones(1, number_of_required_output_values);     
         end
         
         function J = jacobi_matrix(zeta, eta, xe, ye)
@@ -124,49 +124,32 @@ classdef FirstOrderTriangleElement
         
         function J_inv = inverse_jacobi_matrix(zeta, eta, xe, ye)
            
-           j11 = (ye' * SecondOrderTriangleElement.v21) * zeta + ...
-                (ye' * SecondOrderTriangleElement.v22) * eta + ...
-                (ye' * SecondOrderTriangleElement.v23);
+           j11 = (-xe(1) + xe(2));
            
-           j12 = -((ye' * SecondOrderTriangleElement.v11) * zeta + ...
-               (ye' * SecondOrderTriangleElement.v12) * eta + ...
-               (ye' * SecondOrderTriangleElement.v13) );
+           j12 = (-ye(1) + ye(2));
            
-           j21 = -( (xe' * SecondOrderTriangleElement.v21) * zeta + ...
-               (xe' * SecondOrderTriangleElement.v22) * eta + ...
-               (xe' * SecondOrderTriangleElement.v23) );
+           j21 = (-xe(1) + xe(3));
            
-           j22 = (xe' * SecondOrderTriangleElement.v11) * zeta + ...
-               (xe' * SecondOrderTriangleElement.v12) * eta + ...
-               (xe' * SecondOrderTriangleElement.v13);
+           j22 = (-ye(1) + ye(3));
             
-           J_inv = (1 ./ obj.jacobi_determinant(zeta, eta, xe, ye)) .* ...
+           J_inv = (1 ./ FirstOrderTriangleElement.jacobi_determinant(zeta, eta, xe, ye)) .* ...
                [j22, -j12; -j21, j11];
         end
         
         function val = get_zeta_shape_function_derivative(k , zeta, ...
                 eta)
             
-            assert(k > 0 & k <= SecondOrderTriangleElement.number_of_nodes)
+            assert(k > 0 & k <= FristOrderTriangleElement.number_of_nodes)
             assert(all(zeta >= 0 & zeta <= 1 & eta >= 0 & eta <= 1))
             
             if k == 1
-                val = SecondOrderTriangleElement.dN1_dZeta(zeta, eta);
+                val = FristOrderTriangleElement.dN1_dZeta(zeta, eta);
                 
             elseif k == 2
-                val = SecondOrderTriangleElement.dN2_dZeta(zeta, eta);
+                val = FristOrderTriangleElement.dN2_dZeta(zeta, eta);
                 
             elseif k == 3
-                val = SecondOrderTriangleElement.dN3_dZeta(zeta, eta);
-                
-            elseif k == 4
-                val = SecondOrderTriangleElement.dN4_dZeta(zeta, eta);
-                
-            elseif k == 5
-                val = SecondOrderTriangleElement.dN5_dZeta(zeta, eta);
-                
-            elseif k == 6
-                val = SecondOrderTriangleElement.dN6_dZeta(zeta, eta);
+                val = FristOrderTriangleElement.dN3_dZeta(zeta, eta);
             end
         end
      
@@ -186,9 +169,9 @@ classdef FirstOrderTriangleElement
             %  .
             %  .
             % ]
-            mat = [SecondOrderTriangleElement.dN1_dZeta(zeta, eta);
-                   SecondOrderTriangleElement.dN2_dZeta(zeta, eta);
-                   SecondOrderTriangleElement.dN3_dZeta(zeta, eta);
+            mat = [FirstOrderTriangleElement.dN1_dZeta(zeta, eta);
+                   FirstOrderTriangleElement.dN2_dZeta(zeta, eta);
+                   FirstOrderTriangleElement.dN3_dZeta(zeta, eta);
                    ];
             
         end
@@ -196,26 +179,17 @@ classdef FirstOrderTriangleElement
         function val = get_eta_shape_function_derivative(k , zeta, ...
                 eta)
             
-            assert(k > 0 & k <= SecondOrderTriangleElement.number_of_nodes)
+            assert(k > 0 & k <= FristOrderTriangleElement.number_of_nodes)
             assert(all(zeta >= 0 & zeta <= 1 & eta >= 0 & eta <= 1))
             
             if k == 1
-                val = SecondOrderTriangleElement.dN1_dEta(zeta, eta);
+                val = FristOrderTriangleElement.dN1_dEta(zeta, eta);
                 
             elseif k == 2
-                val = SecondOrderTriangleElement.dN2_dEta(zeta, eta);
+                val = FristOrderTriangleElement.dN2_dEta(zeta, eta);
                 
             elseif k == 3
-                val = SecondOrderTriangleElement.dN3_dEta(zeta, eta);
-                
-            elseif k == 4
-                val = SecondOrderTriangleElement.dN4_dEta(zeta, eta);
-                
-            elseif k == 5
-                val = SecondOrderTriangleElement.dN5_dEta(zeta, eta);
-                
-            elseif k == 6
-                val = SecondOrderTriangleElement.dN6_dEta(zeta, eta);
+                val = FristOrderTriangleElement.dN3_dEta(zeta, eta);
             end
         end
         
@@ -236,12 +210,10 @@ classdef FirstOrderTriangleElement
             %  .
             %  .
             % ]
-            mat = [SecondOrderTriangleElement.dN1_dEta(zeta, eta);
-                   SecondOrderTriangleElement.dN2_dEta(zeta, eta);
-                   SecondOrderTriangleElement.dN3_dEta(zeta, eta);
-                   SecondOrderTriangleElement.dN4_dEta(zeta, eta);
-                   SecondOrderTriangleElement.dN5_dEta(zeta, eta);
-                   SecondOrderTriangleElement.dN6_dEta(zeta, eta)];
+            mat = [FirstOrderTriangleElement.dN1_dEta(zeta, eta);
+                   FirstOrderTriangleElement.dN2_dEta(zeta, eta);
+                   FirstOrderTriangleElement.dN3_dEta(zeta, eta);
+                   ];
             
         end
         

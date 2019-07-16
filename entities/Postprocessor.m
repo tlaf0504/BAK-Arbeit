@@ -2,6 +2,9 @@ classdef Postprocessor
     
     methods(Static)
         function plot_electrostatic_potential(problem_location)
+            
+            Postprocessor.postprocessor_test(problem_location);
+            
             tmp = pwd;
             cd(problem_location)
             load('problem_setup.mat', 'problem_setup')
@@ -46,6 +49,34 @@ classdef Postprocessor
             title('Potential V in nodes')
             cd(tmp);
         end
+        
+        function postprocessor_test(problem_location)
+            tmp = pwd;
+            cd(problem_location)
+            load('problem_setup.mat', 'problem_setup')
+            load(fullfile(problem_location, 'internal', 'mesh_data.mat'), 'mesh_data');
+            load(fullfile(problem_location, 'results', 'results.mat'), 'unknowns', ...
+                'result_to_global_node_mapping');
+            
+            
+            
+            
+            a = triangulation(double(mesh_data.triangle_data.nodes), ...
+               mesh_data.node_data.coordinates);
+            
+%             a = delaunay(mesh_data.node_data.coordinates(:, 1), ...
+%                 mesh_data.node_data.coordinates(:, 2));
+%             triplot(a)
+            
+            %triplot(a)
+            
+            keyboard
+            
+            
+            
+            
+        end
+        
     end
 end
 

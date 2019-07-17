@@ -21,14 +21,14 @@ if strcmp(getenv('username'),'baumgartner') % workaround that both can execute t
     problem_location = 'D:\LV\Studienarbeiten\Lafer\problems\cylinder_cap';
 else
     
-    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
     %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/fem_test';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
+    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
 end
 
 % Integer number representing the type of the problem.
 % See Misc.supported_problem_types for supported problem types.
-problem_type = 'Static Current';
+problem_type = 'Electrostatic';
 
 
 % Set this flag to 1 if you want to load a existing setup. If this flag is set,
@@ -36,18 +36,18 @@ problem_type = 'Static Current';
 load_existing_setup = 1;
 
 % Name of the geometry file
-geometry_file = 'cylinder_cap.geo';
+%geometry_file = 'cylinder_cap.geo';
 %geometry_file = 'fem_test.geo';
-%geometry_file = 'cap.geo';
+geometry_file = 'cap.geo';
 
 % Name of the settings file
-settings_file = 'cylinder_cap.set';
+%settings_file = 'cylinder_cap.set';
 %settings_file = 'fem_test.set';
-%settings_file = 'cap.set';
+settings_file = 'cap.set';
 
 % Element order.
 % 1: Linear, 2: Quadratic, 3: Cubic
-mesh_order = 2;
+mesh_order = 2 ;
 
 % Mesh file version
 % See GmshIF.supported_mesh_file_versions for further information

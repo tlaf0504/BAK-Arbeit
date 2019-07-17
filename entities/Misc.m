@@ -86,6 +86,54 @@ classdef Misc
             end
             
         end
+        
+        function [problem_type, success] = ...
+                get_problem_type_class_from_problem_type_number( ...
+                problem_type_number)
+            
+            success = 1;
+            
+            switch problem_type_number
+                case 1
+                    problem_type = ElectrostaticProblem;
+                case 2
+                    problem_type = StaticCurrentProblem;
+                otherwise
+                    msg = sprintf(['Wrong problem type input. Following problem ', ...
+                        'types are supported: "Electrostatic", "StaticCurrent".']);
+                    Misc.print_error_message(msg);
+                    
+                    success = 0;
+                    return
+            end
+        end
+        
+        
+        function finite_element_type = ...
+                get_finite_element_class_from_mesh_order(mesh_order)
+
+            if mesh_order == 1
+                finite_element_type = FirstOrderTriangleElement;
+                
+            elseif mesh_order == 2
+                finite_element_type = SecondOrderTriangleElement;
+                
+            elseif mesh_order == 3
+                finite_element_type = ThirdOrderTriangleElement;
+            end
+        end
+        
+        function vacuum_material = get_vacuum_material(problem_type)
+            if problem_type == 1 % Electrostatic problem
+                % Vacuum permittivity
+                vacuum_material = 8.854187812813e-12;
+            elseif problem_type == 2 % Static current problem
+                % Contuctivity is given as an absolute value for static current
+                % problems. So 'vacuum_material' is simply set to 1.
+                vacuum_material = 1;
+            end
+        end
+        
     end
     
 end

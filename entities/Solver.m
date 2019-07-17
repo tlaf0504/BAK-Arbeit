@@ -18,8 +18,6 @@ classdef Solver
         
         
         function success= solve(problem_location)
-            
-            success = 1;
             tmp = pwd;
             cd(problem_location);
             
@@ -60,26 +58,10 @@ classdef Solver
             end
             load(fullfile(mesh_data_location, 'mesh_data.mat'), 'mesh_data');
             
-            
-            material_and_source_properties = mesh_data.material_and_source_properties;
-            
-            
-          
+
             % Assemble equation system
             Misc.print_message('Assembling equation system...')
             tic
-            
-            % May be changed in future when other element typed are supported
-            switch(problem_setup.mesh_order)
-                case 1
-                    order_string = 'First order';
-                case 2
-                    order_string = 'Second order';
-                case 3
-                    order_string = 'Third order';
-            end
-            
-            
             
             [A, r, result_to_global_node_mapping, success] = Solver.assemble(...
                 mesh_data.node_data, ...
@@ -90,7 +72,7 @@ classdef Solver
                 problem_setup.problem_type, ...
                 7,... % Plane integration order
                 3, ...% Curve integration order
-                order_string);
+                problem_setup.mesh_order);
             time = toc;
             Misc.print_message(sprintf('Done\nElapsed time is %d seconds.\n', time));
             
@@ -117,7 +99,7 @@ classdef Solver
                 material_and_source_properties, dirichlet_boundary_data, ...
                 neumann_boundary_data, problem_type_number, ...
                 plane_integration_order, curve_integration_order, ...
-                finite_element_type)
+                mesh_order)
             
             % function [A, r, result_to_global_node_mapping] = assemble(...
             %    node_data, triangle_data, ...
@@ -131,39 +113,18 @@ classdef Solver
             % Will be added later
             
             
-            success = 1;
             
             % Assignment of finite element class
-            if strcmpi(finite_element_type, 'First order')
-                finite_element_type = FirstOrderTriangleElement;
-                
-            elseif strcmpi(finite_element_type, 'Second order')
-                finite_element_type = SecondOrderTriangleElement;
-                
-            elseif strcmpi(finite_element_type, 'Third order')
-                finite_element_type = ThirdOrderTriangleElement;
-                
-            else
-                error(['Invalid finite element type specified. Please use ', ...
-                    'either "First order", "Second order" or "Third order"'])
-            end
+            finite_element_type = ...
+                Misc.get_finite_element_class_from_mesh_order(mesh_order);
             
             % Assignment of problem type
-            switch problem_type_number
-                case 1
-                    problem_type = ElectrostaticProblem;
-                case 2
-                    problem_type = StaticCurrentProblem;
-                otherwise
-                    msg = sprintf(['Wrong problem type input. Following problem ', ...
-                        'types are supported: "Electrostatic", "StaticCurrent".']);
-                Misc.print_error_message(msg);
-                
-                success = 0;
+            [problem_type, success] = Misc. ...
+                get_problem_type_class_from_problem_type_number( ...
+                problem_type_number);
+            if ~success
                 return
             end
-            
-            
             
             
             % Column 1 contains id of element and column 2 the id of the
@@ -190,14 +151,7 @@ classdef Solver
             r = zeros(N_unknown, 1);
             
             % Material constants
-            if problem_type_number == 1 % Electrostatic problem
-                % Vacuum permittivity
-                vacuum_material = 8.854187812813e-12;
-            elseif problem_type_number == 2 % Static current problem
-                % Contuctivity is given as an absolute value for static current
-                % problems. So 'vacuum_material' is simply set to 1.
-                vacuum_material = 1;
-            end
+            vacuum_material = Misc.get_vacuum_material(problem_type_number);
             
             % Extract material and source properties
             material_properties = material_and_source_properties.material_values;
@@ -432,5 +386,7 @@ classdef Solver
                 
             end
         end
+        
+
     end
 end

@@ -363,6 +363,15 @@ classdef SecondOrderTriangleElement
             
         end
         
+        function mat = get_shape_function_matrix(zeta, eta)
+             mat = [SecondOrderTriangleElement.shape_function_1(zeta, eta);
+                   SecondOrderTriangleElement.shape_function_2(zeta, eta);
+                   SecondOrderTriangleElement.shape_function_3(zeta, eta);
+                   SecondOrderTriangleElement.shape_function_4(zeta, eta);
+                   SecondOrderTriangleElement.shape_function_5(zeta, eta);
+                   SecondOrderTriangleElement.shape_function_6(zeta, eta)];
+        end
+        
     end
     
 end

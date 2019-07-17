@@ -116,6 +116,45 @@ classdef ElectrostaticProblem
            end
                     
         end
+        
+        function val = get_energy_integrant(finite_element_class, xe, ye, ...
+                node_potentials, zeta, eta, epsilon_x, epsilon_y)
+            
+            if ~iscolumn(xe)
+                xe = xe';
+            end
+            
+            if ~iscolumn(ye)
+                ye = ye';
+            end
+            
+            if ~iscolumn(node_potentials)
+                node_potentials = node_potentials';
+            end
+            
+            
+            % Get vairables needed for calculation
+            jacobi_determinant = finite_element_class.jacobi_determinant( ...
+                zeta, eta, xe, ye);
+            
+            dN_dZeta = finite_element_class. ...
+                get_zeta_shape_function_derivative_matrix(zeta, eta);
+            
+            dN_dEta = ...
+                finite_element_class. ...
+                get_eta_shape_function_derivative_matrix(zeta, eta);
+            
+            part_1 = epsilon_x ./ jacobi_determinant .* ( ...
+                (node_potentials' * dN_dZeta) .* (ye' * dN_dEta) - ...
+                (node_potentials' * dN_dEta) .* (ye' * dN_dZeta)).^2;
+            
+            part_2 = epsilon_y ./ jacobi_determinant .* ( ...
+                -(node_potentials' * dN_dZeta) .* (xe' * dN_dEta) + ...
+                (node_potentials' * dN_dEta) .* (xe' * dN_dZeta)).^2;
+            
+            val = part_1 + part_2;
+            
+        end
     end
     
 end

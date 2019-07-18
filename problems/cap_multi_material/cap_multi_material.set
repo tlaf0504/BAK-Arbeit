@@ -1,0 +1,13 @@
+$Edges
+2
+dir100 1 DRB 100
+dir0 1 DRB 0
+$EndEdges
+
+
+
+$Faces
+2
+air 2 1 0
+material 2 1 0
+$EndFaces

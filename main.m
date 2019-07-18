@@ -23,7 +23,8 @@ else
     
     %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
     %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/fem_test';
-    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
+    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cap_multi_material';
 end
 
 % Integer number representing the type of the problem.
@@ -36,14 +37,18 @@ problem_type = 'Electrostatic';
 load_existing_setup = 1;
 
 % Name of the geometry file
-%geometry_file = 'cylinder_cap.geo';
+%geometry_file = 'cylinder_cap_simple.geo';
+%geometry_file = 'cylinder_cap_2_materials.geo';
 %geometry_file = 'fem_test.geo';
-geometry_file = 'cap.geo';
+%geometry_file = 'cap.geo';
+geometry_file = 'cap_multi_material.geo';
 
 % Name of the settings file
-%settings_file = 'cylinder_cap.set';
+%settings_file = 'cylinder_cap_2_materials.set';
+%settings_file = 'cylinder_cap_simple.set';
 %settings_file = 'fem_test.set';
-settings_file = 'cap.set';
+%settings_file = 'cap.set';
+settings_file = 'cap_multi_material.set';
 
 % Element order.
 % 1: Linear, 2: Quadratic, 3: Cubic
@@ -73,17 +78,17 @@ end
 if ui
     main_window()
 else
-    success = Setup.new_setup(problem_location, geometry_file, settings_file, ...
-        mesh_order, problem_type, mesh_file_version);
-    if ~success
-        return
-    end
-    
-    success = GmshIF.mesh(problem_location);
-    if ~success
-        return
-    end
-    
+%     success = Setup.new_setup(problem_location, geometry_file, settings_file, ...
+%         mesh_order, problem_type, mesh_file_version);
+%     if ~success
+%         return
+%     end
+%     
+%     success = GmshIF.mesh(problem_location);
+%     if ~success
+%         return
+%     end
+%     
     success = Parser.parse(problem_location);
     if ~success
         return

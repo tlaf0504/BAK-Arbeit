@@ -134,6 +134,43 @@ classdef Misc
             end
         end
         
+        function CloneFig(inFigNum,OutFigNum)
+            % This function was taken from
+            % https://www.mathworks.com/matlabcentral/fileexchange/26587-clone-figure
+            % (18.07.2019)
+            % Big thanks to Matt Fetterman for his work.
+            
+            % this program copies a figure to another figure
+            % example: CloneFig(1,4) would copy Fig. 1 to Fig. 4
+            % Matt Fetterman, 2009
+            % pretty much taken from Matlab Technical solutions:
+            % http://www.mathworks.com/support/solutions/en/data/1-1UTBOL/?solution=1-1UTBOL
+            hf1=figure(inFigNum);
+            hf2=figure(OutFigNum);
+            clf;
+            Misc.compCopy(hf1,hf2);
+            
+        end
+        
+        function compCopy(op, np)
+            % This function was taken from
+            % https://www.mathworks.com/matlabcentral/fileexchange/26587-clone-figure
+            % (18.07.2019)
+            % Big thanks to Matt Fetterman for his work.
+            
+            
+            %COMPCOPY copies a figure object represented by "op" and its %
+            %descendants to another figure "np" preserving the same hierarchy.
+            ch = get(op, 'children');
+            if ~isempty(ch)
+                nh = copyobj(ch,np);
+                for k = 1:length(ch)
+                    Misc.compCopy(ch(k),nh(k));
+                end
+            end
+            return;
+        end
+        
     end
     
 end

@@ -423,6 +423,19 @@ classdef ThirdOrderTriangleElement
             det_J = (j11 .* j22) - (j12 .* j21); 
         end
         
+        function mat = get_shape_function_matrix(zeta, eta)
+             mat = [ThirdOrderTriangleElement.shape_function_1(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_2(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_3(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_4(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_5(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_6(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_7(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_8(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_9(zeta, eta);
+                   ThirdOrderTriangleElement.shape_function_10(zeta, eta)];
+        end
+        
         
     end
     

@@ -1,0 +1,195 @@
+====================
+Equation system mapping for element 1
+Local to global node mapping:
+    4
+   15
+   14
+   16
+    3
+   11
+
+Global coefficient matrix mapping:
+     9
+     8
+    10
+     1
+     6
+
+     9
+     8
+    10
+     1
+     6
+
+====================
+
+====================
+Equation system mapping for element 2
+Local to global node mapping:
+    5
+   17
+   14
+   18
+    6
+    7
+
+Global coefficient matrix mapping:
+     2
+    11
+     8
+    12
+     3
+
+     2
+    11
+     8
+    12
+     3
+
+====================
+
+====================
+Equation system mapping for element 3
+Local to global node mapping:
+    3
+   16
+   14
+   17
+    5
+   13
+
+Global coefficient matrix mapping:
+     1
+    10
+     8
+    11
+     2
+     7
+
+     1
+    10
+     8
+    11
+     2
+     7
+
+====================
+
+====================
+Equation system mapping for element 4
+Local to global node mapping:
+    6
+   18
+   14
+   15
+    4
+   12
+
+Global coefficient matrix mapping:
+    12
+     8
+     9
+
+    12
+     8
+     9
+
+====================
+
+====================
+Equation system mapping for element 5
+Local to global node mapping:
+    5
+   20
+   19
+   21
+    1
+    8
+
+Global coefficient matrix mapping:
+     2
+    14
+    13
+    15
+     4
+
+     2
+    14
+    13
+    15
+     4
+
+====================
+
+====================
+Equation system mapping for element 6
+Local to global node mapping:
+    2
+   22
+   19
+   23
+    3
+   10
+
+Global coefficient matrix mapping:
+    16
+    13
+    17
+     1
+     5
+
+    16
+    13
+    17
+     1
+     5
+
+====================
+
+====================
+Equation system mapping for element 7
+Local to global node mapping:
+    1
+   21
+   19
+   22
+    2
+    9
+
+Global coefficient matrix mapping:
+    15
+    13
+    16
+
+    15
+    13
+    16
+
+====================
+
+====================
+Equation system mapping for element 8
+Local to global node mapping:
+    3
+   23
+   19
+   20
+    5
+   13
+
+Global coefficient matrix mapping:
+     1
+    17
+    13
+    14
+     2
+     7
+
+     1
+    17
+    13
+    14
+     2
+     7
+
+====================

@@ -1,10 +1,18 @@
 classdef Postprocessor
     
     methods(Static)
-        function plot_electrostatic_potential(problem_location)
+        function success = run(problem_location)
+            
+            success = 1;
             
             tmp = pwd;
             cd(problem_location)
+            
+            % Plot section separator to console
+            Misc.print_message(sprintf('%s\n%s\n%s', ...
+                Misc.console_section_separator, ...
+                'Postprocessor', Misc.console_section_separator));
+            
             load('problem_setup.mat', 'problem_setup')
             load(fullfile(problem_location, 'internal', 'mesh_data.mat'), 'mesh_data');
             load(fullfile(problem_location, 'results', 'results.mat'), 'unknowns', ...
@@ -24,10 +32,11 @@ classdef Postprocessor
                 problem_setup);
             
             Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
-                problem_setup, mesh_plot)
+               problem_setup, mesh_plot)
             
             
-            
+            Misc.print_message(Misc.console_section_separator);
+            Misc.print_message('\n');
             
             cd(tmp);
         end

@@ -21,7 +21,7 @@ classdef Parser
             
             
             if ~Misc.check_file_existence(problem_location, 'problem_setup.mat')
-                msg = sprinft(['Error. Setup-file "problem setup.mat" in folder ', ...
+                msg = sprintf(['Error. Setup-file "problem setup.mat" in folder ', ...
                     '%s not found.'], problem_location);
                 Misc.print_error_message(msg);
             end
@@ -98,6 +98,9 @@ classdef Parser
             Misc.print_message('\n');
             
             problem_setup.state = Setup.setup_state_parsing_finished;
+            problem_setup.mesh_data_file = 'mesh_data.mat';
+            problem_setup.mesh_data_file_hash = DataHash(data_file);
+            
             Setup.update_problem_setup_file(problem_setup);
             
             cd(tmp);

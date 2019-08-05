@@ -85,10 +85,26 @@ classdef Solver
             tic
             unknowns = A\r;
             time = toc;
+            
             Misc.print_message(sprintf('Done\nElapsed time is %d seconds.\n', time));
+            
+             Misc.print_message(sprintf('Writing data to "%s"...\n', ...
+                fullfile(problem_setup.problem_location, 'results', 'results.mat')));
             
             save(fullfile(problem_location, 'results', 'results.mat'), 'unknowns', ...
                 'result_to_global_node_mapping')
+            
+            Misc.print_message(Misc.console_section_separator);
+            Misc.print_message('\n');
+            
+            problem_setup.state = Setup.setup_state_solving_finished;
+            problem_setup.result_file = 'results.mat';
+            problem_setup.result_file_hash = DataHash(fullfile( ...
+                'results', 'results.mat'));
+            Setup.update_problem_setup_file(problem_setup);
+            
+            
+           
             
             cd(tmp);
         end
@@ -151,10 +167,10 @@ classdef Solver
             r = zeros(N_unknown, 1);
             
             % Material constants
-            vacuum_material = Misc.get_vacuum_material(problem_type_number);
+%             vacuum_material = Misc.get_vacuum_material(problem_type_number);
+            vacuum_material = 1;
             
             % Extract material and source properties
-            material_properties = material_and_source_properties.material_values;
             triangles_with_sources = ...
                 material_and_source_properties.triangles_with_sources;
             source_values = material_and_source_properties.source_values;
@@ -166,14 +182,16 @@ classdef Solver
                 
                 xe = global_node_coordinates(local_node_mapping, 1);
                 ye = global_node_coordinates(local_node_mapping, 2);
-                
-                
+               
                 material_x = vacuum_material * material_and_source_properties.material_values(element_id);
                 material_y = vacuum_material * material_and_source_properties.material_values(element_id);
                 
                 % Local coefficient matrix and right-side vector
                 A_loc = zeros(N, N);
                 r_loc = zeros(N, 1);
+                
+                % ===== DEBUG, REMOVE LATER =====
+                A_loc_tmp = zeros(N, N);
                 
                 row_idx = 1 : N;
                 row_idx = row_idx(:);
@@ -345,6 +363,11 @@ classdef Solver
                         else
                             A_loc(row, col) = coef;
                         end
+                        
+                        % ===== DEBUG, REMOVE LATER =====
+                        A_loc_tmp(row, col) = coef;
+                        
+                        
                     end
                 end
                 
@@ -357,6 +380,7 @@ classdef Solver
                 
                 result_to_global_node_mapping = find( ...
                     global_node_to_equation_system_index_mapping ~= -1);
+                
                 
                 % If the k-th local node has a dirichlet boundary condition, the 
                 % elements from the k-th column should not be included in the global 
@@ -379,14 +403,16 @@ classdef Solver
                 global_col_idx = global_node_to_equation_system_index_mapping(...
                     local_node_mapping(col_idx));
                 
+ 
                 A(global_row_idx, global_col_idx) = A(global_row_idx, global_col_idx) + ...
                     A_loc(row_idx, col_idx);
                 
                 r(global_row_idx) = r(global_row_idx) + r_loc(row_idx);
                 
+               
             end
         end
-        
+       
 
     end
 end

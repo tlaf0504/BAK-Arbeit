@@ -84,11 +84,16 @@ classdef GmshIF
             end
             
             problem_setup.mesh_file = output_filename;
+            problem_setup.mesh_file_hash = DataHash(output_filename);
             problem_setup.state = Setup.setup_state_meshing_finished;
             Setup.update_problem_setup_file(problem_setup);
             
             time = toc;
             Misc.print_message(sprintf('Done\nElapsed time is %d seconds.\n', time));
+            
+            Misc.print_message(sprintf('Writing data to "%s"...\n', ...
+                fullfile(problem_setup.problem_location, output_filename)));
+            
             Misc.print_message(Misc.console_section_separator);
             Misc.print_message('\n');
             

@@ -1,0 +1,205 @@
+\documentclass[12pt,a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ngerman}
+\usepackage{placeins}
+%\usepackage[ngerman]{babel}  % use babel for multi-ling or english
+%
+%\usepackage{amsmath,amssymb,amstext}
+
+\usepackage{amsmath}
+\usepackage{multirow}
+%\usepackage{sv}
+\usepackage{pgf}
+\usepackage{pst-sigsys}
+\usepackage{multido}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+
+
+% fuer Zitate
+\usepackage[numbers]{natbib}
+\usepackage{nomencl,longtable} 
+% Festlegung Art der Zitierung - Havardmethode: Abkuerzung Autor + Jahr
+%\bibliographystyle{alphadin}
+
+\bibliographystyle{unsrt}
+%\usepackage[twoside=false,
+%            left=2cm,
+%            right=2cm,
+%            top=2cm,
+%            bottom=3cm]{geometry}
+\usepackage{tikz}
+\usepackage{siunitx}
+
+\usetikzlibrary{shapes,arrows,automata,backgrounds,calendar}
+\usepackage[europeancurrents,
+						europeanvoltages,
+						europeanresistors,
+						cuteinductors,
+						europeanports]{circuitikz}
+\usepgflibrary{plotmarks}
+\usepackage{trfsigns}
+\usepackage{pstricks} \SpecialCoor
+\makeatletter
+\def\psStartPunkt(#1){\pst@getcoor{#1}\pst@tempA 
+  \pstVerb{\pst@tempA 
+           \pst@number\psyunit div /cp.Y exch def 
+           \pst@number\psxunit div /cp.X exch def }}
+\def\psVektor{\pst@object{psVektor}}
+\def\psVektor@i(#1){%
+  \pst@killglue%
+  \pst@getcoor{#1}\pst@tempA%
+  \begin@SpecialObj%
+  \rput(! cp.X cp.Y ){\psline[arrowsize=6pt]{->}(0,0)(#1)%
+    \psarc[arrows=->,arrowsize=4pt](0,0){1}{0}{!\pst@tempA exch atan}%
+    \psline[linestyle=dotted](1.5,0)}%
+  \end@SpecialObj%
+  \pstVerb{tx@Dict begin \pst@tempA \pst@number\psyunit div 
+            cp.Y add /cp.Y exch def 
+            \pst@number\psxunit div 
+            cp.X add /cp.X exch def end}  
+  \ignorespaces%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Headings
+%%%
+%\usepackage[automark]{scrpage2}
+%\pagestyle{scrheadings}
+%\ihead[]{}
+%\chead[]{}
+%\ohead[]{}
+%\ifoot[]{}
+%\cfoot[]{}
+%\ofoot[]{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Commands
+%%%
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\boldsymbol{#1}}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\newcommand{\nomunit}[1]{% 
+\renewcommand{\nomentryend}{\hspace{2em}\hspace*{\fill}#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\title{Übung Drehfeldmaschinen \\mit Umrichter}
+
+\author{}
+
+%\date{Graz, am \today{}}
+
+\parindent0pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\begin{document}
+\begin{titlepage}
+\pagestyle{empty} \enlargethispage*{25cm}\samepage{
+
+\vspace*{-1.5cm}
+\begin{center}
+\begin{minipage}[!h]{18cm}
+\hspace*{-1.1cm}
+\includegraphics[width=3.3cm]{igte}
+\begin{tabular}{p{10cm}}
+\centering{
+\Large Institut für Grundlagen und Theorie\\
+der Elektrotechnik\\
+Technische Universität Graz
+}
+\end{tabular}
+\includegraphics[width=3.3cm]{TUG}
+\end{minipage}
+
+%\vspace*{2.4cm}
+\vspace*{5cm}
+%
+\Huge {Seminararbeit:\\
+Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären Strömungsfeld-Probleme} %
+%\vspace*{.4cm} \Large{ Sommersemester 2015\\}
+%%
+%\vspace*{2.5cm} 
+\vspace*{2cm}
+%\Huge{\textbf{Übung 4 – Kurzschluss 2}\\}\vspace*{.7cm} 
+%%
+%\Large{Gruppe: 10\\} \vspace*{.7cm}%
+%\Large{Teilnehmer:\\} \vspace*{.1cm}
+% Name der beteiligten Studierenden
+
+\Large{vorgelegt von:\\
+Tobias Florian Lafer (1530012)\\
+am \today} 
+\vspace{9cm}
+
+
+%
+%
+\Large{Betreuer: Dipl.-Ing. Dr.techn. Thomas Bauernfeind}\vspace*{2cm}\vfill
+%
+%\Large{Übungsdatum: 02.06.2015}
+\end{center}}%
+\clearpage 
+
+\tableofcontents
+\newpage
+
+\end{titlepage}
+%
+
+
+
+\input{command.tex}
+
+%Aufgabenstellung
+
+%Analytisches Modell
+%	gleichmäßige Stromverteilung
+%	Sinusförmige Stromverteilung
+%	reale Stromverteilung
+%	Strom (Storer)
+%	Werner
+%	Diskussion
+%FEM-Modell
+%	Formulierung
+%	Modell
+%	dünner Feedgap
+%	dicker Feedgap
+%	Stromfaden
+%Diskussion
+
+\input{abstract.tex}
+
+
+\section{Formfunktionen}
+\subsection{Erster Ordnung}
+\subsection{Zweiter Ordnung}
+\subsection{Dritter Ordnung}
+\section{Finite-Elemente}
+\subsection{3-Punkte linear}
+\subsection{6-Punkte quadratisch}
+\subsection{10-Punkte kubisch}
+
+\section{Gmsh}
+\subsection{Erstellen der Geometrie}
+\subsection{Generieren und exportieren des Gitters}
+
+\section{Import der Geometrie und des Gitters}
+\section{Assemblierung und Lösung des Gleichungssystems}
+
+\section{Grafischer Postprozessor}
+
+
+
+\newpage
+\addcontentsline{toc}{section}{Literatur}
+\bibliography{literatur}
+
+\end{document}

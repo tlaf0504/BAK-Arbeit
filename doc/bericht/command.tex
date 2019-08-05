@@ -1,0 +1,55 @@
+\newcommand{\screenshot}[3]{
+\begin{figure}[ht]
+ \centering
+\hspace*{-.05\textwidth}
+\makebox[\textwidth]{
+  \includegraphics[width = 19cm]{#3}}
+ \caption{#1} \label{fig:#2} 
+\end{figure}
+\FloatBarrier
+}
+
+
+\newcommand{\screenshotWidth}[4]{
+\begin{figure}[ht]
+ \centering
+\hspace*{-.05\textwidth}
+\makebox[\textwidth]{
+  \includegraphics[width = {#4 cm}]{#3}}
+ \caption{#1.} \label{fig:#2} 
+\end{figure}
+\FloatBarrier
+}
+
+\newcommand{\screenshotHeight}[4]{
+\begin{figure}[ht]
+ \centering
+\hspace*{-.05\textwidth}
+\makebox[\textwidth]{
+  \includegraphics[height = {#4 cm}]{#3}}
+ \caption{#1} \label{fig:#2} 
+\end{figure}
+\FloatBarrier
+}
+
+\newcommand{\doubleScreenShot}[9]{
+
+  \begin{figure}[!ht]
+	  \caption*{#9}
+    \begin{minipage}{0.49\linewidth}\centering
+      %\rule{\linewidth}{0.5\linewidth}  % Platzhalter
+			\includegraphics[width={#4}\textwidth]{#3} 
+      \caption{#1.}\label{fig:#2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\linewidth}\centering
+      %\rule{\linewidth}{0.5\linewidth}  % Platzhalter
+			\includegraphics[width={#8}\textwidth]{#7}
+      \caption{#5}\label{fig:#6}
+    \end{minipage}
+		
+  \end{figure} 
+\FloatBarrier
+}
+
+

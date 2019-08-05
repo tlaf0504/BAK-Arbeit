@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Formfunktionen}{4}
+\contentsline {subsection}{\numberline {1.1}Erster Ordnung}{4}
+\contentsline {subsection}{\numberline {1.2}Zweiter Ordnung}{4}
+\contentsline {subsection}{\numberline {1.3}Dritter Ordnung}{4}
+\contentsline {section}{\numberline {2}Finite-Elemente}{4}
+\contentsline {subsection}{\numberline {2.1}3-Punkte linear}{4}
+\contentsline {subsection}{\numberline {2.2}6-Punkte quadratisch}{4}
+\contentsline {subsection}{\numberline {2.3}10-Punkte kubisch}{4}
+\contentsline {section}{\numberline {3}Gmsh}{4}
+\contentsline {subsection}{\numberline {3.1}Erstellen der Geometrie}{4}
+\contentsline {subsection}{\numberline {3.2}Generieren und exportieren des Gitters}{4}
+\contentsline {section}{\numberline {4}Import der Geometrie und des Gitters}{4}
+\contentsline {section}{\numberline {5}Assemblierung und L\IeC {\"o}sung des Gleichungssystems}{4}
+\contentsline {section}{\numberline {6}Grafischer Postprozessor}{4}
+\contentsline {section}{Literatur}{5}

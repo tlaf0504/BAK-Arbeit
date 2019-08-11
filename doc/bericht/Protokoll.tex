@@ -8,6 +8,7 @@
 %\usepackage{amsmath,amssymb,amstext}
 
 \usepackage{amsmath}
+\usepackage{wrapfig}
 \usepackage{multirow}
 %\usepackage{sv}
 \usepackage{pgf}
@@ -63,6 +64,10 @@
             cp.X add /cp.X exch def end}  
   \ignorespaces%
 }
+
+\usepackage{nicefrac}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Headings
 %%%
@@ -86,6 +91,8 @@
 
 \newcommand{\nomunit}[1]{% 
 \renewcommand{\nomentryend}{\hspace{2em}\hspace*{\fill}#1}}
+\newcommand{\parDiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\coord}[2]{\left(#1, #2 \right)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -123,7 +130,7 @@ Technische Universität Graz
 \vspace*{5cm}
 %
 \Huge {Seminararbeit:\\
-Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären Strömungsfeld-Probleme} %
+Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären Strömungsfeld-Problemen} %
 %\vspace*{.4cm} \Large{ Sommersemester 2015\\}
 %%
 %\vspace*{2.5cm} 
@@ -135,7 +142,7 @@ Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären 
 % Name der beteiligten Studierenden
 
 \Large{vorgelegt von:\\
-Tobias Florian Lafer (1530012)\\
+Tobias Florian Lafer (01530012)\\
 am \today} 
 \vspace{9cm}
 
@@ -175,27 +182,47 @@ am \today}
 %	Stromfaden
 %Diskussion
 
-\input{abstract.tex}
+%\input{abstract.tex}
 
 
-\section{Formfunktionen}
-\subsection{Erster Ordnung}
-\subsection{Zweiter Ordnung}
-\subsection{Dritter Ordnung}
-\section{Finite-Elemente}
-\subsection{3-Punkte linear}
-\subsection{6-Punkte quadratisch}
-\subsection{10-Punkte kubisch}
+\section{Theorie}
+\input{fem.tex}
+\input{shape_functions.tex}
+\input{problems.tex}
 
-\section{Gmsh}
-\subsection{Erstellen der Geometrie}
-\subsection{Generieren und exportieren des Gitters}
 
-\section{Import der Geometrie und des Gitters}
-\section{Assemblierung und Lösung des Gleichungssystems}
 
-\section{Grafischer Postprozessor}
 
+
+\section{Implementierung}
+\input{implementation_main.tex}
+
+\subsection{Formulierung der finiten Elemente (gesamt: 3 Seiten)}
+\subsubsection{3-Punkte linear (1 Seite)}
+\subsubsection{6-Punkte quadratisch (1 Seite)}
+\subsubsection{10-Punkte kubisch (1 Seite)}
+
+\subsection{Erstellung der Geometrie und Generierung des Gitters mit Gmsh (gesamt: 3 Seiten)}
+\subsubsection{Erstellen der Geometrie (2 Seiten)}
+\subsubsection{Generierung und Export des FEM-Gitters (1 Seiten)}
+
+\subsection{Import und Verarbeitung des FEM-Gitters (gesamt: 4 Seiten)}
+\subsubsection{Import (1 Seiten)}
+\subsubsection{Ermitteln der Knoten am dirichletschen Rand (1 Seiten)}
+\subsubsection{Ermitteln der Element-Seiten am neumannschen Rand (2 Seite)}
+
+\subsection{Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}
+\label{sec:equation_system_calculation}
+\subsubsection{Berechnung der Element-Matrix (2 Seite)}
+\subsubsection{Berechnung des Rechtsseiten-Vektors (1 Seite)}
+
+\subsection{Assemblierung und Lösung des globalen Gleichungssystems (gesamt: 1 Seite)}
+\label{sec:assembling}
+
+\section{Simulationen}
+\subsection{Simulation 1 (2 Seiten)}
+\subsection{Simulation 2 (2 Seiten)}
+\subsection{Simulation 3 (2 Seiten)}
 
 
 \newpage

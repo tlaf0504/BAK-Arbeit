@@ -3,6 +3,10 @@ classdef Postprocessor
     methods(Static)
         function success = run(problem_location)
             
+            % Close all previous figures
+            close all
+            
+            
             success = 1;
             
             tmp = pwd;
@@ -26,10 +30,10 @@ classdef Postprocessor
             % Plot mesh
             mesh_plot = Postprocessor.get_mesh_plot_data(mesh_data, problem_setup);
 
-            Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
+%             Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
             
-            Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
-                problem_setup);
+%             Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
+%                 problem_setup);
             
             Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
                problem_setup, mesh_plot)
@@ -120,12 +124,7 @@ classdef Postprocessor
         
         function plot_node_potentials(node_potentials, mesh_plot)
             
-            N_nodes = length(node_potentials.potentials);
-            
-            max_V = max(node_potentials.potentials);
-            min_V = min(node_potentials.potentials);
-            
-            
+           
             x_min = min(node_potentials.coordinates(:, 1));
             x_max = max(node_potentials.coordinates(:, 1));
             
@@ -145,7 +144,6 @@ classdef Postprocessor
             Z = griddata(node_potentials.coordinates(:, 1), node_potentials.coordinates(:, 2), ...
                 node_potentials.potentials, X, Y);
              
-            %C = 1/(min_V - max_V) * Z;
             [a,b] = size(Z);
             Z_tmp = zeros(a,b);
             
@@ -165,14 +163,8 @@ classdef Postprocessor
             hold on
             surf(X, Y, Z_tmp, Z, 'FaceAlpha',0.75, 'EdgeColor', 'none');
             colormap jet
-            c = colorbar;
+            colorbar;
 
-%             tick_labels_num = min_V + (max_V - min_V) * c.Ticks;
-%             tick_labels_str = sprintf('%f;',tick_labels_num);
-%             tick_labels = strsplit(tick_labels_str, ';');
-%             tick_labels = tick_labels(1:end-1);
-%             c.TickLabels = tick_labels;
-            
             title('Potential with mesh')
             axis equal
             xlabel('Distance in m')
@@ -200,6 +192,10 @@ classdef Postprocessor
             % Preallocate memory
             electric_field = zeros(number_of_finite_elements, 2);
             coordinates = zeros(number_of_finite_elements, 2);
+            quiver_data = zeros(number_of_finite_elements, 2); % x/y plot data for field vectors
+            abs_electric_field = zeros(number_of_finite_elements, 1); % Absolute value of electric field
+            
+            
             
             % Calculate field at center point of triangle
             zeta = 1/3;
@@ -225,66 +221,64 @@ classdef Postprocessor
                 xe = node_coordinates_of_current_triangle(:, 1);
                 ye = node_coordinates_of_current_triangle(:, 2);
                 
-                % x-components
-                electric_field(k, 1) = ...
-                    -(node_potentials_of_current_triangle' * dN_dZeta) * ...
-                    (ye' * dN_dEta) + ...
-                    (node_potentials_of_current_triangle' * dN_dEta) *...
-                    (ye' * dN_dZeta);
+                jacobi_determinant = finite_element_class.jacobi_determinant( ...
+                    zeta, eta, xe, ye);
+                
+                % x-component
+                electric_field(k, 1) = (-1/ jacobi_determinant) * ...
+                    node_potentials_of_current_triangle' *...
+                    (ye' * dN_dEta .* dN_dZeta - ...
+                    ye' * dN_dZeta .* dN_dEta);
+                    
                 
                 % y-component
-                electric_field(k, 2) = ...
-                    (node_potentials_of_current_triangle' * dN_dZeta) * ...
-                    (xe' * dN_dEta) - ...
-                    (node_potentials_of_current_triangle' * dN_dEta) *...
-                    (xe' * dN_dZeta);
+                electric_field(k, 2) = (-1 / jacobi_determinant)* ...
+                    node_potentials_of_current_triangle' *...
+                    (-xe' * dN_dEta .* dN_dZeta + ...
+                    xe' * dN_dZeta .* dN_dEta);
+                
+                abs_electric_field(k) = sqrt(electric_field(k, 1) .^2 + ...
+                    electric_field(k, 2) .^2);
+                
+                
+                
+                % Normalize quivers
+                quiver_data(k, :) = electric_field(k, :) / abs_electric_field(k);
                 
                 coordinates(k, 1) = xe' * shape_functions;
                 coordinates(k, 2) = ye' * shape_functions;
 
             end
             
+            % Calculate absolute value of electric field
+            
+            
+            % Generate quiver plot
             h = figure();
             Misc.CloneFig(mesh_plot, h)
             hold on
-            quiver(coordinates(:, 1), coordinates(:, 2), electric_field(:,1), electric_field(:, 2))
+            quiver(coordinates(:, 1), coordinates(:, 2), ...
+                quiver_data(:,1), quiver_data(:, 2), ...
+                'Color', [0 0.4470 0.7410])
             title('Electric field')
             
+            
+            
             h = figure();
-            Misc.CloneFig(mesh_plot, h)
+            
+            Misc.CloneFig(mesh_plot, h);
             hold on
-            
-            
-            abs_electric_field = sqrt(electric_field(:, 1) .^2 + electric_field(:, 2) .^2);
-            
-            max_V = max(abs_electric_field);
-            min_V = min(abs_electric_field);
-            
-            % Generate colors for plot:
-            % Minimum value of the node potentials should have blue colour. 
-            % Maximum value should have red colour.
-            % 
-            % Colour generation is done using HSV colour-space.
-            % The 'Hue' value valculated in a way that nodes with the minimum value
-            % equal to a hue of 240° (blue color, in Matlab: 8/9 as the value 1
-            % corresponds to a hue of 360°), and the nodes with a maximum value equal
-            % to a hue of 0 (red color).
-            %
-            % The transormation is done by a simple linear function determined by the
-            % two points:
-            % @ max_V: hue = 0
-            % @ min_V: hue = 8/9
-            %
-            hsv_hue = 2/3 * 1/(min_V - max_V) * (abs_electric_field - max_V);
-            
-            hsv_data = [hsv_hue, ones(length(abs_electric_field), 2)];
-            
-            
-            scatter(coordinates(:, 1), ...
-                coordinates(:, 2), ...
-                20, hsv2rgb(hsv_data), 'filled');
+            scatter(coordinates(:, 1), coordinates(:, 2), 20, abs_electric_field, ...
+                'filled');
+            colormap jet
+            colorbar;
+
             title('Absolute value of electric field')
-            
+            axis equal
+            xlabel('Distance in m')
+            ylabel('Distance in m')
+            colormap jet
+            colorbar;   
         end
         
         function mesh_plot = get_mesh_plot_data(mesh_data, problem_setup)
@@ -357,8 +351,6 @@ classdef Postprocessor
             ylabel('Distance in m')
     
         end
-        
-        
     end
 end
 

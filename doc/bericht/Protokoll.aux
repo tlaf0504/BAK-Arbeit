@@ -1,23 +1,72 @@
 \relax 
 \providecommand*\new@tpo@label[2]{}
 \bibstyle{unsrt}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Formfunktionen}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Erster Ordnung}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Zweiter Ordnung}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Dritter Ordnung}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Finite-Elemente}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}3-Punkte linear}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}6-Punkte quadratisch}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}10-Punkte kubisch}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Gmsh}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Erstellen der Geometrie}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generieren und exportieren des Gitters}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Import der Geometrie und des Gitters}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Assemblierung und L\IeC {\"o}sung des Gleichungssystems}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Grafischer Postprozessor}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Theorie}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Die Methode der finiten Elemente}{3}}
+\newlabel{sec:fem_theory}{{1.1}{3}}
+\newlabel{eq:operatorgleichung}{{1}{3}}
+\newlabel{eq:gleichungssystem}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Finite Elemente und Formfunktionen}{3}}
+\newlabel{sec:finite_elements_and_shape_functions}{{1.2}{3}}
+\newlabel{eq:ansatz_potential}{{3}{3}}
+\newlabel{ref:ansatz_isoparam}{{4}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Lineare Dreieckselemente}{4}}
+\newlabel{sec:linear_triangles}{{1.2.1}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Ansatz f\IeC {\"u}r lineares Element}}{4}}
+\newlabel{fig:linear_element}{{1}{4}}
+\newlabel{eq:linear_triangle_eq}{{5}{4}}
+\newlabel{eq:linear_triangle_matrix_eq}{{7}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Quadratische Dreieckselemente}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Ansatz f\IeC {\"u}r quadratisches Element}}{6}}
+\newlabel{fig:quadratic_element}{{2}{6}}
+\newlabel{eq:quadratic_triangle_eq}{{14}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Kubische Dreieckselemente}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Ansatz f\IeC {\"u}r quadratisches Element}}{6}}
+\newlabel{fig:cubic_element}{{3}{6}}
+\newlabel{eq:cubic_triangle_eq}{{18}{6}}
+\citation{SMS_VO_skript}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Problemtypen}{7}}
+\newlabel{eq:maxwell_1}{{20}{8}}
+\newlabel{eq:maxwell_2}{{21}{8}}
+\newlabel{eq:maxwell_3}{{22}{8}}
+\newlabel{eq:maxwell_4}{{23}{8}}
+\newlabel{eq:material_1}{{24}{8}}
+\newlabel{eq:material_2}{{25}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}Elektrostatische Probleme}{8}}
+\newlabel{eq:wirbelfreiheit_E}{{26}{8}}
+\newlabel{eq:sources_D}{{27}{8}}
+\newlabel{eq:dgl_E}{{28}{8}}
+\newlabel{eq:e-static_dirichlet_condition}{{30}{8}}
+\newlabel{eq:e-static_neumann_condition}{{31}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Station\IeC {\"a}re Str\IeC {\"o}mungsfeldprobleme}{9}}
+\newlabel{eq:current_dirichlet_condition}{{37}{9}}
+\newlabel{eq:current_neumann_condition}{{38}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Implementierung}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Formulierung der finiten Elemente (gesamt: 3 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}3-Punkte linear (1 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}6-Punkte quadratisch (1 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}10-Punkte kubisch (1 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Erstellung der Geometrie und Generierung des Gitters mit Gmsh (gesamt: 3 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Erstellen der Geometrie (2 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Generierung und Export des FEM-Gitters (1 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Import und Verarbeitung des FEM-Gitters (gesamt: 4 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Import (1 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Ermitteln der Knoten am dirichletschen Rand (1 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Ermitteln der Element-Seiten am neumannschen Rand (2 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}{11}}
+\newlabel{sec:equation_system_calculation}{{2.4}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Berechnung der Element-Matrix (2 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Berechnung des Rechtsseiten-Vektors (1 Seite)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems (gesamt: 1 Seite)}{11}}
+\newlabel{sec:assembling}{{2.5}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Simulationen}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{11}}
 \bibdata{literatur}
-\bibcite{balanis}{{1}{}{{}}{{}}}
+\bibcite{SMS_VO_skript}{{1}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{toc}{\contentsline {section}{Literatur}{5}}
+\@writefile{toc}{\contentsline {section}{Literatur}{12}}
 \global\@namedef{scr@dte@section@lastmaxnumwidth}{12.14694pt}
 \global\@namedef{scr@dte@subsection@lastmaxnumwidth}{19.70898pt}
+\global\@namedef{scr@dte@subsubsection@lastmaxnumwidth}{28.84563pt}

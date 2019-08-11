@@ -1,8 +1,9 @@
 \begin{thebibliography}{1}
 
-\bibitem{balanis}
-C.~A. Balanis.
-\newblock {\em Antenna Theory: Analysis and Design}.
-\newblock WILEY Interscience, 2005.
+\bibitem{SMS_VO_skript}
+K.~Preis.
+\newblock {Simulation mechatronischer Systeme, Ergänzende Unterlagen zur
+  Vorlesung 437.123}.
+\newblock Sommersemester 2016/2017.
 
 \end{thebibliography}

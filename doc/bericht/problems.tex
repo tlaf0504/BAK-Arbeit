@@ -1,0 +1,100 @@
+\subsection{Problemtypen}
+In diesem Kapitel werden die in der Software implementierten Problemtypen beschrieben. In beiden Fällen handelt es sich um zweidimensionale, ebene Probleme. Resultat dieses Abschnitts werden analytische Berechnungsvorschriften für die einzelnen Elementgleichungssysteme sein.\newline
+Die Berechnungen aus diesem Abschnitt stammen, sofern nicht anders angegeben, aus \cite{SMS_VO_skript} Abschnitte 7 und 8. Für ausführliche Herleitungen, auf welche in diesem Fall bewusst verzichtet wird, sei auf das oben genannte Werk verwiesen.\newline
+
+Wie aus Abschnitt \ref{sec:fem_theory} bekannt, ist das Randwertproblem zuerst als Operatorgleichung mit entsprechenden Randwertbedingungen zu formulieren. Die Operatorgleichung kann nun entweder direkt im Galerkinschen Verfahren oder über Umweg eines äquivalenten Funktionals im Ritzschen Verfahren verwendet werden. Dabei wird für die gesuchte Funktion $u$ in jedem Teilgebiet (finites Element) ein entsprechender Approximations-Ansatz wie in Abschnitt \ref{sec:finite_elements_and_shape_functions} ermittelt, eingesetzt. Das Ergebnis sind 'lokale' lineare Gleichungssysteme (für jedes Element eines), welche zu einem großen, 'globalen' Gleichungssystem assembliert werden müssen. Auf die Assemblierung wird dabei genauer in Abschnitt \ref{sec:assembling} eingegangen.\newline
+
+Ausgangspunkt für Probleme aus der Elektrotechnik sind im Allgemeinen die Maxwell-Gleichungen:
+\begin{align}
+	\mathit{rot}\vec{E} = -\parDiff{\vec{B}}{t} \label{eq:maxwell_1} \\
+	\mathit{rot}\vec{H} = \vec{J} + \parDiff{\vec{D}}{t} \label{eq:maxwell_2}\\
+	\mathit{div}\vec{B} = 0 \label{eq:maxwell_3}\\
+	\mathit{div}\vec{D} = \rho \label{eq:maxwell_4}
+\end{align}
+mit den Materialzusammenhängen
+\begin{align}
+\vec{D} = [\epsilon]\vec{E} \label{eq:material_1}\\
+\vec{B} = [\mu]\vec{H} \label{eq:material_2}
+\end{align}
+mit $[\epsilon]$ und $[\mu]$ als ortsabhängigen Materialtensoren.
+
+\subsubsection{Elektrostatische Probleme}
+Für den elektrostatischen Fall ist $\vec{J}$ sowie sämtlichen zeitlichen Änderungen $\equiv 0$ wodurch sich $\vec{B} \equiv 0$ sowie die rechten Seiten von (\ref{eq:maxwell_1}) und  (\ref{eq:maxwell_2}) zu $\equiv 0$ ergeben.\newline
+Ein elektrostatisches Problem wird somit durch die folgenden Gleichungen beschrieben:
+\begin{align}
+\mathit{rot}\vec{E} &= 0 \label{eq:wirbelfreiheit_E}\\
+\mathit{div}\vec{D} &= \rho \label{eq:sources_D}
+\end{align}\newline
+
+Aufgrund der Wirbelfreiheit des elektrostatischen Feldes aus (\ref{eq:wirbelfreiheit_E}) kann nun folgender Ansatz für die elektrostatische Feldstärke $\vec{E}$ verwendet werden:
+\begin{equation}
+\label{eq:dgl_E}
+\vec{E} = -\mathit{grad}V
+\end{equation}
+mit $V$ als sogenanntem \textit{Skalapotential}.\newline
+
+Setzt man (\ref{eq:dgl_E}) nun unter Verwendung von \ref{eq:material_1} in (\ref{eq:sources_D}) ein, so erhält man die partielle Differentialgleichung für $V$ als:
+\begin{equation}
+\mathit{div}[\epsilon]\mathit{grad}V = -\rho
+\end{equation}
+Hierbei entspricht $\mathit{div}[\epsilon]\mathit{grad}$ dem Differentialoperator $L$ aus \ref{eq:operatorgleichung}, das Potential $V$ der gesuchten Funktion $u$ und $-\rho$ der gegebenen Funktion $f$.\newline
+
+Die Randbedingungen für ein solches Problem sind gegeben als
+\begin{equation}
+\label{eq:e-static_dirichlet_condition}
+	V = \overline{V}
+\end{equation}
+am dirichletschen Rand $\Gamma_D$ und 
+\begin{equation}
+\label{eq:e-static_neumann_condition}
+\vec{n}\cdot\mathit{grad}V = \sigma 
+\end{equation}
+am neumannschen Rand $\Gamma_N$, mit $\vec{n}$ als Flächennormale und $\sigma$ der am neumannschen Rand gegebenen Flächenladungsdichte entspricht.\newline
+
+Unter Verwendung des Ritzschen \textit{oder} Galerkinschen Verfahrens erhält man nun Lösung zur Berechnung der Elementgleichungssysteme, wobei beide Verfahren \textit{dieselbe (!)} Lösung liefern. Unter Verwendung des in \ref{sec:finite_elements_and_shape_functions} vorgestellten Ansatzes für das Potential $V = \sum_{k = 1}^{N} N_k V_k$ ergibt sich für das Elementgleichungssystem $\begin{bmatrix}k_{ij}\end{bmatrix} \cdot \begin{Bmatrix}V_j\end{Bmatrix} = \begin{Bmatrix}r_j\end{Bmatrix}$:
+\begin{equation}
+k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \epsilon_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy
+\end{equation}
+\begin{equation}
+	r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
+\end{equation}
+
+\textbf{Anmerkung:} Um auf die oben gezeigte Form für $k_ij$ zu kommen ist es notwendig den Permettivitätstensor $[\epsilon]$ auf eine Hauptachsenform zu transformieren:
+\begin{equation*}
+	[\epsilon] = \begin{bmatrix}
+	\epsilon_x & 0 \\
+	0 & \epsilon_y
+	\end{bmatrix}
+\end{equation*}
+
+Man beachte dass die Formfunktionen für isoparametrische finite Elemente $N_i = N_i(\xi, \eta)$ gilt, wodurch alle Integrale in den Variablen $\xi$ und $\eta$ durchgeführt werden müssen. Die entsprechende Substitution sowie die Realisierung der Integrale werden in Abschnitt \ref{sec:equation_system_calculation} genauer behandelt. 
+
+
+\subsubsection{Stationäre Strömungsfeldprobleme}
+Stationäre Strömungsfeldprobleme lassen sich über das Gesetz der Ladungserhaltung definieren:
+\begin{equation}
+	\mathit{div}\vec{J} = 0
+\end{equation}
+ Es muss außerdem das Ohmsche Gesetz in seiner differentiellen Form gelten:
+ \begin{equation}
+ 	\vec{J} = [\gamma] \vec{E}
+ \end{equation}
+ mit $[\gamma]$ als ortsabhängigem Tensor der spezifischen Leitfähigkeit.\newline
+ 
+ Stationäre Strömungsfeldprobleme können somit analog zu elektrostatischen Problemen mittels folgender Differentialgleichung ermittelt werden:
+ \begin{equation}
+\mathit{div}[\gamma]\mathit{grad}V = 0
+ \end{equation}
+ Als Randbedingungen ergeben sich:
+ \begin{equation}
+ \label{eq:current_dirichlet_condition}
+ V = \overline{V}
+ \end{equation}
+ am dirichletschen Rand $\Gamma_D$ und 
+ \begin{equation}
+ \label{eq:current_neumann_condition}
+ \vec{n}\cdot\mathit{grad}V = J_e
+ \end{equation}
+ wobei $J_e$ die eingeprägte Flächenstromdichte am neumannschen Rand darstellt.
+
+

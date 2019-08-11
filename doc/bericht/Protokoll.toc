@@ -1,15 +1,30 @@
-\contentsline {section}{\numberline {1}Formfunktionen}{4}
-\contentsline {subsection}{\numberline {1.1}Erster Ordnung}{4}
-\contentsline {subsection}{\numberline {1.2}Zweiter Ordnung}{4}
-\contentsline {subsection}{\numberline {1.3}Dritter Ordnung}{4}
-\contentsline {section}{\numberline {2}Finite-Elemente}{4}
-\contentsline {subsection}{\numberline {2.1}3-Punkte linear}{4}
-\contentsline {subsection}{\numberline {2.2}6-Punkte quadratisch}{4}
-\contentsline {subsection}{\numberline {2.3}10-Punkte kubisch}{4}
-\contentsline {section}{\numberline {3}Gmsh}{4}
-\contentsline {subsection}{\numberline {3.1}Erstellen der Geometrie}{4}
-\contentsline {subsection}{\numberline {3.2}Generieren und exportieren des Gitters}{4}
-\contentsline {section}{\numberline {4}Import der Geometrie und des Gitters}{4}
-\contentsline {section}{\numberline {5}Assemblierung und L\IeC {\"o}sung des Gleichungssystems}{4}
-\contentsline {section}{\numberline {6}Grafischer Postprozessor}{4}
-\contentsline {section}{Literatur}{5}
+\contentsline {section}{\numberline {1}Theorie}{3}
+\contentsline {subsection}{\numberline {1.1}Die Methode der finiten Elemente}{3}
+\contentsline {subsection}{\numberline {1.2}Finite Elemente und Formfunktionen}{3}
+\contentsline {subsubsection}{\numberline {1.2.1}Lineare Dreieckselemente}{4}
+\contentsline {subsubsection}{\numberline {1.2.2}Quadratische Dreieckselemente}{5}
+\contentsline {subsubsection}{\numberline {1.2.3}Kubische Dreieckselemente}{6}
+\contentsline {subsection}{\numberline {1.3}Problemtypen}{7}
+\contentsline {subsubsection}{\numberline {1.3.1}Elektrostatische Probleme}{8}
+\contentsline {subsubsection}{\numberline {1.3.2}Station\IeC {\"a}re Str\IeC {\"o}mungsfeldprobleme}{9}
+\contentsline {section}{\numberline {2}Implementierung}{10}
+\contentsline {subsection}{\numberline {2.1}Formulierung der finiten Elemente (gesamt: 3 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.1.1}3-Punkte linear (1 Seite)}{11}
+\contentsline {subsubsection}{\numberline {2.1.2}6-Punkte quadratisch (1 Seite)}{11}
+\contentsline {subsubsection}{\numberline {2.1.3}10-Punkte kubisch (1 Seite)}{11}
+\contentsline {subsection}{\numberline {2.2}Erstellung der Geometrie und Generierung des Gitters mit Gmsh (gesamt: 3 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.2.1}Erstellen der Geometrie (2 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.2.2}Generierung und Export des FEM-Gitters (1 Seiten)}{11}
+\contentsline {subsection}{\numberline {2.3}Import und Verarbeitung des FEM-Gitters (gesamt: 4 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.3.1}Import (1 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.3.2}Ermitteln der Knoten am dirichletschen Rand (1 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.3.3}Ermitteln der Element-Seiten am neumannschen Rand (2 Seite)}{11}
+\contentsline {subsection}{\numberline {2.4}Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}{11}
+\contentsline {subsubsection}{\numberline {2.4.1}Berechnung der Element-Matrix (2 Seite)}{11}
+\contentsline {subsubsection}{\numberline {2.4.2}Berechnung des Rechtsseiten-Vektors (1 Seite)}{11}
+\contentsline {subsection}{\numberline {2.5}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems (gesamt: 1 Seite)}{11}
+\contentsline {section}{\numberline {3}Simulationen}{11}
+\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{11}
+\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{11}
+\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{11}
+\contentsline {section}{Literatur}{12}

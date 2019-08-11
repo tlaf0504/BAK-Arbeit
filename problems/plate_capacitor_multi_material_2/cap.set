@@ -1,7 +1,7 @@
 $Edges
 3
-dir100 1 DRB 100
-dir0 1 DRB 10
+dir100 1 DRB 50
+dir0 1 DRB -50
 farbound 1 DRB 0
 $EndEdges
 

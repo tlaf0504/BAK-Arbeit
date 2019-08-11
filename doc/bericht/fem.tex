@@ -1,0 +1,19 @@
+\subsection{Die Methode der finiten Elemente}
+\label{sec:fem_theory}
+Die analytische Lösung eines Randwertproblems, wie jenes definiert in (\ref{eq:operatorgleichung}), ist nur in sehr wenigen Fällen möglich. Zur numerischen Lösung existieren daher verschiedenste Methoden, wobei eine der Prominentesten die \textit{Methode der finiten Elemente} darstellt. Bei dieser Methode wird das zu untersuchende Problemgebiet $\Omega$ in viele einzelne Teilgebiete unterteilt, in welchen jeweils die gesuchte Funktion $u(x)$ aus durch Verwendung von Ansatzfunktionen (zum Beispiel Polynomen) approximiert wird. \newline
+
+Ein Beispiel für ein Randwertproblem ist
+\begin{equation}
+L\{u(x)\} = f(x)
+\label{eq:operatorgleichung}
+\end{equation}
+mit $u = \overline{u} \ \forall x\in \Gamma_D$ als dirichletschen, und $\parDiff{u}{n}(x) = u_N \ \forall x \in \Gamma_N $ als neumannschen Randbedingungen, $L$ als Differentialoperator, $f$ als gegebener und $u$ als gesuchter Funktion.\newline
+
+Als häufige Ansätze zur numerischen Berechnung dienen dabei das sogenannte \textit{Ritzsche Verfahren} (Spezialfall einer Variationsmethode) oder das \textit{Galerkinsche Verfahren} (Spezialfall einer Residuenmethode). Diese Verfahren führen auf ein lineares Gleichungssystem (\ref{eq:gleichungssystem}) mit den Werten der gesuchten Funktion $u$ an den Elementknoten als Unbekannte $\vec{u_{ges}}$.
+
+\begin{equation}
+\vec{A} \cdot \vec{u_{ges}} = \vec{r}
+\label{eq:gleichungssystem}
+\end{equation}
+
+Die Elemente der Matrix $\vec{A}$ und des Rechtsseitenvektors $\vec{r}$ ergeben sich aus den Zusammenhängen im Problemgebiet (Differentialgleichungen), den vorgegebenen Randwerten und der Geometrie sowie deren Unterteilung.\newline

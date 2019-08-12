@@ -1,0 +1,24 @@
+\subsection{Erstellung der Geometrie und Generierung des Gitters mit Gmsh}
+\subsubsection{Erstellung der Geometrie}
+Die Erstellung der Geometrie sowie die Generierung des FEM-Gitters erfolgt mit der Open-Source Software Gmsh. \cite{gmsh_website}
+Gmsh stellt zwei CAD-Kernel ('Built-In' und 'OpenCASCADE') zur Verfügung welche jedoch sehr ähnlich zu Bedienen sind. Auf Unterschiede wird entsprechend hingewiesen.\newline
+
+Gmsh nutzt dabei eine eigene Skript-Sprache zur Erstellung der Geometrie, wobei die einzelnen Kommandos für den jeweiligen CAD-Kernel übersetzt werden. Eine Geometrie in Gmsh wird also durch ein ASCII-codiertes File mit einer Sequenz von Kommandos repräsentiert. Ein Beispiel für ein einfaches Viereck ist in Abbildung ... gezeigt. Die Erstellung der Geometrie erfolgt dabei 'Bottom-Up'. Dabei werden zuerst Punkte im Raum festgelegt, welche dann durch Linien verbunden werden. Mehrere aneinander grenzende Linien bilden eine Fläche und mehrere aneinander grenzende Flächen ein Volumen. Für eine genauere Beschreibung des Ablaufs sei auf die sehr ausführliche Dokumentation auf der Gmsh-Homepage verwiesen (\cite{gmsh_website}).\newline
+
+Eine besondere Rolle bei der Erstellung der Problemgeometrie nehmen die sogenannten 'Physical Groups' ein. Wie ihr Name schon sagt, sind dies Gruppen von Elementen (z.B. Linien) mit der gleichen physikalischen Eigenschaft. (z.B. dem gleichen Potential). Um dies besser zu erklären ist in Abbildung ... die Problemgeometrie eines einfachen Plattenkondensators dargestellt. Die Linien die die obere Elektrode bilden wurden zu einer 'Physical Group' mit dem Namen 'dir100' zusammengefügt. Später wird diese geschlossene Kurve als dirichletscher Rand mit einer Bedingung von $V = 100$ deklariert. Das äußere Viereck dient als ferner Rand mit einer dirichletschen Randbedingung von $V=0$ und wird daher ebenfalls zu einer 'Physical Group' mit dem Namen 'farbound' zusammengefasst. Ebenso wird der Rand der unteren Elektrode zu einer Gruppe mit dem Namen 'dir0' zusammengefasst.
+ zusammengefasst.\newline
+ Auch Flächen können zu 'Physical Groups' zusammengefasst werden. Typischerweise sind dies Areale mit den gleichen Materialeigenschaften (Permettivität) und/oder gleichen Quellen (freie Raumladungen). In dem gezeigten Beispiel gibt es drei sogenannte 'Physical Surfaces', eine welche den Bereich der umschließenden Luft modelliert, und zwei zur Modellierung eines geschichteten Dielektrikums zwischen den Kondensatorplatten.
+ 
+ \subsubsection{Generierung des Gitters}
+ Gmsh erlaubt die Verwendung von verschiedenen Algorithmen zur Gittergenerierung. In der Standardeinstellung wählt Gmsh automatisch einen geeigneten Algorithmus aus, wobei sich dies als völlig zufriedenstellend herausgestellt hat. Wie schon bei der Geometrie, erfolgt die Generierung des Gitters 'Bottom-Up' wobei zuerst Linen, dann Flächen und schließlich Volumen bearbeitet werden. Ein simpler Klick auf \textit{Mesh $\rightarrow$ 2D} führt alle genötigten Schritte durch, wobei standardmäßig ein lineares, 3-knotiges Dreiecksgitter erzeugt wird. Zum Wechsel auf ein Gitter höherer Ordnung ist ein Kick auf \textit{Mesh $\rightarrow$ Set order<n>} nötig, wobei <n> für die gewünschte Gitterordnung steht. Um das bestehende Gitter zu verfeinern, muss lediglich auf \textit{Mesh $\rightarrow$ Refine by splitting} geklickt werden. Bei unpassender Aufteilung des verfeinerten Gitters empfiehlt sich ein erneuter Klick auf \textit{Mesh $\rightarrow$ 2D} wodurch sich die Aufteilung der Elemente wieder verbessern sollte.\newline
+ 
+ Zum Export des Gitters ist folgender Ablauf zu befolgen:
+ \begin{itemize}
+ 	\item \textit{File $\rightarrow$ Export}
+ 	\item Auswahl des Ordners und Dateinamens \textbf{mit der Endung .msh} (Gmsh erkennt des Typ der zu Exportierenden Datei anhand seiner Endung)
+ 	\item Auswahl der 'Version 2' unter den anschließend angezeigten Optionen
+ \end{itemize}
+
+\textbf{Anmerkung:} Ein simpler Export mittels \textit{File $\rightarrow$ Save mesh} ist nicht möglich, da Gmsh dann das Gittern in einer .msh-Datei der Version 4 abspeichert, das FEM-Tool jedoch nur Version 2 unterstützt.\newline
+
+\textbf{Anmerkung:} Die Generierung des Gitters kann auch automatisiert im FEM-Tool erfolgen. Somit ist ein händischer Export nur nötig wenn spezielle Änderungen am Gitter von Hand vorgenommen werde müssen.

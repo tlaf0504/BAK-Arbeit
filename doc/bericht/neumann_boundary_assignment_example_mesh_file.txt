@@ -1,0 +1,21 @@
+$MeshFormat
+2.2 0 8
+$EndMeshFormat
+$PhysicalNames
+2
+1 1 "neumann_boundary"
+2 2 "material"
+$EndPhysicalNames
+$Nodes
+4
+1 <x1> <y1> <z1>
+2 <x2> <y2> <z2>
+3 <x3> <y3> <z3>
+4 <x4> <y4> <z4>
+$EndNodes
+$Elements
+1 2 2 1 x 2 3
+2 2 2 1 x 1 2
+3 3 2 2 x 1 2 4
+4 3 2 2 x 4 2 3
+$EndElements

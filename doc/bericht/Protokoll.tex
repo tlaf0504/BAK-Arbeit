@@ -66,6 +66,7 @@
 }
 
 \usepackage{nicefrac}
+\usepackage{float}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,6 +86,7 @@
 %%%
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
 \newcommand{\mat}[1]{\boldsymbol{#1}}
+\renewcommand{\lstlistingname}{Code}
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \newcommand{\z}{\mathpzc{z}}
@@ -196,20 +198,9 @@ am \today}
 
 \section{Implementierung}
 \input{implementation_main.tex}
+\input{implementierung_geometrie.tex}
 
-\subsection{Formulierung der finiten Elemente (gesamt: 3 Seiten)}
-\subsubsection{3-Punkte linear (1 Seite)}
-\subsubsection{6-Punkte quadratisch (1 Seite)}
-\subsubsection{10-Punkte kubisch (1 Seite)}
-
-\subsection{Erstellung der Geometrie und Generierung des Gitters mit Gmsh (gesamt: 3 Seiten)}
-\subsubsection{Erstellen der Geometrie (2 Seiten)}
-\subsubsection{Generierung und Export des FEM-Gitters (1 Seiten)}
-
-\subsection{Import und Verarbeitung des FEM-Gitters (gesamt: 4 Seiten)}
-\subsubsection{Import (1 Seiten)}
-\subsubsection{Ermitteln der Knoten am dirichletschen Rand (1 Seiten)}
-\subsubsection{Ermitteln der Element-Seiten am neumannschen Rand (2 Seite)}
+\input{mesh_parsing.tex}
 
 \subsection{Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}
 \label{sec:equation_system_calculation}

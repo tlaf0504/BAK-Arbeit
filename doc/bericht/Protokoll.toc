@@ -8,23 +8,18 @@
 \contentsline {subsubsection}{\numberline {1.3.1}Elektrostatische Probleme}{8}
 \contentsline {subsubsection}{\numberline {1.3.2}Station\IeC {\"a}re Str\IeC {\"o}mungsfeldprobleme}{9}
 \contentsline {section}{\numberline {2}Implementierung}{10}
-\contentsline {subsection}{\numberline {2.1}Formulierung der finiten Elemente (gesamt: 3 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.1.1}3-Punkte linear (1 Seite)}{11}
-\contentsline {subsubsection}{\numberline {2.1.2}6-Punkte quadratisch (1 Seite)}{11}
-\contentsline {subsubsection}{\numberline {2.1.3}10-Punkte kubisch (1 Seite)}{11}
-\contentsline {subsection}{\numberline {2.2}Erstellung der Geometrie und Generierung des Gitters mit Gmsh (gesamt: 3 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.2.1}Erstellen der Geometrie (2 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.2.2}Generierung und Export des FEM-Gitters (1 Seiten)}{11}
-\contentsline {subsection}{\numberline {2.3}Import und Verarbeitung des FEM-Gitters (gesamt: 4 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.3.1}Import (1 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.3.2}Ermitteln der Knoten am dirichletschen Rand (1 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.3.3}Ermitteln der Element-Seiten am neumannschen Rand (2 Seite)}{11}
-\contentsline {subsection}{\numberline {2.4}Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}{11}
-\contentsline {subsubsection}{\numberline {2.4.1}Berechnung der Element-Matrix (2 Seite)}{11}
-\contentsline {subsubsection}{\numberline {2.4.2}Berechnung des Rechtsseiten-Vektors (1 Seite)}{11}
-\contentsline {subsection}{\numberline {2.5}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems (gesamt: 1 Seite)}{11}
-\contentsline {section}{\numberline {3}Simulationen}{11}
-\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{11}
-\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{11}
-\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{11}
-\contentsline {section}{Literatur}{12}
+\contentsline {subsection}{\numberline {2.1}Erstellung der Geometrie und Generierung des Gitters mit Gmsh}{10}
+\contentsline {subsubsection}{\numberline {2.1.1}Erstellung der Geometrie}{10}
+\contentsline {subsubsection}{\numberline {2.1.2}Generierung des Gitters}{11}
+\contentsline {subsection}{\numberline {2.2}Import und Verarbeitung des FEM-Gitters}{11}
+\contentsline {subsubsection}{\numberline {2.2.1}Import des Gitters}{12}
+\contentsline {subsubsection}{\numberline {2.2.2}Verarbeitung der Gitterinformation}{13}
+\contentsline {subsubsection}{\numberline {2.2.3}Zuordnung der Knoten am dirichletschen- und Dreiecksseiten am neumannschen Rand}{14}
+\contentsline {subsection}{\numberline {2.3}Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}{17}
+\contentsline {subsubsection}{\numberline {2.3.1}Berechnung der Element-Matrix (2 Seite)}{17}
+\contentsline {subsubsection}{\numberline {2.3.2}Berechnung des Rechtsseiten-Vektors (1 Seite)}{17}
+\contentsline {subsection}{\numberline {2.4}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems (gesamt: 1 Seite)}{17}
+\contentsline {section}{\numberline {3}Simulationen}{17}
+\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{17}
+\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{17}
+\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{17}

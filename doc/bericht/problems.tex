@@ -53,9 +53,11 @@ am neumannschen Rand $\Gamma_N$, mit $\vec{n}$ als Flächennormale und $\sigma$ 
 
 Unter Verwendung des Ritzschen \textit{oder} Galerkinschen Verfahrens erhält man nun Lösung zur Berechnung der Elementgleichungssysteme, wobei beide Verfahren \textit{dieselbe (!)} Lösung liefern. Unter Verwendung des in \ref{sec:finite_elements_and_shape_functions} vorgestellten Ansatzes für das Potential $V = \sum_{k = 1}^{N} N_k V_k$ ergibt sich für das Elementgleichungssystem $\begin{bmatrix}k_{ij}\end{bmatrix} \cdot \begin{Bmatrix}V_j\end{Bmatrix} = \begin{Bmatrix}r_j\end{Bmatrix}$:
 \begin{equation}
+\label{eq:k_ij_e_static}
 k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \epsilon_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy
 \end{equation}
 \begin{equation}
+\label{eq:right_side_e_static}
 	r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
 \end{equation}
 
@@ -96,5 +98,6 @@ Stationäre Strömungsfeldprobleme lassen sich über das Gesetz der Ladungserhal
  \vec{n}\cdot\mathit{grad}V = J_e
  \end{equation}
  wobei $J_e$ die eingeprägte Flächenstromdichte am neumannschen Rand darstellt.
+
 
 

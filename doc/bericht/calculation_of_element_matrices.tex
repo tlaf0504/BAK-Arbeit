@@ -1,0 +1,214 @@
+\subsection{Berechnung der Elementgleichungssysteme}
+\label{sec:equation_system_calculation}
+
+Das Elementgleichungssystem in den Koordinaten $x$ und $y$ ergibt sich für ein elektrostatisches Problem als
+\begin{equation}
+\label{eq:k_ij_e_static_2}
+k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \epsilon_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy
+\end{equation}
+
+\begin{equation}
+\label{eq:right_side_e_static_2}
+r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
+\end{equation} 
+(siehe Kapitel \ref{sec:electrostatic_problems}). Die Berechnungen für stationäre Strömungsfeld-Probleme sind zu denen für elektrostatische Probleme äquivalent (Siehe Kapitel \ref{sec:stat_current_problems}) für $\epsilon \rightarrow \gamma$, $\rho \rightarrow J_e$ und $\sigma \rightarrow 0$\newline
+
+Liegt das Element am dirichletschen Rand, so sind ein oder mehrere Knotenpotentiale bereits vorgegeben was zu einer Reduktion des Elementgleichungssystems führt. Gezeigt wird dies an einem linearen Dreieckselement mit 3 Knoten. Das Elementgleichungssystem lautet:
+
+\begin{align*}
+	k_{11} V_1 + k_{12} V_2 + k_{13} V_3 = r_1\\
+	k_{21} V_1 + k_{22} V_2 + k_{23} V_3 = r_2\\
+	k_{31} V_1 + k_{32} V_2 + k_{33} V_3 = r_3
+\end{align*}
+
+Liegt nun Knoten 2 am dirichletschen Rand so ist $V_2$ bekannt, und das Elementgleichungssystem reduziert sich wie folgt:
+
+ \begin{align*}
+ k_{11} V_1  + k_{13} V_3 = r_1 - k_{12} V_2\\
+ k_{31} V_1  + k_{33} V_3 = r_3 - k_{32} V_2
+ \end{align*}
+ 
+ Liegt also der $j$-te Knoten am dirichletschen Rand, so wird die $j$-te Zeile aus dem Gleichungssystem eliminiert und die $j$-ze Spalte wird von der rechte Seite subtrahiert.
+
+
+\subsubsection{Elementmatrix-Koeffizienten $k_{ij}$}
+
+Da die Formfunktionen $N_i$ bei isoparametrischen finiten Elementen Funktionen von $\xi$ und $\eta$ sind, müssen die Integrationsvariablen aller Integrale transformiert werden.  \newline
+Die partiellen Ableitungen der Formfunktionen in (\ref{eq:k_ij_e_static_2}) ergeben sich mit 
+\begin{equation}
+\begin{Bmatrix}
+\parDiff{N}{\xi} \\[2mm]
+\parDiff{N}{\eta}
+\end{Bmatrix} = 
+\underbrace{
+\begin{bmatrix}
+\sum\limits_{k}\parDiff{N_k}{\xi}x_k & \sum\limits_{k}\parDiff{N_k}{\xi}y_k \\[2mm]
+\sum\limits_{k}\parDiff{N_k}{\eta}x_k & \sum\limits_{k}\parDiff{N_k}{\eta}y_k
+\end{bmatrix}}_{\mat{J}}\cdot
+\begin{Bmatrix}
+\parDiff{N}{x} \\[2mm]
+\parDiff{N}{y}
+\end{Bmatrix}
+\end{equation}
+
+zu 
+\begin{equation}
+\begin{Bmatrix}
+\parDiff{N}{x} \\[2mm]
+\parDiff{N}{y}
+\end{Bmatrix} = 
+\underbrace{
+	\frac{1}{\mathit{det}(\mat{J})}\begin{bmatrix}
+	 \sum\limits_{k}\parDiff{N_k}{\eta}y_k & -\sum\limits_{k}\parDiff{N_k}{\xi}y_k \\[2mm]
+	-\sum\limits_{k}\parDiff{N_k}{\eta}x_k & \sum\limits_{k}\parDiff{N_k}{\xi}x_k
+	\end{bmatrix}}_{\mat{J}^{-1}}
+\cdot \begin{Bmatrix}
+\parDiff{N}{\xi} \\[2mm]
+\parDiff{N}{\eta}
+\end{Bmatrix}
+\end{equation}\cite{SMS_VO_skript}
+, S.71f.\newline
+
+
+Das Flächenelement $dxdy$ in (\ref{eq:k_ij_e_static_2}) ergibt sich mit den Beziehungen aus \cite{SMS_VO_skript}, S.74 zu 
+\begin{equation}
+\label{eq:surface_element}
+dxdy = \mathit{det} \mat{(J)} d\xi d\eta
+\end{equation}
+wobei das Flächenintegral in beiden Koordinaten in den Intervallen $[0,1]$ durchzuführen ist. Somit ergibt sich der Elementmatrix-Koeffizient $k_{ij}$ zu 
+\begin{align}
+&k_{i,j} = \int\displaylimits_{\xi = 0}^{1} \int\displaylimits_{\eta = 0}^{1 - \xi} \bigg[\\
+%
+% x-derivatives
+&\frac{\epsilon_x}{\mathit{det}(\mat{J})}\left(\parDiff{N_i}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}y_k - \parDiff{N_i}{\eta}\sum\limits_{k}\parDiff{N_k}{\xi}y_k\right)
+%
+\left(\parDiff{N_j}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}y_k - \parDiff{N_j}{\eta} -\sum\limits_{k}\parDiff{N_k}{\xi}y_k\right) + \nonumber\\ 
+%
+% y-derivatives
+&\frac{\epsilon_y}{\mathit{det}(\mat{J})}\left(-\parDiff{N_i}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}x_k + \parDiff{N_i}{\eta} \sum\limits_{k}\parDiff{N_k}{\xi}x_k\right)
+%
+\left(-\parDiff{N_j}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}x_k + \parDiff{N_j}{\eta} \sum\limits_{k}\parDiff{N_k}{\xi}x_k\right) \nonumber\\ 
+& \bigg]d\xi d\eta
+\end{align}
+
+\textbf{Anmerkung:} Man beachte dass das $\mathit{det}(\mat{J})$ des Flächenelements aus (\ref{eq:surface_element}) bereits gekürzt wurde.\newline
+Die Berechnung der Partiellen Ableitungen der Formfunktionen kann auf analytischem Wege vorweg erfolgen, da diese nur vom gewählten Elementtyp abhängen. Somit ist eine effiziente Berechnung der Terme $\sum\limits_{k}\parDiff{N_k}{\eta}y_k$ in Form von Skalarprodukten möglich.\newline
+
+Die numerische Berechnung des Integrals erfolgt über die sogenannte \textit{Gauss-Quadratur}. Hierbei wird das zu berechnende Integral durch eine gewichtete Summe approximiert:
+\begin{equation}
+\int\limits_{x_{min}}^{x_{max}} f(x) dx \approx \sum\limits_{k}w_kf(x_k)
+\end{equation}
+Eine Erweiterung auf mehrdimensionale Integrale ist durch Mehrfachsummen einfach möglich. Ein besonderes Augenmerk bei dieser Methode der numerischen Integration liegt dabei auf der Wahl der Stützstellen $x_k$ und der Gewichte $w_k$. Diese Form der numerischen Integration ist in der Literatur weit verbreitet. Die in dieser Arbeit verwendeten Stützstellen-Koordinaten und -Gewichte für isoparametrische Dreieckige finite Elemente wurden aus \cite{bathe}, S.547. übernommen. \newline
+
+In der Software implementiert sind eine 3-Punkte und 7-Punkte Integration der Form  
+\begin{equation}
+\int\displaylimits_{x} \int\displaylimits_{y} f dx dy \approx \frac{1}{2}\sum\limits_{k = 1}^{N_s} f(x_k, y_k) w_k
+\end{equation}
+wobei $N_s$ die Anzahl der Stützstellen darstellt.\newline
+
+Für eine 3-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
+\begin{table}[H]
+	\centering
+\begin{tabular}{c|c|c|c}
+	$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
+	\hline
+	1 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+	2 & $\frac{2}{3}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+	3 & $\frac{1}{6}$ & $\frac{2}{3}$ & $\frac{1}{3}$ \\
+\end{tabular}
+\caption{Stützstellen und Gewichte für 3-Punkte Integration nach \cite{bathe}, S.547.}
+\label{tab:3-point_plane_integration}
+\end{table}
+
+Für eine 7-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
+		\hline
+		1 & $0.1012865073235$ & $0.1012865073235$ & $0.1259391805448$ \\
+		2 & $0.7974269853531$ & $0.1012865073235$ & $0.1259391805448$ \\
+		3 & $0.1012865073235$ & $0.7974269853531$ & $0.1259391805448$ \\
+		4 & $0.4701420641051$ & $0.0597158717898$ & $0.1323941527885$ \\
+		5 & $0.4701420641051$ & $0.4701420641051$ & $0.1323941527885$ \\
+		6 & $0.0597158717898$ & $0.4701420641051$ & $0.1323941527885$ \\
+		7 & $\frac{1}{3}$ & $\frac{1}{3}$ & $0.225$ \\
+	\end{tabular}
+	\caption{Stützstellen und Gewichte für 7-Punkte Integration nach \cite{bathe}, S.547.}
+	\label{tab:7-point_plane_integration}
+\end{table}
+
+
+
+\subsubsection{Rechtsseiten-Elemente $r_j$}
+Die Berechnung der Koeffizienten der 'rechten Seite' eines elektrostatischen Problems 
+\begin{equation}
+r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
+\end{equation}$r_j$
+erfordert zu einen ein Flächenintegral (erster Summand) und ein Integral über den neumannschen Rand, welches im zweidimensionalen Fall zu einem Kurvenintegral entartet. \newline
+Für das Flächenintegral lässt sich die Substitution der Integrationsvariablen sehr einfach durchführen, da keine partiellen Ableitungen des Formfunktionen vorkommen:
+\begin{equation}
+\int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy = \int\displaylimits_{\xi = 0}^{1} \int\displaylimits_{\eta = 0}^{1 - \xi} N_i \rho \mathit{det} (\mat{J}) d\xi d\eta
+\end{equation}
+\newline
+
+Für Kurvenintegral über den neumannschen Rand ändert sich der Integrand je nach dem über welche Dreiecksseite integriert wird. 
+Das entartete Flächenintegral über den neumannschen Rand hat nun folgende Form:
+\begin{equation}
+	\int\displaylimits_{c}N_i(\xi, \eta)\sigma ds
+\end{equation}
+
+Allgemein gilt (siehe \cite{SMS_VO_skript}, S. 74f.):
+\begin{align}
+\label{eq:subs}
+\vec{d\xi} = dx\vec{e_x} + dy\vec{e_y} = \parDiff{x}{\xi}d\xi \vec{e_x} + \parDiff{x}{\xi} d\xi \vec{e_y}\\
+\vec{d\eta} = dx\vec{e_x} + dy\vec{e_y} = \parDiff{x}{\eta}d\eta \vec{e_x} + \parDiff{x}{\eta} d\eta \vec{e_y} \nonumber
+\end{align}
+Das infinitesimale Kurvenelement ergibt sich somit nun zu $\vec{ds} = \vec{d\xi} + \vec{d\eta}$ bzw. \begin{equation}
+\label{eq:ds_abs}
+ds = \left|\left| \vec{ds} \right|\right| = \sqrt{\left(\vec{d\xi} + \vec{d\eta}\right)^T\cdot \left( \vec{d\xi} + \vec{d\eta} \right)}
+\end{equation}\newline
+
+Integriert man über die Dreiecksseite 1, so gilt $d\eta = 0$ und somit auch $\vec{d\eta} = \vec{0}$.
+Somit gilt für $\vec{ds}$ bzw. $ds$:
+\begin{align}
+	&\vec{ds} =  \vec{d\xi} \Rightarrow \nonumber \\
+	&ds = \left|\left| \vec{d\xi} \right|\right| = \sqrt{ \left(\parDiff{x}{\xi}\right)^2 + \left(\parDiff{y}{\xi}\right)^2) d\xi} = \sqrt{ \left( \sum\limits_{k}\parDiff{N_k}{\xi}x_k \right)^2  + \left( \sum\limits_{k}\parDiff{N_k}{\xi}y_k \right)^2 } d\xi
+\end{align}
+
+Selbiges kann für Dreiecksseite 2 unter Verwendung von $d\xi = 0$ hergeleitet werden. Es ergibt sich somit:
+\begin{align}
+&\vec{ds} =  \vec{d\eta} \Rightarrow \nonumber \\
+&ds = \left|\left| \vec{d\eta} \right|\right| = \sqrt{ \left(\parDiff{x}{\eta}\right)^2 + \left(\parDiff{y}{\eta}\right)^2) d\eta} = \sqrt{ \left( \sum\limits_{k}\parDiff{N_k}{\eta}x_k \right)^2  + \left( \sum\limits_{k}\parDiff{N_k}{\eta}y_k \right)^2 } d\eta
+\end{align}
+
+Zur Integration über Dreiecksseite 3  muss zuerst die Kurve parametrisiert werden:
+\begin{align*}
+&\vec{s(t)} = 
+\begin{Bmatrix}
+\xi(t) \\ \eta(t)
+\end{Bmatrix} = 
+\begin{Bmatrix}
+1 - t \\ t
+\end{Bmatrix} \Rightarrow\\
+%
+&\frac{ds}{dt} = 
+\begin{Bmatrix}
+\frac{d\xi}{dt} \\ \frac{d\eta}{dt}
+\end{Bmatrix} = 
+\begin{Bmatrix}
+-1 \\ 1
+\end{Bmatrix} \Rightarrow \\
+% 
+&\underline{\underline{d\xi = -dt, \ d\eta = dt}}
+\end{align*}
+
+Setzt man dies nun in (\ref{eq:subs}) und dies wiederum in (\ref{eq:ds_abs}) ein, so erhält man
+\begin{equation}
+ds = \sqrt{\left(\parDiff{x}{\eta} - \parDiff{x}{\xi}\right)^2  + \left(\parDiff{y}{\eta} - \parDiff{y}{\xi}\right)^2} dt
+\end{equation}
+
+Auf das Einsetzen der partiellen Ableitungen von $x$ und $y$ wurde aus Gründen der Übersichtlichkeit verzichtet.\newline
+
+
+Die numerische Integration erfolgt wieder über die Gauss-Quadratur. Stützstellen und Gewichte wurden aus \cite{bathe}, S.542 übernommen.

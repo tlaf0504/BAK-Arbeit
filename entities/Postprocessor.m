@@ -30,10 +30,10 @@ classdef Postprocessor
             % Plot mesh
             mesh_plot = Postprocessor.get_mesh_plot_data(mesh_data, problem_setup);
 
-%             Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
+             Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
             
-%             Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
-%                 problem_setup);
+             Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
+                 problem_setup);
             
             Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
                problem_setup, mesh_plot)
@@ -136,7 +136,7 @@ classdef Postprocessor
             dx = (x_max - x_min) / number_of_grid_lines;
             dy = (y_max - y_min) / number_of_grid_lines;
             
-            x = y_min : dx : y_max;
+            x = x_min : dx : x_max;
             y = y_min : dy : y_max;
             
             [X, Y] = meshgrid(x, y);

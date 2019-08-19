@@ -1,0 +1,13 @@
+$Edges
+3
+dir_electrode_1 1 DRB 100
+dir_electrode_2 1 DRB 200
+farbound 1 DRB 0
+$EndEdges
+
+
+
+$Faces
+1
+air 2 1 0
+$EndFaces

@@ -1,25 +1,27 @@
 \contentsline {section}{\numberline {1}Theorie}{3}
 \contentsline {subsection}{\numberline {1.1}Die Methode der finiten Elemente}{3}
-\contentsline {subsection}{\numberline {1.2}Finite Elemente und Formfunktionen}{3}
-\contentsline {subsubsection}{\numberline {1.2.1}Lineare Dreieckselemente}{4}
-\contentsline {subsubsection}{\numberline {1.2.2}Quadratische Dreieckselemente}{5}
-\contentsline {subsubsection}{\numberline {1.2.3}Kubische Dreieckselemente}{6}
-\contentsline {subsection}{\numberline {1.3}Problemtypen}{7}
-\contentsline {subsubsection}{\numberline {1.3.1}Elektrostatische Probleme}{8}
-\contentsline {subsubsection}{\numberline {1.3.2}Station\IeC {\"a}re Str\IeC {\"o}mungsfeldprobleme}{9}
-\contentsline {section}{\numberline {2}Implementierung}{10}
-\contentsline {subsection}{\numberline {2.1}Erstellung der Geometrie und Generierung des Gitters mit Gmsh}{10}
-\contentsline {subsubsection}{\numberline {2.1.1}Erstellung der Geometrie}{10}
-\contentsline {subsubsection}{\numberline {2.1.2}Generierung des Gitters}{11}
-\contentsline {subsection}{\numberline {2.2}Import und Verarbeitung des FEM-Gitters}{11}
-\contentsline {subsubsection}{\numberline {2.2.1}Import des Gitters}{12}
-\contentsline {subsubsection}{\numberline {2.2.2}Verarbeitung der Gitterinformation}{13}
-\contentsline {subsubsection}{\numberline {2.2.3}Zuordnung der Knoten am dirichletschen- und Dreiecksseiten am neumannschen Rand}{14}
-\contentsline {subsection}{\numberline {2.3}Berechnung der Elementgleichungssysteme (gesamt: 3 Seiten)}{17}
-\contentsline {subsubsection}{\numberline {2.3.1}Berechnung der Element-Matrix (2 Seite)}{17}
-\contentsline {subsubsection}{\numberline {2.3.2}Berechnung des Rechtsseiten-Vektors (1 Seite)}{17}
-\contentsline {subsection}{\numberline {2.4}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems (gesamt: 1 Seite)}{17}
-\contentsline {section}{\numberline {3}Simulationen}{17}
-\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{17}
-\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{17}
-\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{17}
+\contentsline {subsection}{\numberline {1.2}Das Ritzsche Verfahren}{3}
+\contentsline {subsection}{\numberline {1.3}Das Galerkinsche Verfahren}{4}
+\contentsline {subsection}{\numberline {1.4}Finite Elemente und Formfunktionen}{5}
+\contentsline {subsubsection}{\numberline {1.4.1}Lineare Dreieckselemente}{5}
+\contentsline {subsubsection}{\numberline {1.4.2}Quadratische Dreieckselemente}{7}
+\contentsline {subsubsection}{\numberline {1.4.3}Kubische Dreieckselemente}{7}
+\contentsline {subsection}{\numberline {1.5}Problemtypen}{8}
+\contentsline {subsubsection}{\numberline {1.5.1}Elektrostatische Probleme}{9}
+\contentsline {subsubsection}{\numberline {1.5.2}Station\IeC {\"a}re Str\IeC {\"o}mungsfeldprobleme}{11}
+\contentsline {section}{\numberline {2}Implementierung}{11}
+\contentsline {subsection}{\numberline {2.1}Erstellung der Geometrie und Generierung des Gitters mit Gmsh}{12}
+\contentsline {subsubsection}{\numberline {2.1.1}Erstellung der Geometrie}{12}
+\contentsline {subsubsection}{\numberline {2.1.2}Generierung des Gitters}{12}
+\contentsline {subsection}{\numberline {2.2}Import und Verarbeitung des FEM-Gitters}{13}
+\contentsline {subsubsection}{\numberline {2.2.1}Import des Gitters}{13}
+\contentsline {subsubsection}{\numberline {2.2.2}Verarbeitung der Gitterinformation}{15}
+\contentsline {subsubsection}{\numberline {2.2.3}Zuordnung der Knoten am dirichletschen- und Dreiecksseiten am neumannschen Rand}{16}
+\contentsline {subsection}{\numberline {2.3}Berechnung der Elementgleichungssysteme}{19}
+\contentsline {subsubsection}{\numberline {2.3.1}Elementmatrix-Koeffizienten $k_{ij}$}{20}
+\contentsline {subsubsection}{\numberline {2.3.2}Rechtsseiten-Elemente $r_j$}{22}
+\contentsline {subsection}{\numberline {2.4}Assemblierung und L\IeC {\"o}sung des globalen Gleichungssystems}{23}
+\contentsline {section}{\numberline {3}Simulationen}{24}
+\contentsline {subsection}{\numberline {3.1}Simulation 1 (2 Seiten)}{24}
+\contentsline {subsection}{\numberline {3.2}Simulation 2 (2 Seiten)}{24}
+\contentsline {subsection}{\numberline {3.3}Simulation 3 (2 Seiten)}{24}

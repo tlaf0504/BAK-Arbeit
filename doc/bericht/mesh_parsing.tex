@@ -54,6 +54,7 @@ Folgende Parameter müssen nun jedem Element zugeordnet werden:
 Die Zuordnung der Knoten und Dreiecksseiten an den Rändern des Problems wird im folgenden Kapitel beschrieben.
 
 \subsubsection{Zuordnung der Knoten am dirichletschen- und Dreiecksseiten am neumannschen Rand}
+\label{sec:rb_assignment}
 Wie bereits oben erwähnt ist eine direkte Zuordnung der Dreieckselemente am dirichletschen und neumannschen Rand nicht möglich. Vielmehr muss ein Umweg über die eindimensionalen Elemente gegangen werden. Die angewandten Algorithmen werden im Folgenden beschrieben: \newline
 
 \textbf{Knoten am dirichletschen Rand:}
@@ -106,5 +107,6 @@ Wie aus Code \ref{fig:example_mesh_file} ersichtlich, setzt sich die Geometrie a
 Wie mit Hilfe von Abbildung \ref{fig:triangle_side_assignment} zu erkennen ist, liegt Element 3 mit Seite 1, und Element 4 mit Seite 2 am neumannschen Rand. Der oben beschrieben Algorithmus wird nun auf dieses Beispiel angewandt um dessen Funktion zu erklären.\newline
 \begin{enumerate}
 	\item Die Elemente 1 und 2 sind, wie aus Code \ref{fig:example_mesh_file} ersichtlich der \textit{Physical grup} 1 zugeteilt. (Vierter Eintrag in den beiden Elementdefinitionen). Somit ist nun bekannt dass die Knoten 1, 2 und 3 am neumannschen Rand liegen.
-	\item Die Knoten 1 und 2 von Element 3 stimmen mit den Knoten am neumannschen Rand überein. Zudem definieren sie die Dreiecksseite 1, über welche in weiterer Folge integriert werden muss. Selbiges lässt sich für Seite 2 von Element 4 durchführen.
+	\item Die lokalen Knoten 1 und 2 von Element 3 stimmen mit den globalen Knoten 1 und 2 am neumannschen Rand überein, womit sich nun feststellen lässt dass Element 3 mit Seite 1 am neumannschen Rand liegt.
+	\item Selbiges wir nun für Element 4 durchgeführt. Die lokalen Knoten 2 und 3 stimmen mit den globalen Knoten 2 und 3 überein, womit sich feststellen lässt dass Element 4 mit Seite 2 am neumannschen Rand liegt.
 \end{enumerate}

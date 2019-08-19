@@ -4,7 +4,7 @@ Die analytische Lösung eines Randwertproblems, wie jenes definiert in (\ref{eq:
 
 Ein Beispiel für ein Randwertproblem ist
 \begin{equation}
-L\{u(x)\} = f(x)
+L\{u(x)\} - f(x) = 0
 \label{eq:operatorgleichung}
 \end{equation}
 mit $u = \overline{u} \ \forall x\in \Gamma_D$ als dirichletschen, und $\parDiff{u}{n}(x) = u_N \ \forall x \in \Gamma_N $ als neumannschen Randbedingungen, $L$ als Differentialoperator, $f$ als gegebener und $u$ als gesuchter Funktion.\newline
@@ -17,3 +17,51 @@ Als häufige Ansätze zur numerischen Berechnung dienen dabei das sogenannte \te
 \end{equation}
 
 Die Elemente der Matrix $\vec{A}$ und des Rechtsseitenvektors $\vec{r}$ ergeben sich aus den Zusammenhängen im Problemgebiet (Differentialgleichungen), den vorgegebenen Randwerten und der Geometrie sowie deren Unterteilung.\newline
+
+\subsection{Das Ritzsche Verfahren}
+Physikalische Systeme gehorchen in vielen Fällen sogenannten \textit{Extremalprinzipien}. Ein solches Prinzip bezeichnet die Eigenschaft eines Systems einen Zustand einzunehmen in dem eine bestimmte Größe minimal oder maximal ist. Zum Beispiel verläuft die Bewegung eines dynamischen Systems immer so dass dessen Bewegungsenergie minimal ist.\newline
+
+Ein in der Elektrotechnik vorkommendes Extremalprinzip ist das \textit{Kelvinsche Prinzip} welches besagt dass sich die Ladungsverteilung in einem elektrostatischen System so einstellt, dass die Energie in diesem System minimal ist.\newline
+Mathematisch ausgedrückt muss somit die elektrostatische Energie 
+\begin{equation}
+\label{eq:functional}
+W(V) = \frac{\epsilon_0}{2} \int\displaylimits_{\Omega} -\mathit{grad}V d\Omega
+\end{equation}
+ minimiert werden. Wählt man nun eine Potentialfunktion $V^* = V + \beta \eta$, wobei $V$ den wahren Potentialverlauf, $\eta$ die Abweichung von $V^*$ vom wahren Verlauf und $\beta$ einem numerischen \textit{Schaarparameter} entspricht, so kann über 
+ \begin{equation}
+ \label{eq:first_variation}
+ \frac{dW(V^*)}{d\beta}\bigg\vert_{\beta = 0} \beta = \frac{d}{d\beta} \left(\frac{\epsilon_0}{2} \int\displaylimits_{\Omega} - \mathit{grad}(V + \beta \eta) d\Omega \right)\bigg\vert_{\beta = 0} \beta \overset{!}{=} 0
+ \end{equation} 
+ der wahre Verlauf $V$ bestimmt werden.\newline
+ Im allgemeinen führt ($\ref{eq:first_variation}$) auf nicht lösbare Differentialgleichungen. Die Idee des Ritzschen Verfahrens ist nun einen einen Ansatz für $V^*$ zu wählen der eine Lösung der Differentialgleichungen ermöglicht.\newline
+ Wählt man als Ansatz für $V*$
+ \begin{equation}
+ V* = \phi_0 + \sum_{k = 1}^{N} c_k \phi_k
+ \end{equation}
+ so können nach Einsetzen in (\ref{eq:first_variation}) die $c_j$ über ein lineares Gleichungssystem ermittelt werden.\newline
+ 
+ Man bezeichnet (\ref{eq:functional}) als \textit{Funktional} und (\ref{eq:first_variation}) als \textit{erste Variation} des Funktionals.\newline
+ Hat man nun, wie bei einem Randwertproblem üblich, eine Differentialgleichung gegeben, so muss zuerst ein äquivalentes Funktional gefunden werden. Für einige Fälle ist dies über Tabellenbücher möglich.
+
+
+\subsection{Das Galerkinsche Verfahren}
+Die Operatorgleichung aus (\ref{eq:operatorgleichung}) ist für alle Werte von $u(x)$ erfüllt. Wählt man nun für $u$ einen Approximationsansatz $u^*$, so ist (\ref{eq:operatorgleichung}) nun im Allgemeinen nicht mehr erfüllt. Man definiert $\epsilon := L\{ u^* \} -f$ als das sogenannte \textit{Residuum} (Rest) und möchte die Parameter der Approximationsfunktion so verändern dass 
+\begin{equation}
+\label{eq:weighted_residuum}
+\int\displaylimits_{\Omega}\epsilon w d\Omega = \int\displaylimits_{\Omega} (L\{ u^* \} -f)w d\Omega= 0
+\end{equation}
+ist. $w$ bezeichnet hierbei Gewichtsfunktion. Man spricht nun von der \textit{Methode der gewichteten Residuen}.\newline
+
+
+Wählt man nun als Ansatz für $u*$
+\begin{equation}
+u* = \phi_0 + \sum_{k = 1}^{N} c_k \phi_k
+\end{equation}
+
+und für die Gewichtsfunktion $w$
+\begin{equation}
+	w = \phi_0 + \sum_{k = 1}^{N} \alpha_k\phi_k
+\end{equation}
+
+mit $\alpha_k \neq 0$ so spricht man von der \textit{Galerkin-Bubnov-Metode} oder vom \text{Galerkinschen Verfahren}. Durch Einsetzen der Ansätze für $u^*$ und $w$ in (\ref{eq:weighted_residuum}) lassen sich die $c_k$ über ein lineares Gleichungssystem bestimmen. Die $\alpha_k$ müssen nicht berechnet werden, da sie als beliebig und $\neq 0$ angenommen werden. 
+

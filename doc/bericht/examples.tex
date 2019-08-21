@@ -1,0 +1,131 @@
+Sofern nicht anders angegeben werden 6-knotige quadratische finite Dreieckselemente zur Approximation der Geometrie verwendet.
+
+\subsection{Beispiel 1: Idealer Plattenkondensator}
+In diesem Beispiel wird ein idealer Plattenkondensator unter Vernachlässigung der Randeffekte berechnet. Für ein solches Problem existiert eine analytische Lösung mit einem linearen Potentialverlauf und einem konstanten elektrischen Feld $\vec{E} = \frac{U}{d}$ mit $d$ als Plattenabstand.\newline
+
+Für dieses Problem liefert der FEM-Algorithmus die exakte Lösung liefern, da ein quadratischer Approximationsansatz verwendet wird und der Potentialverlauf ein Linearer ist.
+
+
+
+Folgende Parameter sind gegeben: 
+\begin{itemize}
+	\item $U = 10 \si{\volt}$
+	\item $d = 1 \si{\milli\meter}$
+	\item $\epsilon = \epsilon_0$
+\end{itemize}
+
+woraus sich ein Potentialverlauf von $V(x) = 10000x$ mit $x = [0,d]$ und ein Elektrischen Feld von $E = 10000 \si{\volt\per\meter}$ ergibt.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{pics/example_1/geometry.eps}
+	\caption{Geometrie, Gitter und Randbedingungen zu Beispiel 1}
+\end{figure}
+\textbf{Anmerkung:} Die homogenen neumannschen Randbedingungen $\parDiff{V}{n} = 0$ müssen nicht explizit angegeben werden.
+
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_1/figure_4.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_1/figure_3.eps}
+	\end{minipage}
+\caption{Potentialverlauf des Plattenkondensators}
+\label{fig:plate_cape_potential}
+\end{figure}
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_1/figure_5.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_1/figure_6.eps}
+	\end{minipage}
+	\caption{Feldverlauf des Plattenkondensators}
+	\label{fig:plate_cape_field}
+\end{figure}
+
+Abbildung \ref{fig:plate_cape_potential} zeigt den linearen Potentialverlauf innerhalb des Kondensators. Abbildung \ref{fig:plate_cape_field} zeigt im linken Teil die (nicht skalierten) Feldlinien und im rechten Teil den Absolutwert des Feldes.
+
+
+\subsection{Beispiel 2: Strömungsfeld einer Blechplatte}
+Dieses Beispiel zeigt den Strömungsfeldverlauf einer Blechplatte und wurde aus \cite{SMS_VO_skript}, Kap. 7.2.1 übernommen.\newline
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.28]{pics/example_2/geometry.eps}
+	\caption{Geometrie, Gitter und Randbedingungen zu Beispiel 2}
+\end{figure}
+
+Abbildung \ref{fig:metal_plate_potential} zeigt wieder den Verlauf des berechneten Potentials. Im linken Teil der Abbildung ist zu beachten dass der Potentialverlauf innerhalb des inneren, rechteckigen Randes zu ignorieren ist. Er wurde lediglich durch den Algorithmus zur Generierung des Bildes hinzugefügt und besitzt somit keinerlei physikalische Bedeutung.\newline
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_2/figure_4.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_2/figure_3.eps}
+	\end{minipage}
+	\caption{Potentialverlauf der Blechplatte}
+	\label{fig:metal_plate_potential}
+\end{figure}
+
+
+Abbildung \ref{fig:metal_plate_field} zeigt den Feldverlauf des Strömungsfeldes. Das Strömungsfeld wurde über $\vec{J} = -[\gamma] \mathit{grad}V$ berechnet, wobei $[\gamma] = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$ gewählt wurde. Somit entspricht bei diesem Beispiel $\vec{J} = \vec{E}$.\newline
+Wie zu erwarten tritt an der Ecke des inneren Randes eine starke Konzentration des Feldes mit einem entsprechend hohen Absolutwert des Feldes auf. Bei der Generierung des Gitters ist hier auf eine entsprechende Auflösung zu achten.
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_2/figure_5.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_2/figure_6.eps}
+	\end{minipage}
+	\caption{Feldverlauf der Blechplatte}
+	\label{fig:metal_plate_field}
+\end{figure}
+
+
+\subsection{Beispiel 3: Zylinderelektroden über leitender Ebene}
+Dieses Beispiel zeigt den Feldverlauf zweier Zylinderelektroden über einer leitenden Ebene. Die Elektroden befinden sich $100 \si{\milli\meter}$ bzw. $200 \si{\milli\meter}$ in einem Abstand von $100 \si{\milli\meter}$ über der leitenden Ebene. Die Ebene besitzt ein Potential von $V = 0 \si{\volt}$
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/geometry_full.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/geometry.eps}
+	\end{minipage}
+	\caption{Geometrie, Gitter und Randbedingungen zu Beispiel 3}
+	\label{fig:example_3_geometry}
+\end{figure}
+
+Abbildung \ref{fig:example_3_geometry} zeigt die Geometrie sowie das Gitter und die Randbedingungen des Problems. Im linken Teil erkennt man die gesamte Geometrie inklusive fernem Rand. Im rechten Teil ist der interessante Teil der Geometrie mit den Zylinderelektroden dargestellt. 
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/figure_4.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/figure_3_edited.eps}
+	\end{minipage}
+	\caption{Potentialverlauf der Zylinderelektroden}
+	\label{fig:cylinder_electrodes_potential}
+\end{figure}
+
+Abbildung \ref{fig:cylinder_electrodes_potential} zeigt wie bereits bekannt den Potentialverlauf des Problems. Hier ist zu beachten dass beim rechten Teil die Ansicht um 180\degrees gedreht ist, was im linken Teil einer Blickrichtung von oben nach unten entspricht. Diese Ansicht wurde gewählt da sich sonst die Äquipotentialfläche der ersten Elektrode nur schwer zu erkennen ist.
+
+
+\begin{figure}[htbp]
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/figure_5.eps}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{pics/example_3/figure_6.eps}
+	\end{minipage}
+	\caption{Feldverlauf der Zylinderelektroden}
+	\label{fig:cylinder_electrodes_field}
+\end{figure}
+
+
+Abbildung \ref{fig:cylinder_electrodes_field} zeigt den Feldverlauf und den Absolutwert des Elektrischen Feldes.

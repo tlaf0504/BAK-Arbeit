@@ -1,5 +1,48 @@
-[0] Config.pm:302> INFO - This is Biber 2.11
-[0] Config.pm:305> INFO - Logfile is 'Protokoll.blg'
-[25] biber:313> INFO - === Mo Aug 19, 2019, 19:27:31
-[96] Utils.pm:209> ERROR - Cannot find control file 'Protokoll.bcf'! - Did latex run successfully on your .tex file before you ran biber?
-[96] Biber.pm:114> INFO - ERRORS: 1
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Protokoll.aux
+The style file: unsrt.bst
+Database file #1: literatur.bib
+Warning--empty journal in SMS_VO_skript
+You've used 3 entries,
+            1791 wiz_defined-function locations,
+            460 strings with 3857 characters,
+and the built_in function-call counts, 400 in all, are:
+= -- 31
+> -- 9
+< -- 0
++ -- 5
+- -- 2
+* -- 11
+:= -- 65
+add.period$ -- 8
+call.type$ -- 3
+change.case$ -- 2
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 23
+empty$ -- 52
+format.name$ -- 2
+if$ -- 91
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 17
+num.names$ -- 2
+pop$ -- 19
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 9
+stack$ -- 0
+substring$ -- 0
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 2
+width$ -- 4
+write$ -- 29
+(There was 1 warning)

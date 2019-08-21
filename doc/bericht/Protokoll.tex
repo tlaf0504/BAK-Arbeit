@@ -67,6 +67,7 @@
 
 \usepackage{nicefrac}
 \usepackage{float}
+\usepackage[bottom=3cm, top=2cm, left=2cm, right=2cm]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Headings
@@ -120,7 +121,7 @@
 \begin{tabular}{p{10cm}}
 \centering{
 \Large Institut für Grundlagen und Theorie\\
-der Elektrotechnik\\
+der Elektrotechnik\\[2mm]
 Technische Universität Graz
 }
 \end{tabular}
@@ -145,7 +146,7 @@ Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären 
 \Large{vorgelegt von:\\
 Tobias Florian Lafer (01530012)\\
 am \today} 
-\vspace{9cm}
+\vspace{8cm}
 
 
 %
@@ -183,7 +184,8 @@ am \today}
 %	Stromfaden
 %Diskussion
 
-%\input{abstract.tex}
+\section*{Zusammenfassung}
+\input{abstract.tex}
 
 
 \section{Theorie}
@@ -209,9 +211,13 @@ am \today}
 \input{assembling.tex}
 
 \section{Simulationen}
-\subsection{Simulation 1 (2 Seiten)}
-\subsection{Simulation 2 (2 Seiten)}
-\subsection{Simulation 3 (2 Seiten)}
+\input{examples.tex}
+
+\appendix
+\section{Formfunktionen und ihre partiellen Ableitungen}
+\input{shape_functions_appendix.tex}
+
+
 
 
 \newpage

@@ -1,6 +1,8 @@
 \subsection{Die Methode der finiten Elemente}
 \label{sec:fem_theory}
-Die analytische Lösung eines Randwertproblems, wie jenes definiert in (\ref{eq:operatorgleichung}), ist nur in sehr wenigen Fällen möglich. Zur numerischen Lösung existieren daher verschiedenste Methoden, wobei eine der Prominentesten die \textit{Methode der finiten Elemente} darstellt. Bei dieser Methode wird das zu untersuchende Problemgebiet $\Omega$ in viele einzelne Teilgebiete unterteilt, in welchen jeweils die gesuchte Funktion $u(x)$ aus durch Verwendung von Ansatzfunktionen (zum Beispiel Polynomen) approximiert wird. \newline
+Die nachfolgenden Abschnitte in diesem Kapitel basieren, bis auf Abschnitt \ref{sec:finite_elements_and_shape_functions}, im wesentlichen auf \cite{SMS_VO_skript}.\newline
+
+Die analytische Lösung eines Randwertproblems, wie jenes definiert in (\ref{eq:operatorgleichung}), ist nur in sehr wenigen Fällen möglich. Zur numerischen Lösung existieren daher verschiedenste Methoden, wobei eine der Prominentesten die \textit{Methode der finiten Elemente} darstellt. Bei dieser Methode wird das zu untersuchende Problemgebiet $\Omega$ in viele einzelne Teilgebiete unterteilt, in welchen jeweils die gesuchte Funktion $u(x)$ durch Verwendung von Ansatzfunktionen (zum Beispiel Polynomen) approximiert wird. \newline
 
 Ein Beispiel für ein Randwertproblem ist
 \begin{equation}
@@ -9,48 +11,48 @@ L\{u(x)\} - f(x) = 0
 \end{equation}
 mit $u = \overline{u} \ \forall x\in \Gamma_D$ als dirichletschen, und $\parDiff{u}{n}(x) = u_N \ \forall x \in \Gamma_N $ als neumannschen Randbedingungen, $L$ als Differentialoperator, $f$ als gegebener und $u$ als gesuchter Funktion.\newline
 
-Als häufige Ansätze zur numerischen Berechnung dienen dabei das sogenannte \textit{Ritzsche Verfahren} (Spezialfall einer Variationsmethode) oder das \textit{Galerkinsche Verfahren} (Spezialfall einer Residuenmethode). Diese Verfahren führen auf ein lineares Gleichungssystem (\ref{eq:gleichungssystem}) mit den Werten der gesuchten Funktion $u$ an den Elementknoten als Unbekannte $\vec{u_{ges}}$.
+Als häufige Ansätze für die numerische Berechnung dienen dabei das sogenannte \textit{Ritzsche Verfahren} (Spezialfall einer Variationsmethode) oder das \textit{Galerkinsche Verfahren} (Spezialfall einer Residuenmethode). Diese Verfahren führen auf ein lineares Gleichungssystem (\ref{eq:gleichungssystem}) mit den Werten der gesuchten Funktion $u$ an den Elementknoten als Unbekannte $\vec{u_{ges}}$.
 
 \begin{equation}
 \vec{A} \cdot \vec{u_{ges}} = \vec{r}
 \label{eq:gleichungssystem}
 \end{equation}
 
-Die Elemente der Matrix $\vec{A}$ und des Rechtsseitenvektors $\vec{r}$ ergeben sich aus den Zusammenhängen im Problemgebiet (Differentialgleichungen), den vorgegebenen Randwerten und der Geometrie sowie deren Unterteilung.\newline
+Die Elemente der Matrix $\vec{A}$ und des Rechtsseitenvektors $\vec{r}$ ergeben sich aus den  (i.A. differentiellen) Zusammenhängen im Problemgebiet, den vorgegebenen Randwerten und der Geometrie sowie deren Unterteilung.\newline
 
 \subsection{Das Ritzsche Verfahren}
-Physikalische Systeme gehorchen in vielen Fällen sogenannten \textit{Extremalprinzipien}. Ein solches Prinzip bezeichnet die Eigenschaft eines Systems einen Zustand einzunehmen in dem eine bestimmte Größe minimal oder maximal ist. Zum Beispiel verläuft die Bewegung eines dynamischen Systems immer so dass dessen Bewegungsenergie minimal ist.\newline
+Physikalische Systeme gehorchen in vielen Fällen sogenannten \textit{Extremalprinzipien}. Ein solches Prinzip bezeichnet die Eigenschaft eines Systems einen Zustand einzunehmen in dem eine bestimmte Größe minimal oder maximal ist. Zum Beispiel verläuft die Bewegung eines dynamischen Systems immer so dass dessen Bewegungsenergie minimal ist. Eine bekannte Anwendung dieses Prinzips ist der \textit{Lagrange Foralismus}\newline
 
 Ein in der Elektrotechnik vorkommendes Extremalprinzip ist das \textit{Kelvinsche Prinzip} welches besagt dass sich die Ladungsverteilung in einem elektrostatischen System so einstellt, dass die Energie in diesem System minimal ist.\newline
 Mathematisch ausgedrückt muss somit die elektrostatische Energie 
 \begin{equation}
 \label{eq:functional}
-W(V) = \frac{\epsilon_0}{2} \int\displaylimits_{\Omega} -\mathit{grad}V d\Omega
+W(V) = \frac{1}{2} \int\displaylimits_{\Omega} \vec{E}\cdot\vec{D} d\Omega = \frac{\epsilon_0}{2} \int\displaylimits_{\Omega} \left(-\mathit{grad}V\right)^2 d\Omega
 \end{equation}
- minimiert werden. Wählt man nun eine Potentialfunktion $V^* = V + \beta \eta$, wobei $V$ den wahren Potentialverlauf, $\eta$ die Abweichung von $V^*$ vom wahren Verlauf und $\beta$ einem numerischen \textit{Schaarparameter} entspricht, so kann über 
+ mit $\vec{E} = -\mathit{grad}(V)$ und $\vec{D} = \epsilon_0 \vec{E}$, minimiert werden. Wählt man nun eine Potentialfunktion $V^* = V + \beta \eta$, wobei $V$ den wahren Potentialverlauf, $\eta$ einer \textbf{beliebigen} Abweichung von $V^*$ gegenüber dem wahren Verlauf, und $\beta$ einem numerischen \textit{Schaarparameter} entspricht, so kann über 
  \begin{equation}
  \label{eq:first_variation}
- \frac{dW(V^*)}{d\beta}\bigg\vert_{\beta = 0} \beta = \frac{d}{d\beta} \left(\frac{\epsilon_0}{2} \int\displaylimits_{\Omega} - \mathit{grad}(V + \beta \eta) d\Omega \right)\bigg\vert_{\beta = 0} \beta \overset{!}{=} 0
+ \frac{dW(V^*)}{d\beta}\bigg\vert_{\beta = 0} \beta = \frac{d}{d\beta} \left(\frac{\epsilon_0}{2} \int\displaylimits_{\Omega} \left(- \mathit{grad}(V + \beta \eta)\right)^2 d\Omega \right)\bigg\vert_{\beta = 0} \beta \overset{!}{=} 0
  \end{equation} 
  der wahre Verlauf $V$ bestimmt werden.\newline
- Im allgemeinen führt ($\ref{eq:first_variation}$) auf nicht lösbare Differentialgleichungen. Die Idee des Ritzschen Verfahrens ist nun einen einen Ansatz für $V^*$ zu wählen der eine Lösung der Differentialgleichungen ermöglicht.\newline
+ Die aus ($\ref{eq:first_variation}$) resultierenden Differentialgleichungen bezeichnet man als \textit{Euler-Lagrange Differentialgleichungen}. Die Idee des Ritzschen Verfahrens ist nun, einen Ansatz für $V^*$ zur Lösung der Differentialgleichungen zu wählen. \newline
  Wählt man als Ansatz für $V*$
  \begin{equation}
  V* = \phi_0 + \sum_{k = 1}^{N} c_k \phi_k
  \end{equation}
- so können nach Einsetzen in (\ref{eq:first_variation}) die $c_j$ über ein lineares Gleichungssystem ermittelt werden.\newline
+ so können nach Einsetzen in (\ref{eq:first_variation}) die $c_j$ über ein lineares Gleichungssystem ermittelt werden. $\phi_0$ und $\phi_k$ bezeichnet man als \textit{Testfunktionen}.\newline
  
  Man bezeichnet (\ref{eq:functional}) als \textit{Funktional} und (\ref{eq:first_variation}) als \textit{erste Variation} des Funktionals.\newline
  Hat man nun, wie bei einem Randwertproblem üblich, eine Differentialgleichung gegeben, so muss zuerst ein äquivalentes Funktional gefunden werden. Für einige Fälle ist dies über Tabellenbücher möglich.
 
 
 \subsection{Das Galerkinsche Verfahren}
-Die Operatorgleichung aus (\ref{eq:operatorgleichung}) ist für alle Werte von $u(x)$ erfüllt. Wählt man nun für $u$ einen Approximationsansatz $u^*$, so ist (\ref{eq:operatorgleichung}) nun im Allgemeinen nicht mehr erfüllt. Man definiert $\epsilon := L\{ u^* \} -f$ als das sogenannte \textit{Residuum} (Rest) und möchte die Parameter der Approximationsfunktion so verändern dass 
+Die Operatorgleichung aus (\ref{eq:operatorgleichung}) ist für alle Werte von $u(x)$ exakt erfüllt. Wählt man nun für $u$ einen Approximationsansatz $u^*$, so ist (\ref{eq:operatorgleichung}) nun im Allgemeinen nicht mehr exakt erfüllt. Man definiert $\epsilon := L\{ u^* \} -f$ als das sogenannte \textit{Residuum} (Rest) und möchte die Parameter der Approximationsfunktion so verändern dass 
 \begin{equation}
 \label{eq:weighted_residuum}
 \int\displaylimits_{\Omega}\epsilon w d\Omega = \int\displaylimits_{\Omega} (L\{ u^* \} -f)w d\Omega= 0
 \end{equation}
-ist. $w$ bezeichnet hierbei Gewichtsfunktion. Man spricht nun von der \textit{Methode der gewichteten Residuen}.\newline
+ist. $w$ bezeichnet hierbei eine \textbf{beliebige} Gewichtsfunktion. Man spricht nun von der \textit{Methode der gewichteten Residuen}.\newline
 
 
 Wählt man nun als Ansatz für $u*$
@@ -63,5 +65,5 @@ und für die Gewichtsfunktion $w$
 	w = \phi_0 + \sum_{k = 1}^{N} \alpha_k\phi_k
 \end{equation}
 
-mit $\alpha_k \neq 0$ so spricht man von der \textit{Galerkin-Bubnov-Metode} oder vom \text{Galerkinschen Verfahren}. Durch Einsetzen der Ansätze für $u^*$ und $w$ in (\ref{eq:weighted_residuum}) lassen sich die $c_k$ über ein lineares Gleichungssystem bestimmen. Die $\alpha_k$ müssen nicht berechnet werden, da sie als beliebig und $\neq 0$ angenommen werden. 
+mit $\alpha_k \neq 0$ so spricht man von der \textit{Galerkin-Bubnov-Metode} oder vom \textit{Galerkinschen Verfahren}. Durch Einsetzen der Ansätze für $u^*$ und $w$ in (\ref{eq:weighted_residuum}) lassen sich die $c_k$ über ein lineares Gleichungssystem bestimmen. Die $\alpha_k$ müssen nicht berechnet werden, da sie als beliebig und $\neq 0$ angenommen werden. 
 

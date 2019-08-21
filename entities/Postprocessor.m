@@ -36,7 +36,7 @@ classdef Postprocessor
                  problem_setup);
             
             Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
-               problem_setup, mesh_plot)
+              problem_setup, mesh_plot)
             
             
             Misc.print_message(Misc.console_section_separator);

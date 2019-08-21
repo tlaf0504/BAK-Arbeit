@@ -11,7 +11,7 @@ k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff
 \label{eq:right_side_e_static_2}
 r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
 \end{equation} 
-(siehe Kapitel \ref{sec:electrostatic_problems}). Die Berechnungen für stationäre Strömungsfeld-Probleme sind zu denen für elektrostatische Probleme äquivalent (Siehe Kapitel \ref{sec:stat_current_problems}) für $\epsilon \rightarrow \gamma$, $\rho \rightarrow J_e$ und $\sigma \rightarrow 0$\newline
+(siehe Kapitel \ref{sec:electrostatic_problems}). Die Berechnungen für stationäre Strömungsfeld-Probleme sind zu denen für elektrostatische Probleme äquivalent (Siehe Kapitel \ref{sec:stat_current_problems}) mit $\epsilon \rightarrow \gamma$, $\rho \rightarrow J_e$ und $\sigma \rightarrow 0$\newline
 
 Liegt das Element am dirichletschen Rand, so sind ein oder mehrere Knotenpotentiale bereits vorgegeben was zu einer Reduktion des Elementgleichungssystems führt. Gezeigt wird dies an einem linearen Dreieckselement mit 3 Knoten. Das Elementgleichungssystem lautet:
 
@@ -33,8 +33,8 @@ Liegt nun Knoten 2 am dirichletschen Rand so ist $V_2$ bekannt, und das Elementg
 
 \subsubsection{Elementmatrix-Koeffizienten $k_{ij}$}
 
-Da die Formfunktionen $N_i$ bei isoparametrischen finiten Elementen Funktionen von $\xi$ und $\eta$ sind, müssen die Integrationsvariablen aller Integrale transformiert werden.  \newline
-Die partiellen Ableitungen der Formfunktionen in (\ref{eq:k_ij_e_static_2}) ergeben sich mit 
+Da die Formfunktionen $N_i$ bei isoparametrischen finiten Elementen Funktionen von $\xi$ und $\eta$ sind, müssen die Integrationsvariablen aller Integrale substituiert werden.  \newline
+Die partiellen Ableitungen der Formfunktionen in (\ref{eq:k_ij_e_static_2}) ergeben nach \cite{SMS_VO_skript}, S.72 aus
 \begin{equation}
 \begin{Bmatrix}
 \parDiff{N}{\xi} \\[2mm]
@@ -50,9 +50,9 @@ Die partiellen Ableitungen der Formfunktionen in (\ref{eq:k_ij_e_static_2}) erge
 \parDiff{N}{y}
 \end{Bmatrix}
 \end{equation}
-
-zu 
+zu
 \begin{equation}
+\label{eq:partial_derivatives_subst}
 \begin{Bmatrix}
 \parDiff{N}{x} \\[2mm]
 \parDiff{N}{y}
@@ -66,8 +66,7 @@ zu
 \parDiff{N}{\xi} \\[2mm]
 \parDiff{N}{\eta}
 \end{Bmatrix}
-\end{equation}\cite{SMS_VO_skript}
-, S.71f.\newline
+\end{equation}
 
 
 Das Flächenelement $dxdy$ in (\ref{eq:k_ij_e_static_2}) ergibt sich mit den Beziehungen aus \cite{SMS_VO_skript}, S.74 zu 
@@ -75,7 +74,7 @@ Das Flächenelement $dxdy$ in (\ref{eq:k_ij_e_static_2}) ergibt sich mit den Bez
 \label{eq:surface_element}
 dxdy = \mathit{det} \mat{(J)} d\xi d\eta
 \end{equation}
-wobei das Flächenintegral in beiden Koordinaten in den Intervallen $[0,1]$ durchzuführen ist. Somit ergibt sich der Elementmatrix-Koeffizient $k_{ij}$ zu 
+wobei das Flächenintegral in beiden Koordinaten in den Intervallen $\xi \in [0,1], \ \eta \in [0, 1-\xi]$ durchzuführen ist. Somit ergibt sich der Elementmatrix-Koeffizient $k_{ij}$ zu 
 \begin{align}
 &k_{i,j} = \int\displaylimits_{\xi = 0}^{1} \int\displaylimits_{\eta = 0}^{1 - \xi} \bigg[\\
 %
@@ -98,45 +97,45 @@ Die numerische Berechnung des Integrals erfolgt über die sogenannte \textit{Gau
 \begin{equation}
 \int\limits_{x_{min}}^{x_{max}} f(x) dx \approx \sum\limits_{k}w_kf(x_k)
 \end{equation}
-Eine Erweiterung auf mehrdimensionale Integrale ist durch Mehrfachsummen einfach möglich. Ein besonderes Augenmerk bei dieser Methode der numerischen Integration liegt dabei auf der Wahl der Stützstellen $x_k$ und der Gewichte $w_k$. Diese Form der numerischen Integration ist in der Literatur weit verbreitet. Die in dieser Arbeit verwendeten Stützstellen-Koordinaten und -Gewichte für isoparametrische Dreieckige finite Elemente wurden aus \cite{bathe}, S.547. übernommen. \newline
+Eine Erweiterung auf mehrdimensionale Integrale ist durch Mehrfachsummen einfach möglich. Ein besonderes Augenmerk bei dieser Methode der numerischen Integration liegt dabei auf der Wahl der Stützstellen $x_k$ und der Gewichte $w_k$. Die in dieser Arbeit verwendeten Stützstellen-Koordinaten und -Gewichte für isoparametrische Dreieckige finite Elemente wurden aus \cite{bathe}, S.547. übernommen. Implementiert sind eine 3-Punkte sowie eine 7-Punkte Integration.\newline
 
-In der Software implementiert sind eine 3-Punkte und 7-Punkte Integration der Form  
-\begin{equation}
-\int\displaylimits_{x} \int\displaylimits_{y} f dx dy \approx \frac{1}{2}\sum\limits_{k = 1}^{N_s} f(x_k, y_k) w_k
-\end{equation}
-wobei $N_s$ die Anzahl der Stützstellen darstellt.\newline
-
-Für eine 3-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
-\begin{table}[H]
-	\centering
-\begin{tabular}{c|c|c|c}
-	$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
-	\hline
-	1 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
-	2 & $\frac{2}{3}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
-	3 & $\frac{1}{6}$ & $\frac{2}{3}$ & $\frac{1}{3}$ \\
-\end{tabular}
-\caption{Stützstellen und Gewichte für 3-Punkte Integration nach \cite{bathe}, S.547.}
-\label{tab:3-point_plane_integration}
-\end{table}
-
-Für eine 7-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c|c|c|c}
-		$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
-		\hline
-		1 & $0.1012865073235$ & $0.1012865073235$ & $0.1259391805448$ \\
-		2 & $0.7974269853531$ & $0.1012865073235$ & $0.1259391805448$ \\
-		3 & $0.1012865073235$ & $0.7974269853531$ & $0.1259391805448$ \\
-		4 & $0.4701420641051$ & $0.0597158717898$ & $0.1323941527885$ \\
-		5 & $0.4701420641051$ & $0.4701420641051$ & $0.1323941527885$ \\
-		6 & $0.0597158717898$ & $0.4701420641051$ & $0.1323941527885$ \\
-		7 & $\frac{1}{3}$ & $\frac{1}{3}$ & $0.225$ \\
-	\end{tabular}
-	\caption{Stützstellen und Gewichte für 7-Punkte Integration nach \cite{bathe}, S.547.}
-	\label{tab:7-point_plane_integration}
-\end{table}
+%In der Software implementiert sind eine 3-Punkte und 7-Punkte Integration der Form  
+%\begin{equation}
+%\int\displaylimits_{x} \int\displaylimits_{y} f dx dy \approx \frac{1}{2}\sum\limits_{k = 1}^{N_s} f(x_k, y_k) w_k
+%\end{equation}
+%wobei $N_s$ die Anzahl der Stützstellen darstellt.\newline
+%
+%Für eine 3-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
+%\begin{table}[H]
+%	\centering
+%\begin{tabular}{c|c|c|c}
+%	$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
+%	\hline
+%	1 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+%	2 & $\frac{2}{3}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+%	3 & $\frac{1}{6}$ & $\frac{2}{3}$ & $\frac{1}{3}$ \\
+%\end{tabular}
+%\caption{Stützstellen und Gewichte für 3-Punkte Integration nach \cite{bathe}, S.547.}
+%\label{tab:3-point_plane_integration}
+%\end{table}
+%
+%Für eine 7-Punkte Integration ergeben sich folgende Stützstellen und Gewichte:
+%\begin{table}[H]
+%	\centering
+%	\begin{tabular}{c|c|c|c}
+%		$\mathbf{k}$ & $\mathbf{x_k}$ & $\mathbf{y_k}$ & $\mathbf{w_k}$ \\
+%		\hline
+%		1 & $0.1012865073235$ & $0.1012865073235$ & $0.1259391805448$ \\
+%		2 & $0.7974269853531$ & $0.1012865073235$ & $0.1259391805448$ \\
+%		3 & $0.1012865073235$ & $0.7974269853531$ & $0.1259391805448$ \\
+%		4 & $0.4701420641051$ & $0.0597158717898$ & $0.1323941527885$ \\
+%		5 & $0.4701420641051$ & $0.4701420641051$ & $0.1323941527885$ \\
+%		6 & $0.0597158717898$ & $0.4701420641051$ & $0.1323941527885$ \\
+%		7 & $\frac{1}{3}$ & $\frac{1}{3}$ & $0.225$ \\
+%	\end{tabular}
+%	\caption{Stützstellen und Gewichte für 7-Punkte Integration nach \cite{bathe}, S.547.}
+%	\label{tab:7-point_plane_integration}
+%\end{table}
 
 
 

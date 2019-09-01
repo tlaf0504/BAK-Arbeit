@@ -1,0 +1,116 @@
+\label{sec:annex_shape_functions}
+\subsection{Lineare Dreieckselemente}
+\label{sec:linear_triangles_annex}
+
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Formfunktionen}
+\begin{align*}
+	&N_1 = 1 - \xi - \eta\\
+	&N_2 = \xi \\
+	&N_3 = \eta
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Partielle Ableitungen nach $\xi$}
+\begin{align*}
+&\parDiff{N1}{\xi} = -1\\
+&\parDiff{N_2}{\xi} = 1\\
+&\parDiff{N_3}{\xi} = 0
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Partielle Ableitungen nach $\eta$}
+\begin{align*}
+&\parDiff{N_1}{\eta} = -1\\
+&\parDiff{N_2}{\eta} = 0\\
+&\parDiff{N_3}{\eta} = 1
+\end{align*}
+\end{minipage}
+
+
+
+\subsection{Quadratische Dreieckselemente}
+\label{sec:quadratic_triangles_annex}
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Formfunktionen}
+\begin{align*}
+&N_1 = (1 - \xi - \eta)(1 - 2\xi - 2\eta)\\
+&N_2 = 4\xi (1 - \xi - \eta) \\
+&N_3 = \xi (2 \xi - 1)\\
+&N_4 = 4 \xi \eta \\
+&N_5 = \eta (2\eta - 1)\\
+&N_6 = -4\eta (1 - \xi - \eta)
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Partielle Ableitungen nach $\xi$}
+\begin{align*}
+&\parDiff{N_1}{\xi} = -3 + 4\xi + 4\eta\\
+&\parDiff{N_2}{\xi} = 4 - 8\xi - 4\eta\\
+&\parDiff{N_3}{\xi} = 4\xi - 1\\
+&\parDiff{N_4}{\xi} = 4\eta\\
+&\parDiff{N_5}{\xi} = 0\\
+&\parDiff{N_6}{\xi} = -4\eta\\
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.3\textwidth}
+\subsubsection{Partielle Ableitungen nach $\eta$}
+\begin{align*}
+&\parDiff{N_1}{\eta} = -3 + 4\xi + 4\eta\\
+&\parDiff{N_2}{\eta} = -4\xi \\
+&\parDiff{N_3}{\eta} = 0\\
+&\parDiff{N_4}{\eta} = 4\xi\\
+&\parDiff{N_5}{\eta} = 4\eta - 1\\
+&\parDiff{N_6}{\eta} = 4 - 4\xi - 8\eta\\
+\end{align*}
+\end{minipage}
+
+\subsection{Kubische Dreieckselemente}
+\label{sec:cubic_triangles_annex}
+\subsubsection{Formfunktionen}
+
+\begin{align*}
+&N_1 = -\frac{9\eta ^3}{2}-\frac{27\eta ^2\xi}{2}+9\eta ^2-\frac{27\eta {\xi}^2}{2}+18\eta \xi-\frac{11\eta }{2}-\frac{9{\xi}^3}{2}+9{\xi}^2-\frac{11\xi}{2}+1\\
+&N_2 = \frac{27\eta ^2\xi}{2}+27\eta {\xi}^2-\frac{45\eta \xi}{2}+\frac{27{\xi}^3}{2}-\frac{45{\xi}^2}{2}+9\xi \\
+&N_3 = \frac{9\eta \xi}{2}-\frac{9\xi}{2}-\frac{27\eta {\xi}^2}{2}+18{\xi}^2-\frac{27{\xi}^3}{2}\\
+&N_4 = \frac{9{\xi}^3}{2}-\frac{9{\xi}^2}{2}+\xi \\
+&N_5 = \frac{27\eta {\xi}^2}{2}-\frac{9\eta \xi}{2}\\
+&N_6 = \frac{27\eta ^2\xi}{2}-\frac{9\eta \xi}{2}\\
+&N_7 = \frac{9\eta ^3}{2}-\frac{9\eta ^2}{2}+\eta \\
+&N_8 = \frac{9\eta \xi}{2}-\frac{9\eta }{2}-\frac{27\eta ^2\xi}{2}+18\eta ^2-\frac{27\eta ^3}{2}\\
+&N_9 = \frac{27\eta ^3}{2}+27\eta ^2\xi-\frac{45\eta ^2}{2}+\frac{27\eta {\xi}^2}{2}-\frac{45\eta \xi}{2}+9\eta \\
+&N_{10} = -27\eta ^2\xi-27\eta {\xi}^2+27\eta \xi
+\end{align*}
+
+\begin{minipage}[t]{0.45\textwidth}
+
+\subsubsection{Partielle Ableitungen nach $\xi$}
+\begin{align*}
+&\parDiff{N_1}{\xi} = -\frac{27\eta ^2}{2}-27\eta \zeta+18\eta -\frac{27{\zeta}^2}{2}+18\zeta-\frac{11}{2}\\
+&\parDiff{N_2}{\xi} = \frac{27\eta ^2}{2}+54\eta \zeta-\frac{45\eta }{2}+\frac{81{\zeta}^2}{2}-45\zeta+9\\
+&\parDiff{N_3}{\xi} = \frac{9\eta }{2}+36\zeta-27\eta \zeta-\frac{81{\zeta}^2}{2}-\frac{9}{2}\\
+&\parDiff{N_4}{\xi} = \frac{27{\zeta}^2}{2}-9\zeta+1\\
+&\parDiff{N_5}{\xi} = 27\eta \zeta-\frac{9\eta }{2}\\
+&\parDiff{N_6}{\xi} = \frac{27\eta ^2}{2}-\frac{9\eta }{2}\\
+&\parDiff{N_7}{\xi} = 0\\
+&\parDiff{N_8}{\xi} = \frac{9\eta }{2}-\frac{27\eta ^2}{2}\\
+&\parDiff{N_9}{\xi} = 27\eta \zeta-\frac{45\eta }{2}+27\eta ^2\\
+&\parDiff{N_{10}}{\xi} = 27\eta -54\eta \zeta-27\eta ^2\\
+\end{align*}
+\end{minipage}
+\hspace{5mm}
+\begin{minipage}[t]{0.45\textwidth}
+\subsubsection{Partielle Ableitungen nach $\eta$}
+\begin{align*}
+&\parDiff{N_1}{\eta} = -\frac{27\eta ^2}{2}-27\eta \zeta+18\eta -\frac{27{\zeta}^2}{2}+18\zeta-\frac{11}{2}\\
+&\parDiff{N_2}{\eta} = 27\eta \zeta-\frac{45\zeta}{2}+27{\zeta}^2\\
+&\parDiff{N_3}{\eta} = \frac{9\zeta}{2}-\frac{27{\zeta}^2}{2}\\
+&\parDiff{N_4}{\eta} = 0\\
+&\parDiff{N_5}{\eta} = \frac{27{\zeta}^2}{2}-\frac{9\zeta}{2}\\
+&\parDiff{N_6}{\eta} = 27\eta \zeta-\frac{9\zeta}{2}\\
+&\parDiff{N_7}{\eta} = \frac{27\eta ^2}{2}-9\eta +1\\
+&\parDiff{N_8}{\eta} = 36\eta +\frac{9\zeta}{2}-27\eta \zeta-\frac{81\eta ^2}{2}-\frac{9}{2}\\
+&\parDiff{N_9}{\eta} = \frac{81\eta ^2}{2}+54\eta \zeta-45\eta +\frac{27{\zeta}^2}{2}-\frac{45\zeta}{2}+9\\
+&\parDiff{N_{10}}{\eta} = 27\zeta-54\eta \zeta-27{\zeta}^2\\
+\end{align*}
+\end{minipage}

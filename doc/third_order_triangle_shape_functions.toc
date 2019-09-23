@@ -1,3 +1,0 @@
-\contentsline {section}{\numberline {1}Shape functions}{3}
-\contentsline {section}{\numberline {2}$\zeta $ derivatives}{4}
-\contentsline {section}{\numberline {3}$\eta $ derivatives}{5}

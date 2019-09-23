@@ -1,27 +1,66 @@
-Im vorherigen Abschnitt wurde näher auf die Berechnung der Elementgleichungssysteme eingegangen. Diese müssen nun zu einem 'großen' Gleichungssystem assembliert werden. Der Assemblierungsvorgang entspricht dabei einer simplen Addition der Gleichungssysteme (Siehe \cite{SMS_VO_skript}, S.60ff.). Beispielhaft wird der Vorgang anhand von 2 Elementgleichungssystemen gezeigt.
+
+Im vorherigen Abschnitt wurde näher auf die Berechnung der Elementgleichungssysteme eingegangen. Diese müssen nun zu einem 'großen' Gleichungssystem assembliert werden. Der Assemblierungsvorgang entspricht dabei einer simplen Addition der Gleichungssysteme (Siehe \cite{SMS_VO_skript}, S.60ff.). Beispielhaft wird der Vorgang anhand von 2 Elementgleichungssystemen gezeigt.\newline
 
 Gleichungssystem 1:
-\begin{align*}
-k_{11}^1 V_1 + k_{12}^1 V_2 + k_{13}^1 V_3 = r_1^1\\
-k_{21}^1 V_1 + k_{22}^1 V_2 + k_{23}^1 V_3 = r_2^1\\
-k_{31}^1 V_1 + k_{32}^1 V_2 + k_{33}^1 V_3 = r_3^1
-\end{align*}
+\begin{equation}
+\begin{bmatrix}
+k_{11}^1 & k_{12}^1 & k_{13}^1 \\
+k_{21}^1 & k_{22}^1 & k_{23}^1 \\
+k_{31}^1 & k_{32}^1 & k_{33}^1
+\end{bmatrix} \cdot
+\begin{Bmatrix}
+V_1\\
+V_2\\
+V_3
+\end{Bmatrix} =
+\begin{Bmatrix}
+r_1^1\\
+r_2^1\\
+r_3^1
+\end{Bmatrix}
+\end{equation}
 
 
 Gleichungssystem 2:
-\begin{align*}
-k_{22}^2 V_2 + k_{23}^2 V_3 = r_2^2 - k_{21}^2 V_4\\
-k_{32}^2 V_2 + k_{33}^2 V_3 = r_3^2 - k_{31}^2 V_4
-\end{align*}
+\begin{equation}
+\begin{bmatrix}
+k_{11}^2 & k_{13}^2 \\
+k_{31}^2 & k_{33}^2
+\end{bmatrix} \cdot
+\begin{Bmatrix}
+V_2\\
+V_5
+\end{Bmatrix} =
+\begin{Bmatrix}
+r_1^2 - k_{12}^2 V_4\\
+r_3^2 - k_{32}^2 V_4
+\end{Bmatrix}
+\end{equation}
 
 Addiert man die Gleichungssysteme so ergibt sich
-\begin{align}
-k_{11}^1 V_1 + k_{12}^1 V_2 + k_{13}^1 V_3 +  &= r_1^1\\
-k_{21}^1 V_1 + (k_{22}^1 +  k_{22}^2) V_2 + (k_{23}^1 + k_{23}^2) V_3 &= r_2^1 + r_2^2 - k_{21}^2 V_4 \nonumber\\
-k_{31}^1 V_1 + (k_{32}^1 + k_{32}^2)  V_2 + ( k_{33}^1 + k_{33}^2) V_3 &= r_3^1 + r_3^2 - k_{31}^2 V_4 \nonumber
-\end{align}
+\begin{equation}
+\begin{bmatrix}
+	k_{11}^1 & k_{12}^1 & k_{13}^1 & 0 \\
+	k_{21}^1 & k_{22}^1 + k_{12}^2 & k_{23}^1 & k_{13}^2 \\
+	k_{31}^1 & k_{32}^1 & k_{33}^1 & 0\\
+	0 & k_{31}^2 & 0 & k_{33}^2
+\end{bmatrix} \cdot
+\begin{Bmatrix}
+V_1\\
+V_2\\
+V_3\\
+V_5
+\end{Bmatrix} = 
+\begin{bmatrix}
+r_1^1\\
+r_2^1 +r_1^2 - k_{12}^3 V_4\\
+r_3^1\\
+r_3^2 - k_{32}^2 V_4
 
-Als Resultat des Assemblierungsvorgangs erhält man ein lineares Gleichungssystem mit $N - N_{dir}$ Unbekannten, wobei $N$ die Anzahl der Knoten und $N_{dir}$ die Anzahl der Knoten am dirichletschen Rand darstellt. Die Koeffizientenmatrix ist symmetrisch und schwach besetzt.
+\end{bmatrix}
+\end{equation}
+
+Als Resultat des Assemblierungsvorgangs erhält man ein lineares Gleichungssystem mit $N - N_{dir}$ Unbekannten, wobei $N$ die Anzahl der Knoten und $N_{dir}$ die Anzahl der Knoten am dirichletschen Rand darstellt. Die Koeffizientenmatrix ist symmetrisch da $k_{ij} = k_{ji}$, und schwach besetzt.
 \newline
 
 Die Lösung des Gleichungssystems erfolgt durch ein geeignetes Verfahren und liefert die unbekannten Knotenpotentiale als Ergebnis. Je nach zugrundeliegendem Problemtyp kann anschließend die gesuchte Feldgröße berechnet werden. Für den Fall eines elektrostatischen Problems wäre dies: 

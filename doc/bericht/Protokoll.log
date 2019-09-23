@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.5.7)  21 AUG 2019 14:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.5.7)  23 SEP 2019 03:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1441,14 +1441,14 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* h-part:(L,W,R)=(71.13188pt, 469.47049pt, 56.9055pt)
 * v-part:(T,H,B)=(56.9055pt, 702.78308pt, 85.35826pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=483.69687pt
+* \textwidth=469.47049pt
 * \textheight=702.78308pt
-* \oddsidemargin=-15.36449pt
-* \evensidemargin=-15.36449pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
 * \topmargin=-55.23949pt
 * \headheight=18.125pt
 * \headsep=21.75pt
@@ -1478,7 +1478,7 @@ File: TUG.png Graphic file (type png)
 Package pdftex.def Info: TUG.png  used on input line 128.
 (pdftex.def)             Requested size: 93.89418pt x 35.44398pt.
 
-Overfull \hbox (28.45273pt too wide) in paragraph at lines 118--130
+Overfull \hbox (42.67911pt too wide) in paragraph at lines 118--130
  []$ 
  []
 
@@ -1504,7 +1504,7 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 {/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map} <./igte.png>
  <./TUG.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 160.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 149.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
@@ -1522,36 +1522,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--13
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 42--44
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 54--56
 
  []
 
-) (./shape_functions.tex [5]
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--68
+
+ []
+
+[5]) (./shape_functions.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--12
 
  []
@@ -1582,7 +1577,7 @@ File: pics/linear_element-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/linear_element-eps-converted-to.pdf  used on inpu
 t line 29.
 (pdftex.def)             Requested size: 176.80846pt x 191.16191pt.
-[6]
+[6] [7 <./pics/linear_element-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <pics/quadratic_element.eps>
 (epstopdf)                    date: 2019-08-09 15:12:55
 (epstopdf)                    size: 30477 bytes
@@ -1599,14 +1594,14 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/quadratic_element-eps-converted-
 to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allo
 wed
-<pics/quadratic_element-eps-converted-to.pdf, id=48, 272.01625pt x 294.09875pt>
+<pics/quadratic_element-eps-converted-to.pdf, id=62, 272.01625pt x 294.09875pt>
 
 File: pics/quadratic_element-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/quadratic_element-eps-converted-to.pdf>
 Package pdftex.def Info: pics/quadratic_element-eps-converted-to.pdf  used on i
 nput line 126.
 (pdftex.def)             Requested size: 176.80846pt x 191.16191pt.
-[7 <./pics/linear_element-eps-converted-to.pdf>]
+[8 <./pics/quadratic_element-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <pics/cubic_element.eps>
 (epstopdf)                    date: 2019-08-10 16:52:31
 (epstopdf)                    size: 40904 bytes
@@ -1621,7 +1616,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/cubic_element-eps-converted-to.p
 df): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<pics/cubic_element-eps-converted-to.pdf, id=64, 284.06125pt x 294.09875pt>
+<pics/cubic_element-eps-converted-to.pdf, id=77, 284.06125pt x 294.09875pt>
 File: pics/cubic_element-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/cubic_element-eps-converted-to.pdf>
 Package pdftex.def Info: pics/cubic_element-eps-converted-to.pdf  used on input
@@ -1632,58 +1627,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
-[8 <./pics/quadratic_element-eps-converted-to.pdf>]) (./problems.tex
-Underfull \hbox (badness 1092) in paragraph at lines 2--4
-\T1/cmr/m/n/12 men-sio-na-le, ebe-ne Pro-ble-me. Re-sul-tat die-ses
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--4
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-
- []
-
-
-Overfull \hbox (17.51265pt too wide) in paragraph at lines 7--8
-[]\T1/cmr/m/n/12 Ausgangspunkt für Pro-ble-me aus der Elek-tro-tech-nik sind im
- All-ge-mei-nen die Maxwell-Gleichungen: 
- []
-
-[9 <./pics/cubic_element-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 34--36
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--42
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 52--54
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
-
- []
-
-[11]) (./implementation_main.tex) (./implementierung_geometrie.tex
+[9 <./pics/cubic_element-eps-converted-to.pdf>]) (./problems.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
  []
@@ -1693,14 +1637,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--98
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
+
+ []
+
+[12]) (./element_equation_systems_theory.tex
+Underfull \hbox (badness 10000) in paragraph at lines 60--62
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 73--75
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+
+ []
+
+[14]) (./implementation_main.tex) (./implementierung_geometrie.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[12]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 15.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -1710,12 +1708,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
-) (./mesh_parsing.tex [13]
+) (./mesh_parsing.tex [16] [17]
 Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[14]
+[18]
 Package epstopdf Info: Source file: <pics/triangle_side_assignment.eps>
 (epstopdf)                    date: 2019-08-12 16:02:27
 (epstopdf)                    size: 18531 bytes
@@ -1725,27 +1723,32 @@ d-to.pdf>
 (epstopdf)                    size: 9928 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/triangle_side_assignm
 ent-eps-converted-to.pdf pics/triangle_side_assignment.eps>
-(epstopdf)             \includegraphics on input line 74.
+(epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/triangle_side_assignment-eps-con
 verted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.
 5> allowed
-<pics/triangle_side_assignment-eps-converted-to.pdf, id=108, 272.01625pt x 294.
+<pics/triangle_side_assignment-eps-converted-to.pdf, id=122, 272.01625pt x 294.
 09875pt>
 File: pics/triangle_side_assignment-eps-converted-to.pdf Graphic file (type pdf
 )
 <use pics/triangle_side_assignment-eps-converted-to.pdf>
 Package pdftex.def Info: pics/triangle_side_assignment-eps-converted-to.pdf  us
-ed on input line 74.
+ed on input line 75.
 (pdftex.def)             Requested size: 176.80846pt x 191.16191pt.
-[15]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 84.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 87.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-(./neumann_boundary_assignment_example_mesh_file.txt)
+(./neumann_boundary_assignment_example_mesh_file.txt [19 <./pics/triangle_side_
+assignment-eps-converted-to.pdf>])
 Package epstopdf Info: Source file: <pics/neumann_boundary_assignment.eps>
 (epstopdf)                    date: 2019-08-12 16:19:05
 (epstopdf)                    size: 18438 bytes
@@ -1755,95 +1758,79 @@ rted-to.pdf>
 (epstopdf)                    size: 9401 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/neumann_boundary_assi
 gnment-eps-converted-to.pdf pics/neumann_boundary_assignment.eps>
-(epstopdf)             \includegraphics on input line 88.
+(epstopdf)             \includegraphics on input line 91.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/neumann_boundary_assignment-eps-
 converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<pics/neumann_boundary_assignment-eps-converted-to.pdf, id=112, 306.14375pt x 3
+<pics/neumann_boundary_assignment-eps-converted-to.pdf, id=138, 306.14375pt x 3
 62.35374pt>
 File: pics/neumann_boundary_assignment-eps-converted-to.pdf Graphic file (type 
 pdf)
 <use pics/neumann_boundary_assignment-eps-converted-to.pdf>
 Package pdftex.def Info: pics/neumann_boundary_assignment-eps-converted-to.pdf 
- used on input line 88.
+ used on input line 91.
 (pdftex.def)             Requested size: 198.99107pt x 235.52715pt.
 Package epstopdf Info: Source file: <pics/neumann_boundary_assignment_elements_
 3_4.eps>
-(epstopdf)                    date: 2019-08-12 17:12:39
-(epstopdf)                    size: 53098 bytes
+(epstopdf)                    date: 2019-09-01 15:42:57
+(epstopdf)                    size: 52959 bytes
 (epstopdf)             Output file: <pics/neumann_boundary_assignment_elements_
 3_4-eps-converted-to.pdf>
-(epstopdf)                    date: 2019-08-12 17:13:57
-(epstopdf)                    size: 19415 bytes
+(epstopdf)                    date: 2019-09-01 15:43:03
+(epstopdf)                    size: 19539 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/neumann_boundary_assi
 gnment_elements_3_4-eps-converted-to.pdf pics/neumann_boundary_assignment_eleme
 nts_3_4.eps>
-(epstopdf)             \includegraphics on input line 94.
+(epstopdf)             \includegraphics on input line 97.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/neumann_boundary_assignment_elem
 ents_3_4-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at 
 most version <1.5> allowed
-<pics/neumann_boundary_assignment_elements_3_4-eps-converted-to.pdf, id=113, 31
+<pics/neumann_boundary_assignment_elements_3_4-eps-converted-to.pdf, id=139, 31
 0.15875pt x 607.26875pt>
 File: pics/neumann_boundary_assignment_elements_3_4-eps-converted-to.pdf Graphi
 c file (type pdf)
 <use pics/neumann_boundary_assignment_elements_3_4-eps-converted-to.pdf>
 Package pdftex.def Info: pics/neumann_boundary_assignment_elements_3_4-eps-conv
-erted-to.pdf  used on input line 94.
+erted-to.pdf  used on input line 97.
 (pdftex.def)             Requested size: 155.079pt x 303.63364pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
 
  []
 
-[16 <./pics/triangle_side_assignment-eps-converted-to.pdf>])
+[20 <./pics/neumann_boundary_assignment-eps-converted-to.pdf> <./pics/neumann_b
+oundary_assignment_elements_3_4-eps-converted-to.pdf>])
 (./calculation_of_element_matrices.tex
 Underfull \hbox (badness 10000) in paragraph at lines 13--15
 
  []
 
-[17 <./pics/neumann_boundary_assignment-eps-converted-to.pdf> <./pics/neumann_b
-oundary_assignment_elements_3_4-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 93--95
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 99--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--153
+[21]) (./assembling.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
 
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
+[22]) [23] (./examples.tex
+Underfull \hbox (badness 10000) in paragraph at lines 27--29
 
  []
 
-) (./assembling.tex [20]
-Underfull \hbox (badness 10000) in paragraph at lines 24--26
-
- []
-
-) (./examples.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-[21]
 Package epstopdf Info: Source file: <pics/example_1/geometry.eps>
 (epstopdf)                    date: 2019-08-20 10:36:12
 (epstopdf)                    size: 43483 bytes
@@ -1853,20 +1840,25 @@ df>
 (epstopdf)                    size: 13408 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_1/geometry-ep
 s-converted-to.pdf pics/example_1/geometry.eps>
-(epstopdf)             \includegraphics on input line 21.
+(epstopdf)             \includegraphics on input line 32.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_1/geometry-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_1/geometry-eps-converted-to.pdf, id=162, 1334.9875pt x 209.78375p
+<pics/example_1/geometry-eps-converted-to.pdf, id=168, 1334.9875pt x 209.78375p
 t>
 File: pics/example_1/geometry-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_1/geometry-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_1/geometry-eps-converted-to.pdf  used on 
-input line 21.
-(pdftex.def)             Requested size: 483.69687pt x 76.00864pt.
+input line 32.
+(pdftex.def)             Requested size: 469.47049pt x 73.7743pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+
+ []
+
 Package epstopdf Info: Source file: <pics/example_1/figure_4.eps>
 (epstopdf)                    date: 2019-08-20 09:34:34
 (epstopdf)                    size: 49379 bytes
@@ -1876,20 +1868,20 @@ df>
 (epstopdf)                    size: 41317 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_1/figure_4-ep
 s-converted-to.pdf pics/example_1/figure_4.eps>
-(epstopdf)             \includegraphics on input line 29.
+(epstopdf)             \includegraphics on input line 41.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_1/figure_4-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_1/figure_4-eps-converted-to.pdf, id=163, 426.59375pt x 320.19624p
+<pics/example_1/figure_4-eps-converted-to.pdf, id=169, 426.59375pt x 320.19624p
 t>
 File: pics/example_1/figure_4-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_1/figure_4-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_1/figure_4-eps-converted-to.pdf  used on 
-input line 29.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 41.
+(pdftex.def)             Requested size: 234.73524pt x 176.19153pt.
 Package epstopdf Info: Source file: <pics/example_1/figure_3.eps>
 (epstopdf)                    date: 2019-08-20 09:34:28
 (epstopdf)                    size: 63345 bytes
@@ -1899,22 +1891,22 @@ df>
 (epstopdf)                    size: 55757 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_1/figure_3-ep
 s-converted-to.pdf pics/example_1/figure_3.eps>
-(epstopdf)             \includegraphics on input line 32.
+(epstopdf)             \includegraphics on input line 44.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_1/figure_3-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_1/figure_3-eps-converted-to.pdf, id=164, 426.59375pt x 320.19624p
+<pics/example_1/figure_3-eps-converted-to.pdf, id=170, 426.59375pt x 320.19624p
 t>
 File: pics/example_1/figure_3-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_1/figure_3-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_1/figure_3-eps-converted-to.pdf  used on 
-input line 32.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 44.
+(pdftex.def)             Requested size: 234.73524pt x 176.19153pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 28--34
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 40--46
 []$[]$ $[]$ 
  []
 
@@ -1927,19 +1919,19 @@ df>
 (epstopdf)                    size: 34840 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_1/figure_5-ep
 s-converted-to.pdf pics/example_1/figure_5.eps>
-(epstopdf)             \includegraphics on input line 40.
+(epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_1/figure_5-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_1/figure_5-eps-converted-to.pdf, id=165, 425.59pt x 319.1925pt>
+<pics/example_1/figure_5-eps-converted-to.pdf, id=171, 425.59pt x 319.1925pt>
 File: pics/example_1/figure_5-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_1/figure_5-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_1/figure_5-eps-converted-to.pdf  used on 
-input line 40.
-(pdftex.def)             Requested size: 241.84843pt x 181.38637pt.
+input line 52.
+(pdftex.def)             Requested size: 234.73524pt x 176.05319pt.
 Package epstopdf Info: Source file: <pics/example_1/figure_6.eps>
 (epstopdf)                    date: 2019-08-20 09:34:41
 (epstopdf)                    size: 221308 bytes
@@ -1949,27 +1941,30 @@ df>
 (epstopdf)                    size: 40522 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_1/figure_6-ep
 s-converted-to.pdf pics/example_1/figure_6.eps>
-(epstopdf)             \includegraphics on input line 43.
+(epstopdf)             \includegraphics on input line 55.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_1/figure_6-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_1/figure_6-eps-converted-to.pdf, id=166, 444.66125pt x 304.13625p
+<pics/example_1/figure_6-eps-converted-to.pdf, id=172, 444.66125pt x 304.13625p
 t>
 File: pics/example_1/figure_6-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_1/figure_6-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_1/figure_6-eps-converted-to.pdf  used on 
-input line 43.
-(pdftex.def)             Requested size: 241.84843pt x 165.41914pt.
+input line 55.
+(pdftex.def)             Requested size: 234.73524pt x 160.55101pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 39--45
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 51--57
 []$[]$ $[]$ 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+[24 <./pics/example_1/geometry-eps-converted-to.pdf>] [25 <./pics/example_1/fig
+ure_4-eps-converted-to.pdf> <./pics/example_1/figure_3-eps-converted-to.pdf> <.
+/pics/example_1/figure_5-eps-converted-to.pdf> <./pics/example_1/figure_6-eps-c
+onverted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
 
@@ -1982,131 +1977,123 @@ df>
 (epstopdf)                    size: 28239 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_2/geometry-ep
 s-converted-to.pdf pics/example_2/geometry.eps>
-(epstopdf)             \includegraphics on input line 57.
+(epstopdf)             \includegraphics on input line 71.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_2/geometry-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_2/geometry-eps-converted-to.pdf, id=167, 1305.87875pt x 883.3pt>
+<pics/example_2/geometry-eps-converted-to.pdf, id=218, 1305.87875pt x 883.3pt>
 File: pics/example_2/geometry-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_2/geometry-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_2/geometry-eps-converted-to.pdf  used on 
-input line 57.
+input line 71.
 (pdftex.def)             Requested size: 365.64355pt x 247.32231pt.
-[22 <./pics/example_1/geometry-eps-converted-to.pdf> <./pics/example_1/figure_4
--eps-converted-to.pdf> <./pics/example_1/figure_3-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
-
- []
-
 Package epstopdf Info: Source file: <pics/example_2/figure_4.eps>
-(epstopdf)                    date: 2019-08-20 10:32:09
-(epstopdf)                    size: 201954 bytes
+(epstopdf)                    date: 2019-09-01 13:57:54
+(epstopdf)                    size: 180350 bytes
 (epstopdf)             Output file: <pics/example_2/figure_4-eps-converted-to.p
 df>
-(epstopdf)                    date: 2019-08-20 10:34:01
-(epstopdf)                    size: 145759 bytes
+(epstopdf)                    date: 2019-09-01 14:00:47
+(epstopdf)                    size: 133338 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_2/figure_4-ep
 s-converted-to.pdf pics/example_2/figure_4.eps>
-(epstopdf)             \includegraphics on input line 65.
+(epstopdf)             \includegraphics on input line 79.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_2/figure_4-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_2/figure_4-eps-converted-to.pdf, id=191, 426.59375pt x 320.19624p
-t>
+<pics/example_2/figure_4-eps-converted-to.pdf, id=219, 422.57875pt x 317.185pt>
+
 File: pics/example_2/figure_4-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_2/figure_4-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_2/figure_4-eps-converted-to.pdf  used on 
-input line 65.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 79.
+(pdftex.def)             Requested size: 234.73524pt x 176.19461pt.
 Package epstopdf Info: Source file: <pics/example_2/figure_3.eps>
-(epstopdf)                    date: 2019-08-20 10:31:49
-(epstopdf)                    size: 87458 bytes
+(epstopdf)                    date: 2019-09-01 14:00:23
+(epstopdf)                    size: 68846 bytes
 (epstopdf)             Output file: <pics/example_2/figure_3-eps-converted-to.p
 df>
-(epstopdf)                    date: 2019-08-20 10:34:02
-(epstopdf)                    size: 85575 bytes
+(epstopdf)                    date: 2019-09-01 14:00:48
+(epstopdf)                    size: 60433 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_2/figure_3-ep
 s-converted-to.pdf pics/example_2/figure_3.eps>
-(epstopdf)             \includegraphics on input line 68.
+(epstopdf)             \includegraphics on input line 82.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_2/figure_3-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_2/figure_3-eps-converted-to.pdf, id=192, 426.59375pt x 320.19624p
-t>
+<pics/example_2/figure_3-eps-converted-to.pdf, id=220, 421.575pt x 316.18124pt>
+
 File: pics/example_2/figure_3-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_2/figure_3-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_2/figure_3-eps-converted-to.pdf  used on 
-input line 68.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 82.
+(pdftex.def)             Requested size: 234.73524pt x 176.05196pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 64--70
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 78--84
 []$[]$ $[]$ 
  []
 
 Package epstopdf Info: Source file: <pics/example_2/figure_5.eps>
-(epstopdf)                    date: 2019-08-20 10:32:28
-(epstopdf)                    size: 143865 bytes
+(epstopdf)                    date: 2019-09-01 13:58:13
+(epstopdf)                    size: 156861 bytes
 (epstopdf)             Output file: <pics/example_2/figure_5-eps-converted-to.p
 df>
-(epstopdf)                    date: 2019-08-20 10:34:02
-(epstopdf)                    size: 144098 bytes
+(epstopdf)                    date: 2019-09-01 14:00:48
+(epstopdf)                    size: 161949 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_2/figure_5-ep
 s-converted-to.pdf pics/example_2/figure_5.eps>
-(epstopdf)             \includegraphics on input line 79.
+(epstopdf)             \includegraphics on input line 95.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_2/figure_5-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_2/figure_5-eps-converted-to.pdf, id=193, 434.62375pt x 321.2pt>
+<pics/example_2/figure_5-eps-converted-to.pdf, id=221, 422.57875pt x 317.185pt>
+
 File: pics/example_2/figure_5-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_2/figure_5-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_2/figure_5-eps-converted-to.pdf  used on 
-input line 79.
-(pdftex.def)             Requested size: 241.84843pt x 178.73862pt.
+input line 95.
+(pdftex.def)             Requested size: 234.73524pt x 176.19461pt.
 Package epstopdf Info: Source file: <pics/example_2/figure_6.eps>
-(epstopdf)                    date: 2019-08-20 10:32:49
-(epstopdf)                    size: 141250 bytes
+(epstopdf)                    date: 2019-09-01 13:58:33
+(epstopdf)                    size: 139778 bytes
 (epstopdf)             Output file: <pics/example_2/figure_6-eps-converted-to.p
 df>
-(epstopdf)                    date: 2019-08-20 10:34:03
-(epstopdf)                    size: 141324 bytes
+(epstopdf)                    date: 2019-09-01 14:00:48
+(epstopdf)                    size: 139901 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_2/figure_6-ep
 s-converted-to.pdf pics/example_2/figure_6.eps>
-(epstopdf)             \includegraphics on input line 82.
+(epstopdf)             \includegraphics on input line 98.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_2/figure_6-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_2/figure_6-eps-converted-to.pdf, id=194, 426.59375pt x 320.19624p
-t>
+<pics/example_2/figure_6-eps-converted-to.pdf, id=222, 422.57875pt x 317.185pt>
+
 File: pics/example_2/figure_6-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_2/figure_6-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_2/figure_6-eps-converted-to.pdf  used on 
-input line 82.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 98.
+(pdftex.def)             Requested size: 234.73524pt x 176.19461pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 78--84
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 94--100
 []$[]$ $[]$ 
  []
 
-[23 <./pics/example_1/figure_5-eps-converted-to.pdf> <./pics/example_1/figure_6
--eps-converted-to.pdf> <./pics/example_2/geometry-eps-converted-to.pdf>]
-[24 <./pics/example_2/figure_4-eps-converted-to.pdf> <./pics/example_2/figure_3
--eps-converted-to.pdf> <./pics/example_2/figure_5-eps-converted-to.pdf> <./pics
-/example_2/figure_6-eps-converted-to.pdf>]
+[26 <./pics/example_2/geometry-eps-converted-to.pdf> <./pics/example_2/figure_4
+-eps-converted-to.pdf> <./pics/example_2/figure_3-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <pics/example_3/geometry_full.eps>
 (epstopdf)                    date: 2019-08-20 11:59:28
 (epstopdf)                    size: 227193 bytes
@@ -2116,21 +2103,21 @@ Package epstopdf Info: Source file: <pics/example_3/geometry_full.eps>
 (epstopdf)                    size: 43068 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/geometry_fu
 ll-eps-converted-to.pdf pics/example_3/geometry_full.eps>
-(epstopdf)             \includegraphics on input line 94.
+(epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/geometry_full-eps-conv
 erted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<pics/example_3/geometry_full-eps-converted-to.pdf, id=248, 764.8575pt x 781.92
+<pics/example_3/geometry_full-eps-converted-to.pdf, id=243, 764.8575pt x 781.92
 125pt>
 File: pics/example_3/geometry_full-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pics/example_3/geometry_full-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/geometry_full-eps-converted-to.pdf  use
-d on input line 94.
-(pdftex.def)             Requested size: 241.84843pt x 247.23712pt.
+d on input line 110.
+(pdftex.def)             Requested size: 234.73524pt x 239.97105pt.
 Package epstopdf Info: Source file: <pics/example_3/geometry.eps>
 (epstopdf)                    date: 2019-08-21 13:48:18
 (epstopdf)                    size: 134694 bytes
@@ -2140,21 +2127,21 @@ df>
 (epstopdf)                    size: 26962 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/geometry-ep
 s-converted-to.pdf pics/example_3/geometry.eps>
-(epstopdf)             \includegraphics on input line 97.
+(epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/geometry-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_3/geometry-eps-converted-to.pdf, id=249, 562.1pt x 403.5075pt>
+<pics/example_3/geometry-eps-converted-to.pdf, id=244, 562.1pt x 403.5075pt>
 File: pics/example_3/geometry-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_3/geometry-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/geometry-eps-converted-to.pdf  used on 
-input line 97.
-(pdftex.def)             Requested size: 241.84843pt x 173.60951pt.
+input line 113.
+(pdftex.def)             Requested size: 234.73524pt x 168.50534pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 93--99
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 109--115
 []$[]$ $[]$ 
  []
 
@@ -2167,20 +2154,20 @@ df>
 (epstopdf)                    size: 175076 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/figure_4-ep
 s-converted-to.pdf pics/example_3/figure_4.eps>
-(epstopdf)             \includegraphics on input line 107.
+(epstopdf)             \includegraphics on input line 123.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/figure_4-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_3/figure_4-eps-converted-to.pdf, id=250, 426.59375pt x 320.19624p
+<pics/example_3/figure_4-eps-converted-to.pdf, id=245, 426.59375pt x 320.19624p
 t>
 File: pics/example_3/figure_4-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_3/figure_4-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/figure_4-eps-converted-to.pdf  used on 
-input line 107.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 123.
+(pdftex.def)             Requested size: 234.73524pt x 176.19153pt.
 Package epstopdf Info: Source file: <pics/example_3/figure_3_edited.eps>
 (epstopdf)                    date: 2019-08-20 14:08:28
 (epstopdf)                    size: 90922 bytes
@@ -2190,26 +2177,29 @@ ed-to.pdf>
 (epstopdf)                    size: 81108 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/figure_3_ed
 ited-eps-converted-to.pdf pics/example_3/figure_3_edited.eps>
-(epstopdf)             \includegraphics on input line 110.
+(epstopdf)             \includegraphics on input line 126.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/figure_3_edited-eps-co
 nverted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1
 .5> allowed
-<pics/example_3/figure_3_edited-eps-converted-to.pdf, id=251, 418.56375pt x 318
+<pics/example_3/figure_3_edited-eps-converted-to.pdf, id=246, 418.56375pt x 318
 .18875pt>
 File: pics/example_3/figure_3_edited-eps-converted-to.pdf Graphic file (type pd
 f)
 <use pics/example_3/figure_3_edited-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/figure_3_edited-eps-converted-to.pdf  u
-sed on input line 110.
-(pdftex.def)             Requested size: 241.84843pt x 183.85045pt.
+sed on input line 126.
+(pdftex.def)             Requested size: 234.73524pt x 178.4418pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 106--112
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 122--128
 []$[]$ $[]$ 
  []
 
+[27 <./pics/example_2/figure_5-eps-converted-to.pdf> <./pics/example_2/figure_6
+-eps-converted-to.pdf> <./pics/example_3/geometry_full-eps-converted-to.pdf> <.
+/pics/example_3/geometry-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <pics/example_3/figure_5.eps>
 (epstopdf)                    date: 2019-08-20 14:16:52
 (epstopdf)                    size: 185323 bytes
@@ -2219,91 +2209,84 @@ df>
 (epstopdf)                    size: 189786 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/figure_5-ep
 s-converted-to.pdf pics/example_3/figure_5.eps>
-(epstopdf)             \includegraphics on input line 121.
+(epstopdf)             \includegraphics on input line 137.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/figure_5-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_3/figure_5-eps-converted-to.pdf, id=252, 426.59375pt x 320.19624p
+<pics/example_3/figure_5-eps-converted-to.pdf, id=279, 426.59375pt x 320.19624p
 t>
 File: pics/example_3/figure_5-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_3/figure_5-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/figure_5-eps-converted-to.pdf  used on 
-input line 121.
-(pdftex.def)             Requested size: 241.84843pt x 181.5317pt.
+input line 137.
+(pdftex.def)             Requested size: 234.73524pt x 176.19153pt.
 Package epstopdf Info: Source file: <pics/example_3/figure_6.eps>
 (epstopdf)                    date: 2019-08-21 13:57:56
 (epstopdf)                    size: 171215 bytes
 (epstopdf)             Output file: <pics/example_3/figure_6-eps-converted-to.p
 df>
-(epstopdf)                    date: 2019-08-20 14:21:39
-(epstopdf)                    size: 114068 bytes
+(epstopdf)                    date: 2019-08-21 14:01:26
+(epstopdf)                    size: 168310 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/example_3/figure_6-ep
 s-converted-to.pdf pics/example_3/figure_6.eps>
-(epstopdf)             \includegraphics on input line 124.
-runsystem(repstopdf --outfile=pics/example_3/figure_6-eps-converted-to.pdf pics
-/example_3/figure_6.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <pics/example_3/figure_6-eps-converted-to.p
-df>
-(epstopdf)                    date: 2019-08-21 14:01:26
-(epstopdf)                    size: 168310 bytes.
+(epstopdf)             \includegraphics on input line 140.
+Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./pics/example_3/figure_6-eps-converted
 -to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<pics/example_3/figure_6-eps-converted-to.pdf, id=253, 425.59pt x 319.1925pt>
+<pics/example_3/figure_6-eps-converted-to.pdf, id=280, 425.59pt x 319.1925pt>
 File: pics/example_3/figure_6-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/example_3/figure_6-eps-converted-to.pdf>
 Package pdftex.def Info: pics/example_3/figure_6-eps-converted-to.pdf  used on 
-input line 124.
-(pdftex.def)             Requested size: 241.84843pt x 181.38637pt.
+input line 140.
+(pdftex.def)             Requested size: 234.73524pt x 176.05319pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 120--126
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 136--142
 []$[]$ $[]$ 
  []
 
-) (./shape_functions_appendix.tex [25 <./pics/example_3/geometry_full-eps-conve
-rted-to.pdf> <./pics/example_3/geometry-eps-converted-to.pdf> <./pics/example_3
-/figure_4-eps-converted-to.pdf> <./pics/example_3/figure_3_edited-eps-converted
--to.pdf>]
-Overfull \hbox (9.17664pt too wide) detected at line 43
+) (./shape_functions_appendix.tex [28 <./pics/example_3/figure_4-eps-converted-
+to.pdf> <./pics/example_3/figure_3_edited-eps-converted-to.pdf> <./pics/example
+_3/figure_5-eps-converted-to.pdf> <./pics/example_3/figure_6-eps-converted-to.p
+df>]
+Overfull \hbox (13.4446pt too wide) detected at line 43
 []
  []
 
-[26 <./pics/example_3/figure_5-eps-converted-to.pdf> <./pics/example_3/figure_6
--eps-converted-to.pdf>]
-Overfull \hbox (27.83205pt too wide) detected at line 99
+[29]
+Overfull \hbox (34.23387pt too wide) detected at line 99
 []
  []
 
 
-Overfull \hbox (27.83205pt too wide) detected at line 115
+Overfull \hbox (34.23387pt too wide) detected at line 115
 []
  []
 
 )
-Overfull \hbox (26.73878pt too wide) in paragraph at lines 85--219
+Overfull \hbox (40.96516pt too wide) in paragraph at lines 85--191
 [][]   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--219
+Underfull \hbox (badness 10000) in paragraph at lines 85--191
 
  []
 
-[27] [28] (./Protokoll.bbl) [29] (./Protokoll.aux) ) 
+[30] [31] (./Protokoll.bbl) [32] (./Protokoll.aux) ) 
 Here is how much of TeX's memory you used:
- 41566 strings out of 492701
- 905671 string characters out of 6134505
- 1173263 words of memory out of 5000000
- 44794 multiletter control sequences out of 15000+600000
- 552482 words of font info for 73 fonts, out of 8000000 for 9000
+ 41578 strings out of 492701
+ 905981 string characters out of 6134505
+ 1166309 words of memory out of 5000000
+ 44802 multiletter control sequences out of 15000+600000
+ 553245 words of font info for 74 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 55i,14n,71p,9115b,1080s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,71p,9115b,1697s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/typ
@@ -2328,10 +2311,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr
 texlive/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Protokoll.pdf (29 pages, 1882607 bytes).
+Output written on Protokoll.pdf (32 pages, 1867866 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
+ 398 PDF objects out of 1000 (max. 8388607)
+ 234 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

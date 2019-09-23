@@ -1,7 +1,11 @@
 Sofern nicht anders angegeben werden 6-knotige quadratische finite Dreieckselemente zur Approximation der Geometrie verwendet.
 
 \subsection{Beispiel 1: Idealer Plattenkondensator}
-In diesem Beispiel wird ein idealer Plattenkondensator unter Vernachlässigung der Randeffekte berechnet. Für ein solches Problem existiert eine analytische Lösung mit einem linearen Potentialverlauf und einem konstanten elektrischen Feld $\vec{E} = \frac{U}{d}$ mit $d$ als Plattenabstand.\newline
+In diesem Beispiel wird ein idealer Plattenkondensator unter Vernachlässigung der Randeffekte berechnet. Für ein solches Problem existiert eine analytische Lösung mit einem linearen Potentialverlauf $V(x) = kx$und einem konstanten elektrischen Feld $\vec{E} = \frac{U}{d}$ mit $d$ als Plattenabstand. Die Steigung $k$ des Potentialverlauf ergibt sich aus 
+\begin{equation}
+k = \frac{V^+ - V^-}{d}
+\end{equation}
+mit $V^+$ als dem Potential an der 'oberen' und $V^-$ dem Potential an der 'unteren' Elektrode.
 
 Für dieses Problem liefert der FEM-Algorithmus die exakte Lösung liefern, da ein quadratischer Approximationsansatz verwendet wird und der Potentialverlauf ein Linearer ist.
 
@@ -14,14 +18,22 @@ Folgende Parameter sind gegeben:
 	\item $\epsilon = \epsilon_0$
 \end{itemize}
 
-woraus sich ein Potentialverlauf von $V(x) = 10000x$ mit $x = [0,d]$ und ein Elektrischen Feld von $E = 10000 \si{\volt\per\meter}$ ergibt.
+woraus sich ein Potentialverlauf von 
+\begin{equation}
+V(x) = \frac{10V - 0V}{1\si{\milli\meter}} = 10000\si{\volt\per\meter}\ x
+\end{equation} mit $x = [0,d]$ und ein elektrisches Feld von 
+\begin{equation}
+\vec{E} = -10000 \si{\volt\per\meter}\vec{e_x}
+\end{equation}
+ergibt.\newline
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{pics/example_1/geometry.eps}
 	\caption{Geometrie, Gitter und Randbedingungen zu Beispiel 1}
 \end{figure}
-\textbf{Anmerkung:} Die homogenen neumannschen Randbedingungen $\parDiff{V}{n} = 0$ müssen nicht explizit angegeben werden.
+
+\textbf{Anmerkung:} Die homogenen neumannschen Randbedingungen $\parDiff{V}{n} = 0$ müssen nicht explizit angegeben werden.\newline
 
 
 \begin{figure}[htbp]
@@ -46,7 +58,9 @@ woraus sich ein Potentialverlauf von $V(x) = 10000x$ mit $x = [0,d]$ und ein Ele
 	\label{fig:plate_cape_field}
 \end{figure}
 
-Abbildung \ref{fig:plate_cape_potential} zeigt den linearen Potentialverlauf innerhalb des Kondensators. Abbildung \ref{fig:plate_cape_field} zeigt im linken Teil die (nicht skalierten) Feldlinien und im rechten Teil den Absolutwert des Feldes.
+Abbildung \ref{fig:plate_cape_potential} zeigt den linearen Potentialverlauf innerhalb des Kondensators. Wie unschwer zu erkenne ist ist der Potentialverlauf ein linearer und stimmt mit der analytischen Lösung überein.\newline
+ Abbildung \ref{fig:plate_cape_field} zeigt im linken Teil die (nicht skalierten) Feldlinien und im rechten Teil den Absolutwert des Feldes. Auch hier ist eine Übereinstimmung mit der analytischen Lösung erkennbar. Man beachte herzu die Skala rechts außen. Die Abweichung vom analytischen Wert von $10000\si{\volt\per\meter}$ liegt im Bereich der numerischen Ungenauigkeit.
+\newpage
 
 
 \subsection{Beispiel 2: Strömungsfeld einer Blechplatte}
@@ -58,7 +72,7 @@ Dieses Beispiel zeigt den Strömungsfeldverlauf einer Blechplatte und wurde aus 
 	\caption{Geometrie, Gitter und Randbedingungen zu Beispiel 2}
 \end{figure}
 
-Abbildung \ref{fig:metal_plate_potential} zeigt wieder den Verlauf des berechneten Potentials. Im linken Teil der Abbildung ist zu beachten dass der Potentialverlauf innerhalb des inneren, rechteckigen Randes zu ignorieren ist. Er wurde lediglich durch den Algorithmus zur Generierung des Bildes hinzugefügt und besitzt somit keinerlei physikalische Bedeutung.\newline
+
 
 \begin{figure}[htbp]
 	\begin{minipage}{0.5\textwidth}
@@ -71,8 +85,10 @@ Abbildung \ref{fig:metal_plate_potential} zeigt wieder den Verlauf des berechnet
 	\label{fig:metal_plate_potential}
 \end{figure}
 
-
-Abbildung \ref{fig:metal_plate_field} zeigt den Feldverlauf des Strömungsfeldes. Das Strömungsfeld wurde über $\vec{J} = -[\gamma] \mathit{grad}V$ berechnet, wobei $[\gamma] = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$ gewählt wurde. Somit entspricht bei diesem Beispiel $\vec{J} = \vec{E}$.\newline
+Abbildung \ref{fig:metal_plate_potential} zeigt wieder den Verlauf des berechneten Potentials.\newline
+Abbildung \ref{fig:metal_plate_field} zeigt den Feldverlauf des Strömungsfeldes. Das Strömungsfeld wurde über \begin{equation}
+\vec{J} = -[\gamma] \mathit{grad}V \text{ mit } [\gamma] = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}
+\end{equation}berechnet. Somit decken sich in diesem Beispiel die Feldverläufe von $\vec{J}$ und $\vec{E}$.\newline
 Wie zu erwarten tritt an der Ecke des inneren Randes eine starke Konzentration des Feldes mit einem entsprechend hohen Absolutwert des Feldes auf. Bei der Generierung des Gitters ist hier auf eine entsprechende Auflösung zu achten.
 \begin{figure}[htbp]
 	\begin{minipage}{0.5\textwidth}
@@ -113,7 +129,7 @@ Abbildung \ref{fig:example_3_geometry} zeigt die Geometrie sowie das Gitter und 
 	\label{fig:cylinder_electrodes_potential}
 \end{figure}
 
-Abbildung \ref{fig:cylinder_electrodes_potential} zeigt wie bereits bekannt den Potentialverlauf des Problems. Hier ist zu beachten dass beim rechten Teil die Ansicht um 180\degrees gedreht ist, was im linken Teil einer Blickrichtung von oben nach unten entspricht. Diese Ansicht wurde gewählt da sich sonst die Äquipotentialfläche der ersten Elektrode nur schwer zu erkennen ist.
+Abbildung \ref{fig:cylinder_electrodes_potential} zeigt wie bereits bekannt den Potentialverlauf des Problems. Hier ist zu beachten dass beim rechten Teil die Ansicht um $180^{\circ}$ gedreht ist, was im linken Teil einer Blickrichtung von oben nach unten entspricht. Diese Ansicht wurde gewählt da sich sonst die Äquipotentialfläche der ersten Elektrode nur schwer zu erkennen ist.
 
 
 \begin{figure}[htbp]

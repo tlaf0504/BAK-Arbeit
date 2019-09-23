@@ -86,18 +86,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70000001"
-     inkscape:cx="151.62857"
-     inkscape:cy="519.63824"
+     inkscape:zoom="0.98994951"
+     inkscape:cx="337.44567"
+     inkscape:cy="428.28172"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      showguides="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
-     inkscape:window-x="1920"
+     inkscape:window-width="959"
+     inkscape:window-height="1026"
+     inkscape:window-x="960"
      inkscape:window-y="0"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
        id="grid10"
@@ -115,7 +115,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -290,7 +290,7 @@
          id="tspan2140-4"
          x="123.71949"
          y="198.33929"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 2</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 4</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1"
@@ -301,7 +301,7 @@
          id="tspan2140-4-2"
          x="47.795383"
          y="121.98364"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 4</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 2</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-3);marker-end:url(#Arrow1Lend-7)"
        d="M 135.00001,312 H 44.999996 v -95"
@@ -441,7 +441,7 @@
          id="tspan2140-2"
          x="46.78706"
          y="309.17337"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 4</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 2</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1"
@@ -452,7 +452,7 @@
          id="tspan2140-4-9"
          x="123.71935"
          y="308.33929"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 2</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1">Knoten 4</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000f9;fill-opacity:1;stroke:#0000ff;stroke-width:0.26458332;stroke-opacity:1"

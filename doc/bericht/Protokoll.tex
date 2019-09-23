@@ -67,7 +67,7 @@
 
 \usepackage{nicefrac}
 \usepackage{float}
-\usepackage[bottom=3cm, top=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[bottom=3cm, top=2cm, left=2.5cm, right=2cm]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Headings
@@ -86,7 +86,7 @@
 %%%
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
 \newcommand{\mat}[1]{\boldsymbol{#1}}
-\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistingname}{Listing}
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \newcommand{\z}{\mathpzc{z}}
@@ -132,28 +132,17 @@ Technische Universität Graz
 \vspace*{5cm}
 %
 \Huge {Seminararbeit:\\
-Finite Elemente Software \\zur Lösung von \\elektrostatischen und stationären Strömungsfeld-Problemen} %
-%\vspace*{.4cm} \Large{ Sommersemester 2015\\}
-%%
-%\vspace*{2.5cm} 
+Finite Elemente Software \\zur Lösung von \\Elektrostatik- und stationären Strömungsfeld-Problemen} %
 \vspace*{2cm}
-%\Huge{\textbf{Übung 4 – Kurzschluss 2}\\}\vspace*{.7cm} 
-%%
-%\Large{Gruppe: 10\\} \vspace*{.7cm}%
-%\Large{Teilnehmer:\\} \vspace*{.1cm}
-% Name der beteiligten Studierenden
 
 \Large{vorgelegt von:\\
 Tobias Florian Lafer (01530012)\\
-am \today} 
+am 21.08.2019} 
 \vspace{8cm}
 
 
-%
-%
-\Large{Betreuer: Dipl.-Ing. Dr.techn. Thomas Bauernfeind}\vspace*{2cm}\vfill
-%
-%\Large{Übungsdatum: 02.06.2015}
+\Large{Betreuer: Dipl-Ing. Paul Baumgartner, BSc BSc}\vspace*{2cm}\vfill
+
 \end{center}}%
 \clearpage 
 
@@ -167,23 +156,6 @@ am \today}
 
 \input{command.tex}
 
-%Aufgabenstellung
-
-%Analytisches Modell
-%	gleichmäßige Stromverteilung
-%	Sinusförmige Stromverteilung
-%	reale Stromverteilung
-%	Strom (Storer)
-%	Werner
-%	Diskussion
-%FEM-Modell
-%	Formulierung
-%	Modell
-%	dünner Feedgap
-%	dicker Feedgap
-%	Stromfaden
-%Diskussion
-
 \section*{Zusammenfassung}
 \input{abstract.tex}
 
@@ -192,8 +164,7 @@ am \today}
 \input{fem.tex}
 \input{shape_functions.tex}
 \input{problems.tex}
-
-
+\input{element_equation_systems_theory.tex}
 
 
 
@@ -210,6 +181,7 @@ am \today}
 \label{sec:assembling}
 \input{assembling.tex}
 
+\newpage
 \section{Simulationen}
 \input{examples.tex}
 

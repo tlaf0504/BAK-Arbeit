@@ -1,4 +1,5 @@
 \subsection{Problemtypen}
+\label{sec:problem_types}
 In diesem Kapitel werden die in der Software implementierten Problemtypen beschrieben. In beiden Fällen handelt es sich um zweidimensionale, ebene Probleme. Resultat dieses Abschnitts werden analytische Berechnungsvorschriften für die einzelnen Elementgleichungssysteme sein.\newline
 Die Berechnungen aus diesem Abschnitt stammen, sofern nicht anders angegeben, aus \cite{SMS_VO_skript} Kapitel 7 und 8. Für ausführliche Herleitungen, auf welche in diesem Fall bewusst verzichtet wird, sei auf das oben genannte Werk verwiesen.\newline
 
@@ -6,37 +7,35 @@ Wie aus Abschnitt \ref{sec:fem_theory} bekannt, ist das Randwertproblem zuerst a
 
 Ausgangspunkt für Probleme aus der Elektrotechnik sind im Allgemeinen die Maxwell-Gleichungen:
 \begin{align}
-	\mathit{rot}\vec{E} = -\parDiff{\vec{B}}{t} \label{eq:maxwell_1} \\
-	\mathit{rot}\vec{H} = \vec{J} + \parDiff{\vec{D}}{t} \label{eq:maxwell_2}\\
-	\mathit{div}\vec{B} = 0 \label{eq:maxwell_3}\\
-	\mathit{div}\vec{D} = \rho \label{eq:maxwell_4}
+	\mathit{rot}\vec{E} = -\parDiff{\vec{B}}{t} \label{eq:maxwell_1}, \\
+	\mathit{rot}\vec{H} = \vec{J} + \parDiff{\vec{D}}{t} \label{eq:maxwell_2},\\
+	\mathit{div}\vec{B} = 0 \label{eq:maxwell_3},\\
+	\mathit{div}\vec{D} = \rho \label{eq:maxwell_4},
 \end{align}
 mit den Materialzusammenhängen
 \begin{align}
-\vec{D} = [\epsilon]\vec{E} \label{eq:material_1}\\
-\vec{B} = [\mu]\vec{H} \label{eq:material_2}
+\vec{D} = [\epsilon]\vec{E} \label{eq:material_1},\\
+\vec{B} = [\mu]\vec{H} \label{eq:material_2},
 \end{align}
-mit $[\epsilon]$ und $[\mu]$ als ortsabhängigen Materialtensoren.
+und mit $[\epsilon]$ und $[\mu]$ als ortsabhängigen Materialtensoren.
 
 \subsubsection{Elektrostatische Probleme}
 \label{sec:electrostatic_problems}
-Für den elektrostatischen Fall ist $\vec{J},\ \vec{H}$, sowie sämtliche zeitlichen Änderungen $\equiv 0$ wodurch sich $\vec{B}$ sowie die rechte Seite von (\ref{eq:maxwell_1}) zu $\equiv 0$ ergeben.\newline
-Ein elektrostatisches Problem wird somit durch die folgenden Gleichungen beschrieben:
-\begin{align}
-\mathit{rot}\vec{E} &= 0 \label{eq:wirbelfreiheit_E}\\
-\mathit{div}\vec{D} &= \rho \label{eq:sources_D}
-\end{align}\newline
-
-Aufgrund der Wirbelfreiheit des elektrischen Feldes aus (\ref{eq:wirbelfreiheit_E}) kann nun folgender Ansatz für die elektrische Feldstärke $\vec{E}$ verwendet werden:
+Im elektrostatischen Fall gilt $\vec{J} \equiv 0,\ \vec{H} \equiv 0$, sowie für sämtliche Größen $\nicefrac{\partial}{\partial t}\equiv 0$.
+Ein elektrostatisches Problem wird somit durch die Gleichungen
 \begin{equation}
-\label{eq:dgl_E}
-\vec{E} = -\mathit{grad}V
+\mathit{rot}\vec{E} = 0 \label{eq:wirbelfreiheit_E}\\
 \end{equation}
-mit $V$ als sogenanntem \textit{Skalapotential}.\newline
-
-Setzt man (\ref{eq:dgl_E}) nun unter Verwendung von (\ref{eq:material_1}) in (\ref{eq:sources_D}) ein, so erhält man die partielle Differentialgleichung für $V$ als:
+und
 \begin{equation}
-\mathit{div}[\epsilon]\mathit{grad}V = -\rho
+\mathit{div}\vec{D} = \rho \label{eq:sources_D}
+\end{equation}
+
+beschrieben.\newline
+
+Setzt man (\ref{eq:e_grad_V}) nun unter Verwendung von (\ref{eq:material_1}) in (\ref{eq:sources_D}) ein, so erhält man als partielle Differentialgleichung für $V$ 
+\begin{equation}
+\mathit{div}[\epsilon]\mathit{grad}V = -\rho \ .
 \end{equation}
 Hierbei entspricht $\mathit{div}[\epsilon]\mathit{grad}$ dem Differentialoperator $L$ aus (\ref{eq:operatorgleichung}), das Potential $V$ der gesuchten Funktion $u$ und $-\rho$ der gegebenen Funktion $f$.\newline
 
@@ -48,50 +47,60 @@ Die Randbedingungen für ein solches Problem sind gegeben als
 am dirichletschen Rand $\Gamma_D$ und 
 \begin{equation}
 \label{eq:e-static_neumann_condition}
-\vec{n}\cdot\mathit{grad}V = \sigma 
+\vec{n}\cdot[\epsilon]\mathit{grad}V = \sigma 
 \end{equation}
 am neumannschen Rand $\Gamma_N$, mit $\vec{n}$ als Flächennormale und $\sigma$ als gegebener Flächenladungsdichte.\newline
 
-Unter Verwendung des Ritzschen \textit{oder} Galerkinschen Verfahrens erhält man nun Formeln zur Berechnung der Elementgleichungssysteme, wobei beide Verfahren dieselben (!) Formeln liefern. Löst man (\ref{eq:first_variation}) oder (\ref{eq:weighted_residuum}) mit den entsprechenden Ansätzen, so ergibt sich für jedes Element ein quadratisches lineares \textit{Elementgleichungssystem} $\begin{bmatrix}k_{ij}\end{bmatrix} \cdot \begin{Bmatrix}V_j\end{Bmatrix} = \begin{Bmatrix}r_j\end{Bmatrix}$ der Dimension $N\times N$ mit $N$ als Anzahl der Elementknoten.
+Unter Verwendung des Ritzschen \textit{oder} Galerkinschen Verfahrens erhält man nun Formeln zur Berechnung der Elementgleichungssysteme, wobei beide Verfahren dieselben (!) Formeln liefern. Löst man (\ref{eq:first_variation}) oder (\ref{eq:weighted_residuum}) mit den entsprechenden Ansätzen, so ergibt sich für jedes Element ein quadratisches lineares \textit{Elementgleichungssystem} $\begin{bmatrix}k_{ij}\end{bmatrix} \cdot \begin{Bmatrix}V_j\end{Bmatrix} = \begin{Bmatrix}r_j\end{Bmatrix}$ der Dimension $N\times N$ mit $N$ als Anzahl der Elementknoten:
 \begin{equation}
 \label{eq:k_ij_e_static}
-k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \epsilon_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy
+k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\epsilon_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \epsilon_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy,
 \end{equation}
 
 
 \begin{equation}
 \label{eq:right_side_e_static}
-	r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
+	r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma.
 \end{equation}
 
-\textbf{Anmerkung:} Um auf die oben gezeigte Form für $k_ij$ zu kommen ist es notwendig den Permettivitätstensor $[\epsilon]$ auf die Hauptachsenform zu transformieren:
+\textbf{Anmerkung:} Um auf die oben gezeigte Form für $k_{ij}$ zu kommen ist es notwendig den Permettivitätstensor $[\epsilon]$ auf die Hauptachsenform
 \begin{equation*}
 	[\epsilon] = \begin{bmatrix}
 	\epsilon_x & 0 \\
 	0 & \epsilon_y
 	\end{bmatrix}
 \end{equation*}
+zu transformieren.\newline
 
-Man beachte dass für Formfunktionen von isoparametrischen finite Elementen $N_i = N_i(\xi, \eta)$ gilt, wodurch alle Integrale in den Variablen $\xi$ und $\eta$ durchgeführt werden müssen. Die entsprechende Substitution sowie die Realisierung der Integrale werden in Abschnitt \ref{sec:equation_system_calculation} genauer behandelt. 
+Man beachte dass für Formfunktionen von isoparametrischen finite Elementen $N_i = N_i(\xi, \eta)$ gilt, wodurch alle Integrale in den Variablen $\xi$ und $\eta$ durchgeführt werden müssen.
 
 
 \subsubsection{Stationäre Strömungsfeldprobleme}
 \label{sec:stat_current_problems}
 Stationäre Strömungsfeldprobleme lassen sich über das Gesetz der Ladungserhaltung definieren:
 \begin{equation}
-	\mathit{div}\vec{J} = 0
+\label{eq:charge_presistence}
+	\mathit{div}\vec{J} = 0\ .
 \end{equation}
- Es muss außerdem das Ohmsche Gesetz in seiner differentiellen Form gelten:
- \begin{equation}
+Die Feldgröße $\vec{J}$ wird hierbei als die \textit{elektrische Stromdichte} bezeichnet. Sie ist über den, durch eine Fläche $\Gamma$ fließenden Strom $I$ durch folgenden Zusammenhang mit $\vec{n}$ als ortsabhängigem Normalvektor der Fläche definiert:
+\begin{equation}
+I = \int\displaylimits_{\Gamma} \vec{J} \cdot \vec{n} d\Gamma\ .
+\end{equation}
+Unter Verwendung von 
+\begin{equation}
+	U = \int\displaylimits_{c} \vec{E}\cdot \vec{ds}
+\end{equation} kann das klassische Ohmsche Gesetz $U=RI$ auf seine differentielle Form
+\begin{equation}
+\label{eq:ohm_diff_form}
  	\vec{J} = [\gamma] \vec{E}
  \end{equation}
- mit $[\gamma]$ als ortsabhängigem Tensor der spezifischen Leitfähigkeit.\newline
+gebracht werden, wobei $[\gamma]$ den ortsabhängigen Tensor der spezifischen Leitfähigkeit darstellt.\newline
  
- Stationäre Strömungsfeldprobleme können somit analog zu elektrostatischen Problemen mittels folgender Differentialgleichung ermittelt werden:
+ Stationäre Strömungsfeldprobleme sind somit aufgrund von (\ref{eq:e_grad_V}), (\ref{eq:charge_presistence}) und (\ref{eq:ohm_diff_form}), analog zu elektrostatischen Problemen, durch folgende Differentialgleichung bestimmt:
  \begin{equation}
-\mathit{div}[\gamma]\mathit{grad}V = 0
+\mathit{div}[\gamma]\mathit{grad}V = 0 \ .
  \end{equation}
- Als Randbedingungen ergeben sich:
+ Als Randbedingungen ergeben sich
  \begin{equation}
  \label{eq:current_dirichlet_condition}
  V = \overline{V}
@@ -99,7 +108,7 @@ Stationäre Strömungsfeldprobleme lassen sich über das Gesetz der Ladungserhal
  am dirichletschen Rand $\Gamma_D$ und 
  \begin{equation}
  \label{eq:current_neumann_condition}
- \vec{n}\cdot\mathit{grad}V = J_e
+ \vec{n}\cdot[\gamma]\mathit{grad}V = J_e
  \end{equation}
  am neumannschen Rand $\Gamma_N$, wobei $J_e$ die eingeprägte Flächenstromdichte am Rand darstellt.\newline
  
@@ -107,12 +116,12 @@ Stationäre Strömungsfeldprobleme lassen sich über das Gesetz der Ladungserhal
  
 \begin{equation}
 \label{eq:k_ij_stat_current}
-k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\gamma_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \gamma_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy
+k_{ij} = \int\displaylimits_{x} \int\displaylimits_{y} \left(\gamma_x \parDiff{N_i}{x}\parDiff{N_j}{x} +  \gamma_y\parDiff{N_i}{y}\parDiff{N_j}{y}\right)dx dy,
 \end{equation}
 
 \begin{equation}
 \label{eq:right_side_stat_current}
-r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i J_e dx dy
+r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i J_e dx dy.
 \end{equation}
 
 

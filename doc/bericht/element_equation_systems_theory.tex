@@ -1,0 +1,135 @@
+\subsubsection{Berechnung der Elementmatrix-Koeffizienten $k_{ij}$}
+
+Da die Formfunktionen $N_i$ bei isoparametrischen finiten Elementen Funktionen von $\xi$ und $\eta$ sind, müssen die Integrationsvariablen aller Integrale substituiert werden.  \newline
+Die partiellen Ableitungen der Formfunktionen, wie sie z.B. in (\ref{eq:k_ij_e_static}) benötigt werden, ergeben nach \cite{SMS_VO_skript}, S.72 aus
+\begin{equation}
+\begin{Bmatrix}
+\parDiff{N}{\xi} \\[2mm]
+\parDiff{N}{\eta}
+\end{Bmatrix} = 
+\underbrace{
+\begin{bmatrix}
+\sum\limits_{k}\parDiff{N_k}{\xi}x_k & \sum\limits_{k}\parDiff{N_k}{\xi}y_k \\[2mm]
+\sum\limits_{k}\parDiff{N_k}{\eta}x_k & \sum\limits_{k}\parDiff{N_k}{\eta}y_k
+\end{bmatrix}}_{\mat{J}}\cdot
+\begin{Bmatrix}
+\parDiff{N}{x} \\[2mm]
+\parDiff{N}{y}
+\end{Bmatrix}
+\end{equation}
+zu
+\begin{equation}
+\label{eq:partial_derivatives_subst}
+\begin{Bmatrix}
+\parDiff{N}{x} \\[2mm]
+\parDiff{N}{y}
+\end{Bmatrix} = 
+\underbrace{
+	\frac{1}{\mathit{det}(\mat{J})}\begin{bmatrix}
+	 \sum\limits_{k}\parDiff{N_k}{\eta}y_k & -\sum\limits_{k}\parDiff{N_k}{\xi}y_k \\[2mm]
+	-\sum\limits_{k}\parDiff{N_k}{\eta}x_k & \sum\limits_{k}\parDiff{N_k}{\xi}x_k
+	\end{bmatrix}}_{\mat{J}^{-1}}
+\cdot \left\{ \begin{matrix}
+\parDiff{N}{\xi} \\[2mm]
+\parDiff{N}{\eta}
+\end{matrix} \right\}_{.}
+\end{equation}
+
+
+Das Flächenelement $dxdy$ in (\ref{eq:k_ij_e_static}) ergibt sich mit den Beziehungen aus \cite{SMS_VO_skript}, S.74 zu 
+\begin{equation}
+\label{eq:surface_element}
+dxdy = \mathit{det} \mat{(J)} d\xi d\eta,
+\end{equation}
+wobei das Flächenintegral in beiden Koordinaten in den Intervallen $\xi \in [0,1], \ \eta \in [0, 1-\xi]$ durchzuführen ist. Somit ergibt sich der Elementmatrix-Koeffizient $k_{ij}$ zu 
+\begin{align}
+&k_{i,j} = \int\displaylimits_{\xi = 0}^{1} \int\displaylimits_{\eta = 0}^{1 - \xi} \bigg[\\
+%
+% x-derivatives
+&\frac{\epsilon_x}{\mathit{det}(\mat{J})}\left(\parDiff{N_i}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}y_k - \parDiff{N_i}{\eta}\sum\limits_{k}\parDiff{N_k}{\xi}y_k\right)
+%
+\left(\parDiff{N_j}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}y_k - \parDiff{N_j}{\eta} -\sum\limits_{k}\parDiff{N_k}{\xi}y_k\right) + \nonumber\\ 
+%
+% y-derivatives
+&\frac{\epsilon_y}{\mathit{det}(\mat{J})}\left(-\parDiff{N_i}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}x_k + \parDiff{N_i}{\eta} \sum\limits_{k}\parDiff{N_k}{\xi}x_k\right)
+%
+\left(-\parDiff{N_j}{\xi}\sum\limits_{k}\parDiff{N_k}{\eta}x_k + \parDiff{N_j}{\eta} \sum\limits_{k}\parDiff{N_k}{\xi}x_k\right) \nonumber\\ 
+& \bigg]d\xi d\eta
+\end{align}
+
+\textbf{Anmerkung:} Man beachte dass das $\mathit{det}(\mat{J})$ des Flächenelements aus (\ref{eq:surface_element}) bereits gekürzt wurde.\newline
+Die Berechnung der partiellen Ableitungen der Formfunktionen kann auf analytischem Wege vorweg erfolgen, da diese nur vom gewählten Elementtyp abhängen. Somit ist eine effiziente Berechnung der Terme $\sum\limits_{k}\parDiff{N_k}{\eta}y_k$ in Form von Skalarprodukten möglich.\newline
+
+
+\subsubsection{Berechnung der Rechtsseiten-Elemente $r_j$}
+Die Berechnung der Koeffizienten der 'rechten Seite' eines elektrostatischen Problems 
+\begin{equation}
+r_j = \int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy + \int\displaylimits_{\Gamma_N} N_i\sigma d\Gamma
+\end{equation}
+erfordert zu einen ein Flächenintegral (erster Summand) und ein Integral über den neumannschen Rand, welches im zweidimensionalen Fall zu einem Kurvenintegral entartet. \newline
+Für das Flächenintegral lässt sich die Substitution der Integrationsvariablen sehr einfach durchführen, da keine partiellen Ableitungen des Formfunktionen vorkommen:
+\begin{equation}
+\int\displaylimits_{x} \int\displaylimits_{y} N_i \rho dx dy = \int\displaylimits_{\xi = 0}^{1} \int\displaylimits_{\eta = 0}^{1 - \xi} N_i \rho \mathit{det} (\mat{J}) d\xi d\eta.
+\end{equation}
+\newline
+
+Für Kurvenintegral über den neumannschen Rand ändert sich der Integrand je nach dem über welche Dreiecksseite integriert wird. 
+Das entartete Flächenintegral über den neumannschen Rand hat nun folgende Form:
+\begin{equation}
+	\int\displaylimits_{c}N_i(\xi, \eta)\sigma ds.
+\end{equation}
+
+Allgemein gilt (siehe \cite{SMS_VO_skript}, S. 74f.):
+\begin{align}
+\label{eq:subs}
+\vec{d\xi} = dx\vec{e_x} + dy\vec{e_y} = \parDiff{x}{\xi}d\xi \vec{e_x} + \parDiff{x}{\xi} d\xi \vec{e_y},\\
+\vec{d\eta} = dx\vec{e_x} + dy\vec{e_y} = \parDiff{x}{\eta}d\eta \vec{e_x} + \parDiff{x}{\eta} d\eta \vec{e_y} .\nonumber
+\end{align}
+Das infinitesimale Kurvenelement ergibt sich somit nun zu $\vec{ds} = \vec{d\xi} + \vec{d\eta}$ bzw. \begin{equation}
+\label{eq:ds_abs}
+ds = \left|\left| \vec{ds} \right|\right| = \sqrt{\left(\vec{d\xi} + \vec{d\eta}\right)^T\cdot \left( \vec{d\xi} + \vec{d\eta} \right)}.
+\end{equation}\newline
+
+Integriert man über die Dreiecksseite 1, so gilt $d\eta = 0$ und somit auch $\vec{d\eta} = \vec{0}$.
+Somit gilt für $\vec{ds}$ bzw. $ds$ unter Verwendung von (\ref{eq:ansatz_isoparam}):
+\begin{align}
+	&\vec{ds} =  \vec{d\xi} \Rightarrow \nonumber \\
+	&ds = \left|\left| \vec{d\xi} \right|\right| = \sqrt{ \left(\parDiff{x}{\xi}\right)^2 + \left(\parDiff{y}{\xi}\right)^2} d\xi = \sqrt{ \left( \sum\limits_{k}\parDiff{N_k}{\xi}x_k \right)^2  + \left( \sum\limits_{k}\parDiff{N_k}{\xi}y_k \right)^2 } d\xi
+\end{align}
+
+Selbiges kann für Dreiecksseite 2 unter Verwendung von $d\xi = 0$ hergeleitet werden. Es ergibt sich somit:
+\begin{align}
+&\vec{ds} =  \vec{d\eta} \Rightarrow \nonumber \\
+&ds = \left|\left| \vec{d\eta} \right|\right| = \sqrt{ \left(\parDiff{x}{\eta}\right)^2 + \left(\parDiff{y}{\eta}\right)^2} d\eta = \sqrt{ \left( \sum\limits_{k}\parDiff{N_k}{\eta}x_k \right)^2  + \left( \sum\limits_{k}\parDiff{N_k}{\eta}y_k \right)^2 } d\eta
+\end{align}
+
+Zur Integration über Dreiecksseite 3  muss zuerst die Kurve parametrisiert werden:
+\begin{align*}
+&\vec{s(t)} = 
+\begin{Bmatrix}
+\xi(t) \\ \eta(t)
+\end{Bmatrix} = 
+\begin{Bmatrix}
+1 - t \\ t
+\end{Bmatrix} \Rightarrow\\
+%
+&\frac{ds}{dt} = 
+\begin{Bmatrix}
+\frac{d\xi}{dt} \\ \frac{d\eta}{dt}
+\end{Bmatrix} = 
+\begin{Bmatrix}
+-1 \\ 1
+\end{Bmatrix} \Rightarrow \\
+% 
+&\underline{\underline{d\xi = -dt, \ d\eta = dt}}
+\end{align*}
+
+Setzt man dies nun in (\ref{eq:subs}) und dies wiederum in (\ref{eq:ds_abs}) ein, so erhält man
+\begin{equation}
+ds = \sqrt{\left(\parDiff{x}{\eta} - \parDiff{x}{\xi}\right)^2  + \left(\parDiff{y}{\eta} - \parDiff{y}{\xi}\right)^2} dt
+\end{equation}
+
+Setzt man nun für $x$ und $y$ die entsprechenden Zusammenhänge aus (\ref{eq:ansatz_isoparam}) ein erhält man:
+\begin{equation}
+ds = \sqrt{  \left(  \sum\limits_{k}\parDiff{N_k}{\eta}x_k  - \sum\limits_{k}\parDiff{N_k}{\xi}x_k  \right)^2 + \left(  \sum\limits_{k}\parDiff{N_k}{\eta}y_k  - \sum\limits_{k}\parDiff{N_k}{\xi}y_k  \right)^2  } dt
+\end{equation}

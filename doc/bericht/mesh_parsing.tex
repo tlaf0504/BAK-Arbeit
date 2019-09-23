@@ -35,11 +35,11 @@ Wie schon zuvor erwähnt benötigt die Software eine Gitterdatei der Version 2. 
 	\end{enumerate}
 \end{itemize}
 
-Eine Beispielhafte Gitterdatei zu dem in Abbildung \ref{fig:neumann_boundary_assignment} gezeigten Beispiel findet sich in Code \ref{fig:example_mesh_file}.
+Eine beispielhafte Gitterdatei zu dem in Abbildung \ref{fig:neumann_boundary_assignment} gezeigten Beispiel findet sich in Listing \ref{fig:example_mesh_file}.
 
 
 \subsubsection{Verarbeitung der Gitterinformation}
-Nach erfolgreichem Import der Gitterinformation ist als letzter Schritt or der eigentlichen Lösung nun notwendig die Randbedingungen des Problems, sowie Materialeigenschaften und weitere Informationen wie zum Beispiel Quellen (freie Raumladungen etc.) den einzelnen Elementen zuzuordnen: \newline
+Nach erfolgreichem Import der Gitterinformation sind zur vollständigen Definition des Problems die Randbedingungen des Problems, sowie Materialeigenschaften und weitere Informationen wie zum Beispiel Quellen (freie Raumladungen etc.) den einzelnen Elementen zuzuordnen: \newline
 
 \begin{itemize}
 	\item \textbf{Knoten am dirichletschen Rand}. Das Potential des entsprechenden Elementknotens ist bereits vorgegeben, was bei der Berechnung des Elementgleichungssystems entsprechend berücksichtigt werden muss.
@@ -54,15 +54,16 @@ Die Zuordnung der Knoten und Dreiecksseiten an den Rändern des Problems wird im
 \label{sec:rb_assignment}
 \textbf{Knoten am dirichletschen Rand:}
 \begin{enumerate}
-	\item Man ermittle alle Elementknoten am gewählten Rand aus den dem Rand zugeordneten Kurvenelementen. Da die Definition der Kurvenelemente in der Gitterdatei bereits die ID der entsprechenden \textit{Physical Group} enthält ist diese Aufgabe trivial.
-	\item Man suche nun alle Dreieckselemente die mindestens einen der vorher ermittelten Knoten beinhalten und speichere diese Zuordnung samt Randwerte für die entsprechenden Knoten.
+	\item Die Elementknoten am dirichletschen Rand sind zu ermitteln. Dies ist ohne weitere Umschweife möglich, da die Definition der Kurvenelemente in der Gitterdatei bereits die ID der entsprechenden \textit{Physical Group} enthält. Somit liegen alle Knoten von Kurvenelementen mit der Entsprechenden ID am dirichletschen Rand.
+	
+	\item Alle Dreieckselemente die nun mindestens einen der vorher ermittelten Knoten enthalten sind zu bestimmen. Jedem dieser Knoten wird anschließend der entsprechende Randwert zugeordnet.
 \end{enumerate}
 
 \textbf{Dreiecksseiten am neumannschen Rand:}
 \begin{enumerate}
-	\item Man wende den gleichen Algorithmus wie oben an.
-	\item Man ermittle die Dreiecksseite am neumannschen Rand durch Vergleich der Rand- und Elementknoten:\newline
-	Je nach Elementtyp ist eine Dreiecksseite durch 2, 3 oder 4 Knoten definiert. Siehe dazu Abschnitt \ref{sec:finite_elements_and_shape_functions}. Liegt ein Dreieckselement am neumannschen Rand, so stimmen alle Knoten einer oder mehrerer Seiten mit entsprechend vielen Knoten am Rand überein. Hierbei ist zu erwähnen dass auch bei mehr als 2 Knoten pro Seite immer nur eine ganze Seite am Rand liegen kann. \newline
+	\item Zur Ermittlung der Elementknoten an Rand wird der Algorithmus von oben angewendet.
+	\item Die Bestimmung der Dreiecksseiten am neumannschen Rand erfolgt durch Vergleich von der Elementknoten mit den Knoten am Rand:\newline
+	Je nach Elementtyp ist eine Dreiecksseite durch 2, 3 oder 4 Knoten definiert. Siehe dazu Abschnitt \ref{sec:finite_elements_and_shape_functions}. Liegt ein Dreieckselement am neumannschen Rand, so stimmen alle Knoten einer oder mehrerer Seiten mit entsprechend vielen Knoten am Rand überein. Hierbei ist zu erwähnen dass auch bei mehr als 2 Knoten pro Seite die ganze Seite am Rand liegen muss. \newline
 	Durch die Verwendung von isoparametrischen finiten Elementen sind im lokalen Koordinatensystem nur drei verschiedene Kurvenintegrale möglich, was eine statische Zuordnung eines Kurvenintegrals zu jeder Dreiecksseite ermöglicht. Zu diesem Zweck wird jeder Dreiecksseite eine Nummer zugewiesen:
 	\begin{itemize}
 		\item Die Dreiecksseite auf der $\xi$-Achse sei definiert als \textit{Seite 1}.
@@ -76,10 +77,12 @@ Die Zuordnung der Knoten und Dreiecksseiten an den Rändern des Problems wird im
 		\caption{Zuordnung der Dreiecksseiten}
 		\label{fig:triangle_side_assignment}
 	\end{figure}
-	\item Zu guter Letzt ordne man noch den Dreiecksseiten am Rand den Wert der Randbedingung (in (z.B. $\sigma$ aus \ref{eq:right_side_e_static}) ) zu.
+	\item Zu guter Letzt werden noch den Dreiecksseiten am Rand den Wert der Randbedingung (in (z.B. $\sigma$ aus \ref{eq:right_side_e_static}) ) zugeordnet.
 \end{enumerate}
 
-Um die in diesem Abschnitt gezeigten Zusammenhänge zu verdeutlichen, wird die Zuordnung der Dreiecksseiten zum neumannschen Rand anhand des in Abbildung \ref{fig:neumann_boundary_assignment} gezeigten Beispiels verdeutlicht. Eine Beispielhafte Gitterdatei ist in Code \ref{fig:example_mesh_file} gezeigt.
+Um die in diesem Abschnitt gezeigten Zusammenhänge zu verdeutlichen, wird die Zuordnung der Dreiecksseiten zum neumannschen Rand anhand des in Abbildung \ref{fig:neumann_boundary_assignment} gezeigten Beispiels verdeutlicht. Eine Beispielhafte Gitterdatei ist in Listing \ref{fig:example_mesh_file} gezeigt.\newline
+
+\textbf{Anmerkung:} Die Gitterdatei aus Listing \ref{fig:example_mesh_file} beschreibt keineswegs ein vollständig definiertes Problem. Sie dient lediglich der Veranschaulichung der Vorgangsweise bei der Zuordnung von Knoten und Seiten an den Problemrändern.
 
 \lstinputlisting[frame=single, backgroundcolor=\color{lightgray}, basicstyle=\ttfamily\footnotesize, caption = {Exemplarische Gitterdatei}, label={fig:example_mesh_file}, captionpos=b ]{neumann_boundary_assignment_example_mesh_file.txt}
 

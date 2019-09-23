@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Third order triangle shape functions and derivatives}
+\author{tobias.lafer }
+\date{July 2019}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Shape functions}
+
+\begin{itemize}
+    
+\item \textbf{Shape function 1}\newline
+\begin{align}
+    N_1(\zeta, \eta) = -\frac{9\,\eta ^3}{2}-\frac{27\,\eta ^2\,\zeta}{2}+9\,\eta ^2-\frac{27\,\eta \,{\zeta}^2}{2}+18\,\eta \,\zeta-\frac{11\,\eta }{2}-\frac{9\,{\zeta}^3}{2}+9\,{\zeta}^2-\frac{11\,\zeta}{2}+1
+\end{align}
+
+
+\item \textbf{Shape function 2}\newline
+\begin{align}
+    N_2(\zeta, \eta) = \frac{27\,\eta ^2\,\zeta}{2}+27\,\eta \,{\zeta}^2-\frac{45\,\eta \,\zeta}{2}+\frac{27\,{\zeta}^3}{2}-\frac{45\,{\zeta}^2}{2}+9\,\zeta
+\end{align}
+
+
+\item \textbf{Shape function 3}\newline
+\begin{align}
+    N_3(\zeta, \eta) = \frac{9\,\eta \,\zeta}{2}-\frac{9\,\zeta}{2}-\frac{27\,\eta \,{\zeta}^2}{2}+18\,{\zeta}^2-\frac{27\,{\zeta}^3}{2}
+\end{align}
+
+
+\item \textbf{Shape function 4}\newline
+\begin{align}
+    N_4(\zeta, \eta) = \frac{9\,{\zeta}^3}{2}-\frac{9\,{\zeta}^2}{2}+\zeta
+\end{align}
+
+
+\item \textbf{Shape function 5}\newline
+\begin{align}
+    N_5(\zeta, \eta) = \frac{27\,\eta \,{\zeta}^2}{2}-\frac{9\,\eta \,\zeta}{2}
+\end{align}
+
+
+\item \textbf{Shape function 6}\newline
+\begin{align}
+    N_6(\zeta, \eta) = \frac{27\,\eta ^2\,\zeta}{2}-\frac{9\,\eta \,\zeta}{2}
+\end{align}
+
+
+\item \textbf{Shape function 7}\newline
+\begin{align}
+    N_7(\zeta, \eta) = \frac{9\,\eta ^3}{2}-\frac{9\,\eta ^2}{2}+\eta 
+\end{align}
+
+
+\item \textbf{Shape function 8}\newline
+\begin{align}
+    N_8(\zeta, \eta) = \frac{9\,\eta \,\zeta}{2}-\frac{9\,\eta }{2}-\frac{27\,\eta ^2\,\zeta}{2}+18\,\eta ^2-\frac{27\,\eta ^3}{2}
+\end{align}
+
+
+\item \textbf{Shape function 9}\newline
+\begin{align}
+    N_9(\zeta, \eta) = \frac{27\,\eta ^3}{2}+27\,\eta ^2\,\zeta-\frac{45\,\eta ^2}{2}+\frac{27\,\eta \,{\zeta}^2}{2}-\frac{45\,\eta \,\zeta}{2}+9\,\eta 
+\end{align}
+
+
+\item \textbf{Shape function 10}\newline
+\begin{align}
+    N_{10}(\zeta, \eta) = -27\,\eta ^2\,\zeta-27\,\eta \,{\zeta}^2+27\,\eta \,\zeta
+\end{align}
+
+\end{itemize}
+
+
+
+\section{$\zeta$ derivatives}
+
+\begin{itemize}
+	\item \textbf{Shape function 1}\newline
+	\begin{align}
+	\frac{\partial N_1(\zeta, \eta)}{\partial \zeta} = -\frac{27\,\eta ^2}{2}-27\,\eta \,\zeta+18\,\eta -\frac{27\,{\zeta}^2}{2}+18\,\zeta-\frac{11}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 2}\newline
+	\begin{align}
+	\frac{\partial N_2(\zeta, \eta)}{\partial \zeta} = \frac{27\,\eta ^2}{2}+54\,\eta \,\zeta-\frac{45\,\eta }{2}+\frac{81\,{\zeta}^2}{2}-45\,\zeta+9
+	\end{align}
+	
+	
+	\item \textbf{Shape function 3}\newline
+	\begin{align}
+	\frac{\partial N_3(\zeta, \eta)}{\partial \zeta} = \frac{9\,\eta }{2}+36\,\zeta-27\,\eta \,\zeta-\frac{81\,{\zeta}^2}{2}-\frac{9}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 4}\newline
+	\begin{align}
+	\frac{\partial N_4(\zeta, \eta)}{\partial \zeta} = \frac{27\,{\zeta}^2}{2}-9\,\zeta+1
+	\end{align}
+	
+	
+	\item \textbf{Shape function 5}\newline
+	\begin{align}
+	 \frac{\partial N_5(\zeta, \eta)}{\partial \zeta} = 27\,\eta \,\zeta-\frac{9\,\eta }{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 6}\newline
+	\begin{align}
+	\frac{\partial N_6(\zeta, \eta)}{\partial \zeta} = \frac{27\,\eta ^2}{2}-\frac{9\,\eta }{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 7}\newline
+	\begin{align}
+	\frac{\partial N_7(\zeta, \eta)}{\partial \zeta} = 0
+	\end{align}
+	
+	
+	\item \textbf{Shape function 8}\newline
+	\begin{align}
+	\frac{\partial N_8(\zeta, \eta)}{\partial \zeta} = \frac{9\,\eta }{2}-\frac{27\,\eta ^2}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 9}\newline
+	\begin{align}
+	\frac{\partial N_9(\zeta, \eta)}{\partial \zeta} = 27\,\eta \,\zeta-\frac{45\,\eta }{2}+27\,\eta ^2
+	\end{align}
+	
+	
+	\item \textbf{Shape function 10}\newline
+	\begin{align}
+	\frac{\partial N_{10}(\zeta, \eta)}{\partial \zeta} = 27\,\eta -54\,\eta \,\zeta-27\,\eta ^2
+	\end{align}
+\end{itemize}
+
+
+
+
+\section{$\eta$ derivatives}
+
+\begin{itemize}
+	\item \textbf{Shape function 1}\newline
+	\begin{align}
+	\frac{\partial N_1(\zeta, \eta)}{\partial \eta} = -\frac{27\,\eta ^2}{2}-27\,\eta \,\zeta+18\,\eta -\frac{27\,{\zeta}^2}{2}+18\,\zeta-\frac{11}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 2}\newline
+	\begin{align}
+	\frac{\partial N_2(\zeta, \eta)}{\partial \eta} = 27\,\eta \,\zeta-\frac{45\,\zeta}{2}+27\,{\zeta}^2
+	\end{align}
+	
+	
+	\item \textbf{Shape function 3}\newline
+	\begin{align}
+	\frac{\partial N_3(\zeta, \eta)}{\partial \eta} = \frac{9\,\zeta}{2}-\frac{27\,{\zeta}^2}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 4}\newline
+	\begin{align}
+	\frac{\partial N_4(\zeta, \eta)}{\partial \eta} = 0
+	\end{align}
+	
+	
+	\item \textbf{Shape function 5}\newline
+	\begin{align}
+	\frac{\partial N_5(\zeta, \eta)}{\partial \eta} = \frac{27\,{\zeta}^2}{2}-\frac{9\,\zeta}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 6}\newline
+	\begin{align}
+	\frac{\partial N_6(\zeta, \eta)}{\partial \eta} = 27\,\eta \,\zeta-\frac{9\,\zeta}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 7}\newline
+	\begin{align}
+	\frac{\partial N_7(\zeta, \eta)}{\partial \eta} = \frac{27\,\eta ^2}{2}-9\,\eta +1
+	\end{align}
+	
+	
+	\item \textbf{Shape function 8}\newline
+	\begin{align}
+	\frac{\partial N_8(\zeta, \eta)}{\partial \eta} = 36\,\eta +\frac{9\,\zeta}{2}-27\,\eta \,\zeta-\frac{81\,\eta ^2}{2}-\frac{9}{2}
+	\end{align}
+	
+	
+	\item \textbf{Shape function 9}\newline
+	\begin{align}
+	\frac{\partial N_9(\zeta, \eta)}{\partial \eta} = \frac{81\,\eta ^2}{2}+54\,\eta \,\zeta-45\,\eta +\frac{27\,{\zeta}^2}{2}-\frac{45\,\zeta}{2}+9
+	\end{align}
+	
+	
+	\item \textbf{Shape function 10}\newline
+	\begin{align}
+	\frac{\partial N_{10}(\zeta, \eta)}{\partial \eta} = 27\,\zeta-54\,\eta \,\zeta-27\,{\zeta}^2
+	\end{align}
+\end{itemize}
+
+
+
+
+
+\end{document}

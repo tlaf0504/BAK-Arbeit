@@ -1246,11 +1246,11 @@ classdef Parser
             
             % Not each triangle contains a source. Extract triangles with sources and
             % store triangle ids and source values to struct.
-            triangles_with_sources = material_and_source_properties_tmp(:, 2) ~= 0;
+            triangles_with_sources_bin = material_and_source_properties_tmp(:, 2) ~= 0;
             
-            triangles_with_sources = triangle_data.IDs(triangles_with_sources);
+            triangles_with_sources = triangle_data.IDs(triangles_with_sources_bin);
             source_values = ...
-                material_and_source_properties_tmp(triangles_with_sources, 2);
+                material_and_source_properties_tmp(triangles_with_sources_bin, 2);
             
             material_and_source_properties = struct( ...
                 'material_IDs', material_IDs, ...

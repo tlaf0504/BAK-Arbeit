@@ -167,8 +167,7 @@ classdef Solver
             r = zeros(N_unknown, 1);
             
             % Material constants
-%             vacuum_material = Misc.get_vacuum_material(problem_type_number);
-            vacuum_material = 1;
+             vacuum_material = Misc.get_vacuum_material(problem_type_number);
             
             % Extract material and source properties
             triangles_with_sources = ...
@@ -307,11 +306,11 @@ classdef Solver
                     %
                     % Integration also not needed if no free charges occurr in the
                     % current element
-                    if  ismember(element_id, triangles_with_sources)
+                    if  ismember(triangle_data.IDs(element_id), triangles_with_sources)
                         fun = @(zeta, eta) problem_type. ...
                             right_side_plane_integrant(finite_element_type, xe, ...
                             ye, row, zeta, eta, ...
-                            source_values(triangles_with_sources == element_id));
+                            source_values(triangles_with_sources == triangle_data.IDs(element_id)));
                         
                         r_loc(row) = GaussianQuadrature. ...
                             integrate_2D_normalized_triangle_region(fun,...

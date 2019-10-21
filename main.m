@@ -14,55 +14,56 @@ gmsh_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/gmsh-4.3
 
 % Starts user interface.
 % When the UI is used, the parameters below have no effect.
-ui = 1;
+ui = 0;
 
 
 % Problem location
 if strcmp(getenv('username'),'baumgartner') % workaround that both can execute the code properly
     problem_location = 'D:\LV\Studienarbeiten\Lafer\problems\cylinder_cap';
 else
-    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/plate_capacitor_multi_material_2';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/plate_cap_multi_material';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_cap';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/fem_test';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/simple_cap';
-    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cap_multi_material';
+    problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/ring_coil';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/zylinder_coil';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/WS_19_20/Master_Seminarprojekt/FEMLab/sample_projects/zylinderspule';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/cylinder_electrodes_over_metal_plane';
+    %problem_location = '/run/media/tobiaslafer/shared/Documents/Uni/BAK-Arbeit/repo/problems/round_conductor';
 end
 
 % Integer number representing the type of the problem.
 % See Misc.supported_problem_types for supported problem types.
-problem_type = 'Electrostatic';
+%problem_type = 'Electrostatic';
+problem_type = 'RotMagnetostatic';
+%problem_type = 'PlaneMagnetostatic';
 
 
 % Set this flag to 1 if you want to load a existing setup. If this flag is set,
 % the parameters below have no effect.
-load_existing_setup = 1;
+load_existing_setup = 0;
 
 % Name of the geometry file
-%geometry_file = 'cylinder_cap_simple.geo';
-%geometry_file = 'cylinder_cap_2_materials.geo';
-%geometry_file = 'fem_test.geo';
-geometry_file = 'cap.geo';
-%geometry_file = 'cap_multi_material.geo';
+geometry_file = 'coil.geo';
+%geometry_file = 'cap.geo';
+%geometry_file = 'zylinderspule.geo';
+%geometry_file = 'cond.geo';
+
+
 
 % Name of the settings file
-%settings_file = 'cylinder_cap_2_materials.set';
-%settings_file = 'cylinder_cap_simple.set';
-%settings_file = 'fem_test.set';
-settings_file = 'cap.set';
-%ettings_file = 'cap_multi_material.set';
+%settings_file = 'cap.set';
+settings_file = 'settings.txt';
+
 
 % Element order.
 % 1: Linear, 2: Quadratic, 3: Cubic
-mesh_order = 2 ;
+mesh_order = 2;
 
 % Mesh file version
 % See GmshIF.supported_mesh_file_versions for further information
 mesh_file_version = 2;
 
 % Load pregenerated mesh file
-load_mesh = false;
-mesh_file = 'cap.msh';
+load_mesh = true;
+mesh_file = 'coil_quadratic.msh';
+%mesh_file = 'cond_fine_second_order.msh';
 
 % ========================= Do not mofidy code blow here ============================
 
@@ -85,6 +86,8 @@ if ui
     main_window()
 else
     computation_step = 0;
+    %computation_step = Setup.setup_state_solving_finished;
+
 
 
 computation_completed = false;

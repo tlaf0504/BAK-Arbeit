@@ -9,8 +9,8 @@ classdef Misc
         %     -) 'Electrostatic': Electrostatic problem. ID = 1
         %     -) 'Static Current': Static currentflow problem. ID = 2
         supported_problem_types = containers.Map(...
-            {'Electrostatic', 'Static Current'}, ...        
-            [1, 2] ...
+            {'Electrostatic', 'Static Current', 'RotMagnetostatic', 'PlaneMagnetostatic'}, ...        
+            [1, 2, 3, 4] ...
             );
         
     end
@@ -92,15 +92,20 @@ classdef Misc
                 problem_type_number)
             
             success = 1;
+            problem_type = nan;
             
             switch problem_type_number
                 case 1
                     problem_type = ElectrostaticProblem;
                 case 2
                     problem_type = StaticCurrentProblem;
+                case 3
+                    problem_type = RotationSymmetricMagnetostaticProblem;
+                case 4
+                    problem_type = PlaneMagnetostaticProblem;
                 otherwise
                     msg = sprintf(['Wrong problem type input. Following problem ', ...
-                        'types are supported: "Electrostatic", "StaticCurrent".']);
+                        'types are supported: "Electrostatic", "StaticCurrent", "RotationSymmetricMagnetostaticProblem".']);
                     Misc.print_error_message(msg);
                     
                     success = 0;
@@ -130,7 +135,9 @@ classdef Misc
             elseif problem_type == 2 % Static current problem
                 % Contuctivity is given as an absolute value for static current
                 % problems. So 'vacuum_material' is simply set to 1.
-                vacuum_material = 1;
+            elseif problem_type == 3 || problem_type == 4
+                % Plane or rotationsymmetric magnetostatic problem
+                vacuum_material = 4 * pi * 10^-7;
             end
         end
         

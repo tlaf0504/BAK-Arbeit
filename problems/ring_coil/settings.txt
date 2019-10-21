@@ -1,0 +1,9 @@
+$Edges
+1
+dir0 1 DRB 0
+$EndEdges
+$Faces
+2
+air 2 1 0
+coil 2 1 1000
+$EndFaces

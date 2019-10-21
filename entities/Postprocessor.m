@@ -10,6 +10,7 @@ classdef Postprocessor
             success = 1;
             
             tmp = pwd;
+            
             cd(problem_location)
             
             % Plot section separator to console
@@ -30,13 +31,23 @@ classdef Postprocessor
             % Plot mesh
             mesh_plot = Postprocessor.get_mesh_plot_data(mesh_data, problem_setup);
 
-             Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
+            Postprocessor.plot_node_potentials(node_potentials, mesh_plot);
             
-             Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
-                 problem_setup);
-            
-            Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
-              problem_setup, mesh_plot)
+             %Postprocessor.calculate_energy(mesh_data, node_potentials.potentials, ...
+             %    problem_setup);
+            switch problem_setup.problem_type
+                case {1,2}
+                    Postprocessor.plot_electric_field(mesh_data, node_potentials.potentials, ...
+                    problem_setup, mesh_plot)
+                case 3
+                    Postprocessor.plot_magnetic_field_rot_sym(mesh_data, node_potentials.potentials, ...
+                    problem_setup, mesh_plot)
+                case 4
+                    Postprocessor.plot_magnetic_field_planar(mesh_data, node_potentials.potentials, ...
+                    problem_setup, mesh_plot)
+                
+                    
+            end
             
             
             Misc.print_message(Misc.console_section_separator);
@@ -279,6 +290,219 @@ classdef Postprocessor
             ylabel('Distance in m')
             colormap jet
             colorbar;   
+        end
+        
+        function plot_magnetic_field_planar(mesh_data, node_potentials, problem_setup, ...
+                mesh_plot)
+            
+            
+            
+            finite_element_class = ...
+                Misc.get_finite_element_class_from_mesh_order(problem_setup.mesh_order);
+            
+            
+            number_of_finite_elements = mesh_data.triangle_data.number_of_triangles;
+            
+            % Preallocate memory
+            magnetic_field = zeros(number_of_finite_elements, 2);
+            coordinates = zeros(number_of_finite_elements, 2);
+            quiver_data = zeros(number_of_finite_elements, 2); % x/y plot data for field vectors
+            abs_magnetic_field = zeros(number_of_finite_elements, 1); % Absolute value of electric field
+            
+            
+            
+            % Calculate field at center point of triangle
+            zeta = 1/3;
+            eta = 1/3;
+            
+            dN_dZeta = finite_element_class. ...
+                get_zeta_shape_function_derivative_matrix(zeta, eta);
+            
+            dN_dEta = finite_element_class. ...
+                get_eta_shape_function_derivative_matrix(zeta, eta);
+            
+            shape_functions = finite_element_class.get_shape_function_matrix(zeta, eta);
+            
+            for k = 1 : number_of_finite_elements
+                
+                nodes_of_current_triangle = mesh_data.triangle_data.nodes(k, :);
+                node_potentials_of_current_triangle = node_potentials(...
+                    nodes_of_current_triangle);
+                
+                node_coordinates_of_current_triangle = mesh_data.node_data. ...
+                    coordinates(nodes_of_current_triangle, :);
+                
+                xe = node_coordinates_of_current_triangle(:, 1);
+                ye = node_coordinates_of_current_triangle(:, 2);
+                
+                jacobi_determinant = finite_element_class.jacobi_determinant( ...
+                    zeta, eta, xe, ye);
+
+                dNk_dx = (1 ./jacobi_determinant)' .* ...
+                    ( ye' * dN_dEta .* dN_dZeta - ...
+                    ye' * dN_dZeta .* dN_dEta);
+                
+                dNk_dy = (1 ./jacobi_determinant)' .* ...
+                    ( - xe' * dN_dEta .* dN_dZeta + ...
+                    xe' * dN_dZeta .* dN_dEta);
+                % x-component
+                
+                
+                magnetic_field(k, 1) =  node_potentials_of_current_triangle' * dNk_dy;
+                magnetic_field(k, 2) =  -node_potentials_of_current_triangle' * dNk_dx;
+
+                abs_magnetic_field(k) = sqrt(magnetic_field(k, 1) .^2 + ...
+                    magnetic_field(k, 2) .^2);
+                
+                
+                
+                % Normalize quivers
+                quiver_data(k, :) = magnetic_field(k, :) / abs_magnetic_field(k);
+                
+                coordinates(k, 1) = xe' * shape_functions;
+                coordinates(k, 2) = ye' * shape_functions;
+
+            end
+            
+            % Calculate absolute value of electric field
+            
+            
+            % Generate quiver plot
+            h = figure();
+            Misc.CloneFig(mesh_plot, h)
+            hold on
+            quiver(coordinates(:, 1), coordinates(:, 2), ...
+                quiver_data(:,1), quiver_data(:, 2), ...
+                'Color', [0 0.4470 0.7410])
+            title('B-field field')
+            
+            
+            
+            h = figure();
+            
+            Misc.CloneFig(mesh_plot, h);
+            hold on
+            scatter(coordinates(:, 1), coordinates(:, 2), 20, abs_magnetic_field, ...
+                'filled');
+            colormap jet
+            colorbar;
+
+            title('Absolute value of B-field')
+            axis equal
+            xlabel('Distance in m')
+            ylabel('Distance in m')
+            colormap jet
+            colorbar;   
+        end
+        
+        function plot_magnetic_field_rot_sym(mesh_data, node_potentials, problem_setup, ...
+                mesh_plot)
+            
+            
+            finite_element_class = ...
+                Misc.get_finite_element_class_from_mesh_order(problem_setup.mesh_order);
+            
+            
+            number_of_finite_elements = mesh_data.triangle_data.number_of_triangles;
+            
+            % Preallocate memory
+            magnetic_field = zeros(number_of_finite_elements, 2);
+            coordinates = zeros(number_of_finite_elements, 2);
+            quiver_data = zeros(number_of_finite_elements, 2); % x/y plot data for field vectors
+            abs_magnetic_field = zeros(number_of_finite_elements, 1); % Absolute value of electric field
+            
+            
+            
+            % Calculate field at center point of triangle
+            zeta = 1/3;
+            eta = 1/3;
+            
+            dN_dZeta = finite_element_class. ...
+                get_zeta_shape_function_derivative_matrix(zeta, eta);
+            
+            dN_dEta = finite_element_class. ...
+                get_eta_shape_function_derivative_matrix(zeta, eta);
+            
+            shape_functions = finite_element_class.get_shape_function_matrix(zeta, eta);
+            
+            for k = 1 : number_of_finite_elements
+                
+                nodes_of_current_triangle = mesh_data.triangle_data.nodes(k, :);
+                node_potentials_of_current_triangle = node_potentials(...
+                    nodes_of_current_triangle);
+                
+                node_coordinates_of_current_triangle = mesh_data.node_data. ...
+                    coordinates(nodes_of_current_triangle, :);
+                
+               
+                
+                re = node_coordinates_of_current_triangle(:, 1);
+                ze = node_coordinates_of_current_triangle(:, 2);
+                r = re' * shape_functions;
+                
+                jacobi_determinant = finite_element_class.jacobi_determinant( ...
+                    zeta, eta, re, ze);
+
+                dNk_dr = (1 ./jacobi_determinant)' .* ...
+                    ( ze' * dN_dEta .* dN_dZeta - ...
+                    ze' * dN_dZeta .* dN_dEta);
+                
+                dNk_dz = (1 ./jacobi_determinant)' .* ...
+                    ( - re' * dN_dEta .* dN_dZeta + ...
+                    re' * dN_dZeta .* dN_dEta);
+               
+                
+                
+                magnetic_field(k, 1) =  -1/r * node_potentials_of_current_triangle' * dNk_dz;
+                magnetic_field(k, 2) =  node_potentials_of_current_triangle' * shape_functions + ...
+                    1/r * (node_potentials_of_current_triangle' * dNk_dr);
+
+                abs_magnetic_field(k) = sqrt(magnetic_field(k, 1) .^2 + ...
+                    magnetic_field(k, 2) .^2);
+                
+                
+                
+                % Normalize quivers
+                quiver_data(k, :) = magnetic_field(k, :) / abs_magnetic_field(k);
+                
+                coordinates(k, 1) = re' * shape_functions;
+                coordinates(k, 2) = ze' * shape_functions;
+
+            end
+            
+            % Calculate absolute value of electric field
+            
+            
+            % Generate quiver plot
+            h = figure();
+            Misc.CloneFig(mesh_plot, h)
+            hold on
+            quiver(coordinates(:, 1), coordinates(:, 2), ...
+                quiver_data(:,1), quiver_data(:, 2), ...
+                'Color', [0 0.4470 0.7410])
+            title('B-field field')
+            
+            
+            
+            h = figure();
+            
+            Misc.CloneFig(mesh_plot, h);
+            hold on
+            scatter(coordinates(:, 1), coordinates(:, 2), 20, abs_magnetic_field, ...
+                'filled');
+            colormap jet
+            colorbar;
+
+            title('Absolute value of B-field')
+            axis equal
+            xlabel('Distance in m')
+            ylabel('Distance in m')
+            colormap jet
+            colorbar;   
+            
+            keyboard
+            save('B_data.mat', 'coordinates', 'abs_magnetic_field', 'magnetic_field')
+            
         end
         
         function mesh_plot = get_mesh_plot_data(mesh_data, problem_setup)

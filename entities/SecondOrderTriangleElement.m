@@ -337,7 +337,6 @@ classdef SecondOrderTriangleElement
             end
         end
         
-        
         function mat = get_eta_shape_function_derivative_matrix( ...
                 zeta, eta)
             
